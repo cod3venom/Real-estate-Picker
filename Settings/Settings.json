@@ -1,0 +1,29 @@
+
+{
+  "VERSION": "1.0",
+  "TERMINAL_PREFIX": "RealEstate_picker.{}@root > ",
+  "LOG_FORMAT": "{}[{}][{}] {} > {}",
+  "BINARY_PATH": "/Settings/bin/chromedriver",
+  "JS_PATH": "/Settings/Javascript/",
+  "DEFAULT_ENCODING": "utf-8",
+  "DEFAULT_TEMPLATE": "/Settings/Templates/default.temp",
+  "MORIZON_STORAGE" : "/Storage/Morizon/",
+  "MORIZON_SELECTORS" :{
+    "ACCEPT_REGULATIONS": "//button[text()='ZGADZAM SIĘ']",
+    "TITLE": "normalize-space(//div[@class='descriptionContent__title']/p/text())",
+    "IMAGES": "//img[@data-number]/@src",
+    "IMAGES_TOTAL": "count(//img[@data-number]/@src)",
+    "GALLERY_SHOW_NEXT": "//div[@class='controlsRight imageBoxArrowRight gallery-nav gallery-nav--thumbs gallery-nav--right']",
+    "PRICE": "concat(normalize-space(//li[contains(text(),'Cena')]/em/text()), normalize-space(//li[contains(text(),'Cena')]/em/span/text()))",
+    "LOCATION" : "normalize-space(//div[@class='descriptionContent__title']/p/text())",
+    "MEASUREMENT": "concat(normalize-space(//li[contains(text(),'Powierzchnia')][1]/em/text()), normalize-space(//li[contains(text(),'Powierzchnia')][1]/em/span/text()))",
+    "ROOMS_AMOUNT": "normalize-space(//li[contains(text(),'Pokoje')][1]/em/text())",
+    "PHONE_NUMBER": "normalize-space(//span[@class='phone hidden']/text())",
+    "CONTACT_DIGNITY": "normalize-space(//div[@class='agentName']/text())",
+    "DESCRIPTION": "//div[@id='description']/p/text()"
+  }
+
+
+}
+
+
