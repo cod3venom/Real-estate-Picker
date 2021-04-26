@@ -12,6 +12,8 @@ import random
 import string
 import shutil
 
+from DataOperations.DATE import DATE
+
 
 class FileSystem:
     chmod_allow_everything = 0o777
@@ -70,12 +72,25 @@ class FileSystem:
             return True
         return False
 
-
     def generateRandomName(self):
         letters = string.ascii_lowercase
         return ''.join(random.choice(letters) for i in range(10))
 
-    def download(self, binary, path):
-        with open(path, 'wb') as writer:
-            shutil.copyfileobj(binary, writer)
-            return path
+    def sanitize_path(self, path: str):
+        blacklist = ["<", ">", ":", '"', "|", "?", "\n"]
+
+        for black in blacklist:
+            if black in path:
+                path = path.replace(black, "")
+        return path
+
+    def file_name_from_path(self, path: str):
+        on_delimiter = []
+        if "\\" in path:
+            on_delimiter = path.split("\\")
+        if "/" in path:
+            on_delimiter = path.split("/")
+
+        if len(on_delimiter) > 0:
+            return on_delimiter[len(on_delimiter) - 1]
+        return ""

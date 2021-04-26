@@ -8,15 +8,17 @@
 """
 
 import json
+from Kernel.Global import ctx
+from DataOperations.LIST import LIST
 from DataOperations.StringBuilder import StringBuilder
 
 
 class MorizonProductTObject:
 
-    def __init__(self, TITLE: str, DESCRIPTION: str, IMAGES: list, PRICE: str, LOCATION: str, MEASUREMENT: str,
+    def __init__(self, TITLE: str, DESCRIPTION: list, IMAGES: list, PRICE: str, LOCATION: str, MEASUREMENT: str,
                  ROOMS_AMOUNT: str, PHONE_NUMBER: str, CONTACT_DIGNITY: str):
         self.title = TITLE
-        self.description = DESCRIPTION
+        self.description = LIST.list_to_str(DESCRIPTION)
         self.images = IMAGES
         self.price = PRICE
         self.location = LOCATION
@@ -24,7 +26,8 @@ class MorizonProductTObject:
         self.rooms_amount = ROOMS_AMOUNT
         self.phone_number = PHONE_NUMBER
         self.contact_dignity = CONTACT_DIGNITY
-        print(self.__repr__())
+
+        ctx.Logger.Print(0,ctx.LogLevel.Success, self.__repr__())
 
     @classmethod
     def TO(cls, jsData: str):

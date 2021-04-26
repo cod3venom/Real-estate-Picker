@@ -20,12 +20,18 @@ class LocalSettingsTObject:
         workDir = os.getcwd()
         self.VERSION = json_data["VERSION"]
         self.TERMINAL_PREFIX = json_data["TERMINAL_PREFIX"].format(self.VERSION)
+
         self.LOG_FORMAT = json_data["LOG_FORMAT"]
+        self.EN_US = workDir + json_data["EN_US"]
+
         self.BINARY_PATH = workDir + json_data["BINARY_PATH"]
         self.JS_PATH = workDir + json_data["JS_PATH"]
+
         self.DEFAULT_ENCODING = json_data["DEFAULT_ENCODING"]
         self.DEFAULT_TEMPLATE = workDir + json_data["DEFAULT_TEMPLATE"]
 
         self.MORIZON_STORAGE = workDir + json_data["MORIZON_STORAGE"]
-        self.MORIZON_SELECTORS = json_data["MORIZON_SELECTORS"]
+        self.GUMTREE_STORAGE = workDir + json_data["GUMTREE_STORAGE"]
 
+        self.MORIZON_SELECTORS = json_data["MORIZON_SELECTORS"]
+        self.GUMTREE_SELECTORS = json_data["GUMTREE_SELECTORS"]

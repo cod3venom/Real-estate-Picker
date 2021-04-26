@@ -10,7 +10,6 @@ from lxml import html, etree
 
 
 class Xpath:
-
     __source: html
 
     def set_source(self, source: str) -> html:
@@ -20,12 +19,12 @@ class Xpath:
     def get_source(self) -> str:
         return self.__source
 
-    def extract(self,  selector: str):
-        result: str = ''
+    def extract(self, selector: str):
+
         try:
             if self.__source is not None and selector != '':
-                result = self.__source.xpath(selector)
-            return result
+                return self.__source.xpath(selector)
+            return None
         except etree.ParseError as parseError:
             print(parseError)
         except etree.XPathEvalError as xpathError:

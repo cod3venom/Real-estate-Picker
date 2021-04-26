@@ -6,19 +6,21 @@
  * Time: 21:29
  * Github: https://github.com/cod3venom
 """
-
-from datetime import datetime
+import datetime
 
 
 class DATE:
 
+    def __now(self):
+        return datetime.datetime.now()
+
     @property
     def day(self):
-        return datetime.now().strftime("%Y-%m-%d")
+        return self.__now().strftime("%Y-%m-%d")
 
     @property
     def time(self):
-        return datetime.now().strftime("%H:%M:%S")
+        return self.__now().strftime("%H:%M:%S")
 
     @property
     def full_date(self):

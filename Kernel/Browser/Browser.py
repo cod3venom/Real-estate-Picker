@@ -12,6 +12,8 @@ from selenium.common.exceptions import NoSuchElementException, StaleElementRefer
     ElementNotInteractableException, ElementClickInterceptedException, WebDriverException
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.remote.webelement import WebElement
+from selenium.webdriver.common.action_chains import ActionChains
+
 import time
 
 from Kernel.Browser.Drivers.ChromiumConfig import ChromiumConfig
@@ -27,8 +29,10 @@ class Browser:
         self.ctx = ctx
 
         self.__chromeConfig = ChromiumConfig()
-        self.__chromeDriver = ChromeDriver(browser=webdriver.Chrome(executable_path=self.ctx.Settings.BINARY_PATH,
-                                                                    chrome_options=self.__chromeConfig.get_options()))
+        self.__chromeDriver = ChromeDriver(parent=self,
+                                           browser=webdriver.Chrome(executable_path=self.ctx.Settings.BINARY_PATH,
+                                                                    chrome_options=self.__chromeConfig.get_options(
+                                                                        headless=True)))
         self.__element = Elements(self)
         self.__javascript = Javascript(self)
 
@@ -63,15 +67,19 @@ class Browser:
 
 
 class ChromeDriver:
-    __chromeDriver: webdriver.Chrome
 
-    def __init__(self, browser: webdriver.Chrome):
+    def __init__(self, parent: Browser, browser: webdriver.Chrome):
+        self.__parent = parent
         self.__chromeDriver = browser
 
     def navigate(self, url: str, wait_for: int = 0):
         self.__chromeDriver.get(url)
         if wait_for > 0:
             time.sleep(wait_for)
+
+        self.__parent.ctx.Logger.Print(0,
+                                       self.__parent.ctx.LogLevel.Info,
+                                       self.__parent.ctx.Texts.getText(1).format(url))
 
     def driver(self) -> webdriver.Chrome:
         return self.__chromeDriver
@@ -99,10 +107,13 @@ class Elements:
             return target
         return target
 
-    def click(self, target: WebElement) -> WebElement:
+    def click(self, target: WebElement, interval: int = 0) -> WebElement:
         try:
+            if interval > 0:
+                time.sleep(interval)
             if type(target) == WebElement:
                 target.click()
+                self.__parent.ctx.Logger.Print(0, self.__parent.ctx.LogLevel.Success, self.__parent.ctx.Texts.getText(2).format(str(target)))
         except ElementNotInteractableException:
             return target
         except ElementClickInterceptedException:
@@ -115,14 +126,21 @@ class Elements:
 
     def findElementByCss(self, target):
         try:
-            return self.__parent.ChromeDriver.driver().find_element_by_css_selector(target)
+            element = self.__parent.ChromeDriver.driver().find_element_by_css_selector(target)
+            if element:
+                self.__parent.ctx.Logger.Print(0, self.__parent.ctx.LogLevel.Success, self.__parent.ctx.Texts.getText(3).format(str(element)))
+                return element
         except NoSuchElementException:
+            self.__parent.ctx.Logger.Print()(0, self.__parent.ctx.LogLevel.Error, self.__parent.ctx.Texts.getText(4))
             return None
 
     def findElementsByCss(self, target) -> list:
         try:
-            return self.__parent.ChromeDriver.driver().find_elements_by_css_selector(target)
+            element = self.__parent.ChromeDriver.driver().find_elements_by_css_selector(target)
+            if element:
+                self.__parent.ctx.Logger.Print(0, self.__parent.ctx.LogLevel.Success, self.__parent.ctx.Texts.getText(3).format(str(element)))
         except NoSuchElementException:
+            self.__parent.ctx.Logger.Print(0, self.__parent.ctx.LogLevel.Error, self.__parent.ctx.Texts.getText(4))
             return []
 
     def findElementByXpath(self, target):
@@ -156,6 +174,9 @@ class Elements:
             self.input(target=target, value=value)
         return target
 
+    def hover(self, target: WebElement):
+        return ActionChains(self.__parent.ChromeDriver.driver()).move_to_element(target).perform()
+
 
 class Javascript:
     __parent: Browser
@@ -165,6 +186,7 @@ class Javascript:
 
     def scroll_to_bottom(self, interval: int = 0):
         self.execute_bundleJS('ScrollBottom')
+
 
     def scroll_to_top(self, interval: int = 0):
         self.execute_bundleJS('ScrollTop')
@@ -176,7 +198,10 @@ class Javascript:
     def execute_bundleJS(self, codeName: str, interval: int = 0):
         if self.__parent.ChromeDriver.driver() is not None:
             code = self.__parent.ctx.JsBundle.js_get(codeName)
-            return self.execute_js(code=code, interval=interval)
+            flag = self.execute_js(code=code, interval=interval)
+            if len(flag) > 0:
+                self.__parent.ctx.Logger.Print(0, self.__parent.ctx.LogLevel.Success, self.__parent.ctx.Texts.getText(5).format(str(codeName)))
+            return flag
 
     def execute_js(self, code: str, *args, interval: int = 0):
         try:
