@@ -37,10 +37,12 @@ class LocalSettingsTObject:
         self.GRATKA_STORAGE = str(workDir + json_data["GRATKA_STORAGE"]).replace("/", os.sep)
         self.DOMY_STORAGE = str(workDir + json_data["DOMY_STORAGE"]).replace("/", os.sep)
         self.DOMIPORTAL_STORAGE = str(workDir + json_data["DOMIPORTAL_STORAGE"]).replace("/", os.sep)
+        self.OTODOM_STORAGE = str(workDir + json_data["OTODOM_STORAGE"]).replace("/", os.sep)
 
         self.MORIZON_SELECTORS = json_data["MORIZON_SELECTORS"]
         self.GUMTREE_SELECTORS = json_data["GUMTREE_SELECTORS"]
         self.OLX_SELECTORS = json_data["OLX_SELECTORS"]
         self.GRATKA_SELECTORS = json_data["GRATKA_SELECTORS"]
         self.DOMY_SELECTORS = json_data["DOMY_SELECTORS"]
-        self.DOMPORTAL_SELECTORS = json_data["DOMPORTAL_SELECTORS"]
+        self.DOMIPORTAL_SELECTORS = json_data["DOMIPORTAL_SELECTORS"]
+        self.OTODOM_SELECTORS = json_data["OTODOM_SELECTORS"]

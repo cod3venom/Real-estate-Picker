@@ -18,6 +18,7 @@
   "GRATKA_STORAGE": "/Storage/Gratka/",
   "DOMY_STORAGE": "/Storage/Domy/",
   "DOMIPORTAL_STORAGE": "/Storage/DomiPortal/",
+  "OTODOM_STORAGE": "/Storage/Otodom/",
 
   "MORIZON_SELECTORS" :{
     "ACCEPT_REGULATIONS": "//button[text()='ZGADZAM SIĘ']",
@@ -95,9 +96,10 @@
     "CONTACT_DIGNITY": "normalize-space(//span[@class = 'agentName']/text())",
     "DESCRIPTION": "//div[@id = 'description']/p/text()"
   },
-  "DOMPORTAL_SELECTORS" :{
+  "DOMIPORTAL_SELECTORS" :{
+    "ACCEPT_REGULATIONS": "//button[@id='onetrust-accept-btn-handler']",
     "TITLE": "normalize-space(//title/text())",
-    "SCROLL_TO_GALLERY": "img[id=\"imageBig\"]",
+    "SCROLL_TO_GALLERY": "div[id=\"sliderGallery\"]",
     "GALLERY_IMAGES": "//div[@role = 'option']/img[contains(@src, 'pictures/big/')]/@src",
     "PRICE": "normalize-space(//span[text() = 'Cena']/../span/p/text())",
     "LOCATION" : "normalize-space(//span[@itemprop = 'address'])",
@@ -105,6 +107,22 @@
     "ROOMS_AMOUNT": "normalize-space(//span[text() = 'Liczba pokoi ']/../span[2])",
     "PHONE_NUMBER": "normalize-space(//a[@data-tel]/@data-tel)",
     "DESCRIPTION": "normalize-space(//div[@class = 'description__panel']/text())"
+  },
+  "OTODOM_SELECTORS" :{
+    "ACCEPT_REGULATIONS": "//button[@id='onetrust-accept-btn-handler']",
+    "TITLE": "normalize-space(//title/text())",
+    "SCROLL_TO_GALLERY": "div[class = \"image-gallery image-gallery-using-mouse\"]",
+    "IMAGES_TOTAL": "normalize-space(//span[@class = 'image-gallery-index-total'])",
+    "GALLERY_IMAGES": "//div[contains(@aria-label, 'Go to Slide')]//img/@src",
+    "GALLERY_NEXT": "document.querySelector(\"button[data-cy='frontend.ad-media-gallery.next-photo']\").click();",
+    "PRICE": "normalize-space(//strong[@aria-label = 'Cena']/text())",
+    "LOCATION" : "normalize-space(//a[@href = '#map']/text())",
+    "MEASUREMENT": "normalize-space(translate(//div[@aria-label = 'Powierzchnia'], 'Powierzchnia:',''))",
+    "ROOMS_AMOUNT": "normalize-space(translate(//div[@aria-label = 'Liczba pokoi'], 'Liczba pokoi:',''))",
+    "PHONE_BUTTON": "//button[text() = 'Pokaż numer']",
+    "PHONE_NUMBER": "normalize-space(//a[@data-tel]/@data-tel)",
+    "DESCRIPTION": "normalize-space(//div[@data-cy = 'adPageAdDescription'])",
+    "CONTACT_DIGNITY" : "normalize-space(//span[contains(@class, 'contactPersonName')])"
   }
 }
 

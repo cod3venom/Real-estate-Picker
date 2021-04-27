@@ -1,11 +1,13 @@
 from DataOperations.DATE import DATE
 from Kernel.Global import ctx
 from Kernel.Global import browser
+from Vendors.DomiPortal.DomiPortal import DomiPortal
 from Vendors.Domy.Domy import Domy
 from Vendors.Gratka.Gratka import Gratka
 from Vendors.Gumtree.Gumtree import Gumtree
 from Vendors.Morizon.Morizon import Morizon
 from Vendors.Olx.Olx import Olx
+from Vendors.Otodom.Otodom import Otodom
 
 
 class Main:
@@ -21,6 +23,11 @@ class Main:
         # gratka.start()
         # domy = Domy(ctx=ctx, url='https://domy.pl/mieszkanie/warszawa-wola-karolkowa-2-pokoje-2500-pln-34m2-wfb/dol1735626885   ')
         # domy.start()
+        # domiPortal = DomiPortal(ctx=ctx, url='https://www.domiporta.pl/nieruchomosci/wynajme-mieszkanie-dwupokojowe-warszawa-mokotow-etiudy-rewolucyjnej-39m2/152764390')
+        # domiPortal.start()
+
+        otodom = Otodom(ctx=ctx, url='https://www.otodom.pl/pl/oferta/dwupokojowe-mieszkanie-na-zoliborzu-artystycznym-ID4bd17.html')
+        otodom.start()
 
         # links = [
         #     "https://domy.pl/mieszkanie/warszawa-wola-2-pokoje-3000-pln-60m2-wba/dol1735293161",
@@ -31,7 +38,7 @@ class Main:
         # for link in links:
         #     domy = Domy(ctx=ctx, url=link)
         #     domy.start()
-        pass
+
 
 
 if __name__ == "__main__":
