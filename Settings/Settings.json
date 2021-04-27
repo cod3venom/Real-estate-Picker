@@ -5,7 +5,8 @@
   "LOG_FORMAT": "{}[{}][{}] {} > {}",
   "EN_US": "/Settings/Texts/text_EN.lang",
 
-  "BINARY_PATH": "/Settings/bin/chromedriver.exe",
+  "BINARY_PATH_LINUX": "/Settings/bin/chromedriver",
+  "BINARY_PATH_WINDOWS": "/Settings/bin/chromedriver.exe",
   "JS_PATH": "/Settings/Javascript/",
 
   "DEFAULT_ENCODING": "utf-8",
@@ -13,6 +14,10 @@
 
   "MORIZON_STORAGE" : "/Storage/Morizon/",
   "GUMTREE_STORAGE" : "/Storage/Gumtree/",
+  "OLX_STORAGE": "/Storage/Olx/",
+  "GRATKA_STORAGE": "/Storage/Gratka/",
+  "DOMY_STORAGE": "/Storage/Domy/",
+  "DOMIPORTAL_STORAGE": "/Storage/DomiPortal/",
 
   "MORIZON_SELECTORS" :{
     "ACCEPT_REGULATIONS": "//button[text()='ZGADZAM SIĘ']",
@@ -45,9 +50,62 @@
     "ROOMS_AMOUNT": "translate(normalize-space(//div[@class='attribute']/span[@class='name'][contains(text(), 'Liczba pokoi')]/../span[@class='value']/text()), 'pokoje', '')",
     "CONTACT_DIGNITY": "//span[@class='username'][1]/a[1]/text()",
     "DESCRIPTION": "//div[@class='vip-details']/div[@class='description']/span/text()"
+  },
+  "OLX_SELECTORS" : {
+    "ACCEPT_REGULATIONS": "//button[@id='onetrust-accept-btn-handler']",
+    "TITLE": "normalize-space(//title/text())",
+    "PHONE_BUTTON": "//button[text() = 'Zadzwoń']",
+    "PHONE_NUMBER": "return document.querySelector(\"button[data-cy='ad-contact-phone']\").textContent;",
+    "GALLERY_MAIN": "//div[@class='swiper-zoom-container']",
+    "GALLERY_MAIN_CLICK": "document.querySelector('div[class=\"swiper-zoom-container\"] > img').click();",
+    "GALLERY_IMAGES": "//div[@class='swiper-zoom-container']/img/@src",
+    "GALLERY_NEXT": "//button[@aria-label='Next slide']",
+    "GALLERY_CLOSE": "document.querySelector(\"div[data-testid='close-modal']\").click();",
+    "IMAGES_TOTAL": "//div[@data-cy='adPhotos-slidesNum']/text()[2]",
+    "PRICE": "normalize-space(concat(//div[@data-testid='ad-price-container']/h3/text()[1],' ', //div[@data-testid='ad-price-container']/h3/text()[3]))",
+    "LOCATION": "return Array.from(document.querySelectorAll('p')).find(function(target){if(target.textContent === 'Lokalizacja'){ let needle = target.parentNode.innerText; needle = needle.replaceAll('\\n', ' '); return needle.replaceAll('Lokalizacja', ''); }});",
+    "MEASUREMENT": "normalize-space(translate(//p[contains(text(), 'Powierzchnia')]/text(), 'Powierzhcnia: ' , ''))",
+    "ROOMS_AMOUNT": "normalize-space(//p[contains(text(), 'Liczba pokoi')]/text())",
+    "CONTACT_DIGNITY": "normalize-space(//a[@name='user_ads']//h2/text())",
+    "DESCRIPTION": "//div[@data-cy='ad_description']/div/text()"
+  },
+  "GRATKA_SELECTORS" : {
+    "ACCEPT_REGULATIONS": "//a[text() = 'Przejdź do serwisu']",
+    "TITLE": "normalize-space(//title/text())",
+    "PHONE_NUMBER": "normalize-space(//a/@data-full-phone-number)",
+    "GALLERY_IMAGES": "//div[@class='gallery__overflowBox']/ul//img[@loading='lazy']/@src",
+    "PRICE": "normalize-space(concat(//span[@class = 'priceInfo__value']/text(), //span[@class = 'priceInfo__value']/span/text()))",
+    "LOCATION": "normalize-space(//span[text() = 'Lokalizacja']/../b[@class = 'parameters__value'])",
+    "MEASUREMENT": "normalize-space(concat(//span[contains(text() , 'Powierzchnia')]/../b/text(), //span[contains(text() , 'Powierzchnia')]/../b/sup/text()))",
+    "ROOMS_AMOUNT": "normalize-space(//span[contains(text() , 'Liczba pokoi')]/../b/text())",
+    "CONTACT_DIGNITY": "normalize-space(//h3[@ class= 'offerOwner__person']/text())",
+    "DESCRIPTION": "return document.querySelector(\"div[class='description__rolled ql-container']\").innerText;"
+  },
+  "DOMY_SELECTORS" :{
+    "TITLE": "normalize-space(//title/text())",
+    "IMAGES_TOTAL": "normalize-space(translate(//span[@id = 'photoNumber']/../text()[2], 'z', ''))",
+    "SCROLL_TO_GALLERY": "img[id=\"imageBig\"]",
+    "GALLERY_SELECTED": "return document.getElementById(\"imageBig\").getAttribute(\"src\");",
+    "GALLERY_NEXT": "document.querySelector(\"div[class='bottomControls-right']\").click();",
+    "PRICE": "normalize-space(//div[contains(text(), 'Cena:')]/strong/text())",
+    "LOCATION" : "normalize-space(//b[contains(text(), 'Lokalizacja:')]/../a/text())",
+    "MEASUREMENT": "normalize-space(//div[contains(text(), 'Powierzchnia mieszkalna:')]/strong/text())",
+    "ROOMS_AMOUNT": "normalize-space(//div[contains(text(), 'Liczba pokoi:')]/strong/text())",
+    "PHONE_NUMBER": "normalize-space(//div[@class = 'agentDetails']//b/text())",
+    "CONTACT_DIGNITY": "normalize-space(//span[@class = 'agentName']/text())",
+    "DESCRIPTION": "//div[@id = 'description']/p/text()"
+  },
+  "DOMPORTAL_SELECTORS" :{
+    "TITLE": "normalize-space(//title/text())",
+    "SCROLL_TO_GALLERY": "img[id=\"imageBig\"]",
+    "GALLERY_IMAGES": "//div[@role = 'option']/img[contains(@src, 'pictures/big/')]/@src",
+    "PRICE": "normalize-space(//span[text() = 'Cena']/../span/p/text())",
+    "LOCATION" : "normalize-space(//span[@itemprop = 'address'])",
+    "MEASUREMENT": "normalize-space(//span[text() = 'Powierzchnia całkowita']/../span[2])",
+    "ROOMS_AMOUNT": "normalize-space(//span[text() = 'Liczba pokoi ']/../span[2])",
+    "PHONE_NUMBER": "normalize-space(//a[@data-tel]/@data-tel)",
+    "DESCRIPTION": "normalize-space(//div[@class = 'description__panel']/text())"
   }
-
-
 }
 
 

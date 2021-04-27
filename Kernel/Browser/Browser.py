@@ -16,6 +16,8 @@ from selenium.webdriver.common.action_chains import ActionChains
 
 import time
 
+from urllib3.exceptions import MaxRetryError
+
 from Kernel.Browser.Drivers.ChromiumConfig import ChromiumConfig
 from Kernel.Config.Context import Context
 
@@ -30,7 +32,7 @@ class Browser:
 
         self.__chromeConfig = ChromiumConfig()
         self.__chromeDriver = ChromeDriver(parent=self,
-                                           browser=webdriver.Chrome(executable_path=self.ctx.Settings.BINARY_PATH,
+                                           browser=webdriver.Chrome(executable_path=self.ctx.Settings.BINARY_PATH_LINUX,
                                                                     chrome_options=self.__chromeConfig.get_options(
                                                                         headless=False)))
         self.__element = Elements(self)
@@ -73,13 +75,14 @@ class ChromeDriver:
         self.__chromeDriver = browser
 
     def navigate(self, url: str, wait_for: int = 0):
-        self.__chromeDriver.get(url)
-        if wait_for > 0:
-            time.sleep(wait_for)
+        try:
+            self.__chromeDriver.get(url)
+            if wait_for > 0:
+                time.sleep(wait_for)
 
-        self.__parent.ctx.Logger.Print(0,
-                                       self.__parent.ctx.LogLevel.Info,
-                                       self.__parent.ctx.Texts.getText(1).format(url))
+            self.__parent.ctx.Logger.Print(0, self.__parent.ctx.LogLevel.Info, self.__parent.ctx.Texts.getText(1).format(url))
+        except MaxRetryError:
+            pass
 
     def driver(self) -> webdriver.Chrome:
         return self.__chromeDriver
@@ -131,7 +134,7 @@ class Elements:
                 self.__parent.ctx.Logger.Print(0, self.__parent.ctx.LogLevel.Success, self.__parent.ctx.Texts.getText(3).format(str(element)))
                 return element
         except NoSuchElementException:
-            self.__parent.ctx.Logger.Print()(0, self.__parent.ctx.LogLevel.Error, self.__parent.ctx.Texts.getText(4))
+            self.__parent.ctx.Logger.Print(0, self.__parent.ctx.LogLevel.Error, self.__parent.ctx.Texts.getText(4))
             return None
 
     def findElementsByCss(self, target) -> list:
@@ -204,6 +207,7 @@ class Javascript:
             return flag
 
     def execute_js(self, code: str, *args, interval: int = 0):
+        print(code)
         try:
             if self.__parent.ChromeDriver.driver() is not None:
                 ret_code = self.__parent.ChromeDriver.driver().execute_script(code, args)

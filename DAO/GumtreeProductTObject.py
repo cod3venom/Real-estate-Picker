@@ -26,7 +26,7 @@ class GumtreeProductTObject:
         self.phone_number = PHONE_NUMBER
         self.contact_dignity = CONTACT_DIGNITY
 
-        ctx.Logger.Print(0,ctx.LogLevel.Success, self.__repr__())
+        ctx.Logger.Print(0, ctx.LogLevel.Success, self.__repr__())
 
     @classmethod
     def TO(cls, jsData: str):

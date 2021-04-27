@@ -8,7 +8,6 @@
 """
 import json
 import os
-import re
 import time
 
 from DAO.MorizonProductTObject import MorizonProductTObject
@@ -75,8 +74,6 @@ class Morizon:
                 image = browser.Javascript.execute_js(Selectors.GALLERY_SELECTED)
                 self.__images.append(image)
 
-    def __calculate_path(self):
-        pass
 
     def __extract_data(self):
         """
@@ -105,7 +102,7 @@ class Morizon:
         :return:
         """
         obj = MorizonProductTObject.TO(json.dumps(self.__parsed, indent=4))
-        path = self.__ctx.FileSystem.sanitize_path(f"{self.__ctx.Settings.MORIZON_STORAGE}{obj.phone_number}_{obj.contact_dignity}")
+        path = self.__ctx.FileSystem.sanitize_path(f"{self.__ctx.Settings.MORIZON_STORAGE}{obj.phone_number}_{obj.contact_dignity}_{DATE().full_date}")
 
         if self.__ctx.FileSystem.create_dir(path, remove=True):
             template = Template(self.__ctx.Settings.DEFAULT_TEMPLATE)
@@ -122,5 +119,3 @@ class Morizon:
             for index, image in enumerate(obj.images):
                 self.__ctx.HTTP.download(url=image, path=f'{path}{os.sep}{str(index)}.jpg')
 
-        browser.ChromeDriver.driver().close()
-        browser.ChromeDriver.driver().quit()

@@ -19,7 +19,7 @@ from Kernel.FileSystem.FileSystem import FileSystem
 class HttpClient:
     __session: req.Session
     __headers: dict = {
-        "UserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.3"}
+        "UserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36"}
 
     def __init__(self):
         pass
@@ -37,6 +37,14 @@ class HttpClient:
     def get_headers(self):
         return self.__session.headers
 
+    def add_referer(self, referer) -> dict:
+        self.__headers['referer'] = referer
+        return self.__headers
+
+    def add_cookies(self, cookies) -> dict:
+        self.__headers['cookie'] = cookies
+        return self.__headers
+
     def post(self, url, data: dict) -> str:
         try:
             return self.get_session().post(url=url, data=data, headers=self.__headers).text
@@ -47,8 +55,15 @@ class HttpClient:
         except requests.exceptions.RequestException as e:
             raise SystemExit(e)
 
+    def sanitize_url(self, url: str) -> str:
+        blacklist = ['\n', ]
+        for black in blacklist:
+            if black in url:
+                url = url.replace(black, '')
+        return url
+
     def get(self, url: str, stream: bool = False):
-        return self.get_session().get(url, headers=self.__headers, stream=stream)
+        return self.get_session().get(self.sanitize_url(url), headers=self.__headers, stream=stream)
 
     def download(self, url, path):
         try:

@@ -47,6 +47,7 @@ class Template:
         for black in self.__blacklist:
             if black in self.__template:
                 self.__template = self.__template.replace(black, '')
+                self.__template = str(self.__template).strip()
 
     def save(self, path):
         self.sanitize()
