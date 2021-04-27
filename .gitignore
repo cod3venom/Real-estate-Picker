@@ -2,3 +2,5 @@
 Scripts/
 test_links
 *.pyc
+Vendors/Morizon/*
+Vendors/Gumtree/*
