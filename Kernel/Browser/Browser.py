@@ -32,7 +32,7 @@ class Browser:
         self.__chromeDriver = ChromeDriver(parent=self,
                                            browser=webdriver.Chrome(executable_path=self.ctx.Settings.BINARY_PATH,
                                                                     chrome_options=self.__chromeConfig.get_options(
-                                                                        headless=True)))
+                                                                        headless=False)))
         self.__element = Elements(self)
         self.__javascript = Javascript(self)
 

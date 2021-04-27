@@ -64,7 +64,7 @@ class FileSystem:
     def create_dir(self, path, remove: bool = False):
         if os.path.exists(path):
             if remove:
-                os.system(f'rm -rf {path}')
+                os.remove(path)
 
         if not os.path.exists(path):
             os.mkdir(path)
@@ -77,7 +77,7 @@ class FileSystem:
         return ''.join(random.choice(letters) for i in range(10))
 
     def sanitize_path(self, path: str):
-        blacklist = ["<", ">", ":", '"', "|", "?", "\n"]
+        blacklist = ["<", ">", ',', 'm²', '"', "|", "?", "\n"]
 
         for black in blacklist:
             if black in path:

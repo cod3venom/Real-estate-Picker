@@ -1,0 +1,4 @@
+**/node_modules
+Scripts/
+test_links
+*.pyc

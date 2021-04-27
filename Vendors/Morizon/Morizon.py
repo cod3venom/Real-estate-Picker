@@ -7,6 +7,7 @@
  * Github: https://github.com/cod3venom
 """
 import json
+import os
 import re
 import time
 
@@ -104,7 +105,7 @@ class Morizon:
         :return:
         """
         obj = MorizonProductTObject.TO(json.dumps(self.__parsed, indent=4))
-        path = self.__ctx.FileSystem.sanitize_path(f"{self.__ctx.Settings.MORIZON_STORAGE}{obj.title}_{DATE().full_date}")
+        path = self.__ctx.FileSystem.sanitize_path(f"{self.__ctx.Settings.MORIZON_STORAGE}{obj.phone_number}_{obj.contact_dignity}")
 
         if self.__ctx.FileSystem.create_dir(path, remove=True):
             template = Template(self.__ctx.Settings.DEFAULT_TEMPLATE)
@@ -119,4 +120,7 @@ class Morizon:
             template.save(path)
 
             for index, image in enumerate(obj.images):
-                self.__ctx.HTTP.download(url=image, path=f'{path}//{str(index)}.jpg')
+                self.__ctx.HTTP.download(url=image, path=f'{path}{os.sep}{str(index)}.jpg')
+
+        browser.ChromeDriver.driver().close()
+        browser.ChromeDriver.driver().quit()
