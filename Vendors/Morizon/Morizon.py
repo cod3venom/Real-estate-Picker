@@ -116,6 +116,8 @@ class Morizon:
             template.add_date(DATE().full_date)
             template.save(path)
 
+            self.__ctx.HTTP.add_referer(self.__url)
+            self.__ctx.HTTP.add_cookies('')
             for index, image in enumerate(obj.images):
                 self.__ctx.HTTP.download(url=image, path=f'{path}{os.sep}{str(index)}.jpg')
 

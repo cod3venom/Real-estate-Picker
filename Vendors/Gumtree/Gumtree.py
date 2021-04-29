@@ -65,7 +65,7 @@ class Gumtree:
 
     def __export(self):
         obj = GumtreeProductTObject.TO(self.__ctx.JSON.dumps(self.__parsed))
-        path = self.__ctx.FileSystem.sanitize_path(f"{self.__ctx.Settings.MORIZON_STORAGE}{obj.title}_{DATE().full_date}_{DATE().full_date}")
+        path = self.__ctx.FileSystem.sanitize_path(f"{self.__ctx.Settings.GUMTREE_STORAGE}{obj.title}_{DATE().full_date}_{DATE().full_date}")
 
         if self.__ctx.FileSystem.create_dir(path, remove=True):
             template = Template(self.__ctx.Settings.DEFAULT_TEMPLATE)

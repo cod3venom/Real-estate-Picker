@@ -54,6 +54,7 @@ class Olx:
         and preloaded modals
         :return:
         """
+        time.sleep(3)
         accept_btn = browser.Element.findElementByXpath(Selectors.ACCEPT_REGULATIONS)
         browser.Element.click(accept_btn)
 
@@ -66,10 +67,13 @@ class Olx:
         be added into the self.__images variable
         :return:
         """
-        browser.Javascript.execute_js(code=Selectors.GALLERY_MAIN_CLICK)
+        time.sleep(3)
+        #open_gallery = browser.Element.findElementByCss(Selectors.GALLERY_MAIN)
+        #browser.Element.click(open_gallery)
+
         self.__ctx.XPATH.set_source(browser.ChromeDriver.driver().page_source)
         self.__images = self.__ctx.XPATH.extract(Selectors.GALLERY_IMAGES)
-        browser.Javascript.execute_js(code=Selectors.GALLERY_CLOSE)
+        #browser.Javascript.execute_js(code=Selectors.GALLERY_CLOSE)
         return self.__images
 
     def __reveal_phone_number(self):

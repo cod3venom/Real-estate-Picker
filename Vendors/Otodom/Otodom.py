@@ -18,6 +18,7 @@ from Kernel.Config.Context import Context
 from Kernel.Global import browser
 from Template.Template import Template
 from Vendors.Otodom.Selectors import Selectors
+from selenium.webdriver.remote.webelement import WebElement
 
 
 class Otodom:
@@ -76,8 +77,9 @@ class Otodom:
                 time.sleep(1)
                 browser.Javascript.execute_js(Selectors.GALLERY_NEXT)
 
-        self.__ctx.XPATH.set_source(browser.ChromeDriver.driver().page_source)
-        self.__images = self.__ctx.XPATH.extract(Selectors.GALLERY_IMAGES)
+        time.sleep(3)
+        self.__images = browser.Javascript.execute_js(Selectors.GALLERY_IMAGES)
+        return self.__images
 
     def __reveal_phone_number(self):
         button = browser.Element.findElementByXpath(Selectors.PHONE_BUTTON)
@@ -128,4 +130,5 @@ class Otodom:
             template.save(path)
 
             for index, image in enumerate(obj.images):
+                time.sleep(2)
                 self.__ctx.HTTP.download(url=image, path=f'{path}{os.sep}{str(index)}.jpg')

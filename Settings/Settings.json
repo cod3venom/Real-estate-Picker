@@ -53,11 +53,11 @@
     "DESCRIPTION": "//div[@class='vip-details']/div[@class='description']/span/text()"
   },
   "OLX_SELECTORS" : {
-    "ACCEPT_REGULATIONS": "//button[@id='onetrust-accept-btn-handler']",
+    "ACCEPT_REGULATIONS": "//button[@id='onetrust-accept-btn-handler'][text() = 'Akceptuję']",
     "TITLE": "normalize-space(//title/text())",
     "PHONE_BUTTON": "//button[text() = 'Zadzwoń']",
     "PHONE_NUMBER": "return document.querySelector(\"button[data-cy='ad-contact-phone']\").textContent;",
-    "GALLERY_MAIN": "//div[@class='swiper-zoom-container']",
+    "GALLERY_MAIN": "div[class='swiper-zoom-container'] > img",
     "GALLERY_MAIN_CLICK": "document.querySelector('div[class=\"swiper-zoom-container\"] > img').click();",
     "GALLERY_IMAGES": "//div[@class='swiper-zoom-container']/img/@src",
     "GALLERY_NEXT": "//button[@aria-label='Next slide']",
@@ -113,17 +113,16 @@
     "TITLE": "normalize-space(//title/text())",
     "SCROLL_TO_GALLERY": "div[class = \"image-gallery image-gallery-using-mouse\"]",
     "IMAGES_TOTAL": "normalize-space(//span[@class = 'image-gallery-index-total'])",
-    "GALLERY_IMAGES": "//div[contains(@aria-label, 'Go to Slide')]//img/@src",
+    "GALLERY_IMAGES": "\nlet imagesList = Array();document.querySelectorAll(\"div[aria-label *= 'Go to Slide'] img\").forEach(img => imagesList.push(img.getAttribute(\"src\")));return imagesList;",
     "GALLERY_NEXT": "document.querySelector(\"button[data-cy='frontend.ad-media-gallery.next-photo']\").click();",
     "PRICE": "normalize-space(//strong[@aria-label = 'Cena']/text())",
     "LOCATION" : "normalize-space(//a[@href = '#map']/text())",
     "MEASUREMENT": "normalize-space(translate(//div[@aria-label = 'Powierzchnia'], 'Powierzchnia:',''))",
     "ROOMS_AMOUNT": "normalize-space(translate(//div[@aria-label = 'Liczba pokoi'], 'Liczba pokoi:',''))",
     "PHONE_BUTTON": "//button[text() = 'Pokaż numer']",
-    "PHONE_NUMBER": "normalize-space(//a[@data-tel]/@data-tel)",
+    "PHONE_NUMBER": "normalize-space(//a[contains(@href, 'tel:')])",
     "DESCRIPTION": "normalize-space(//div[@data-cy = 'adPageAdDescription'])",
     "CONTACT_DIGNITY" : "normalize-space(//span[contains(@class, 'contactPersonName')])"
   }
 }
-
 
