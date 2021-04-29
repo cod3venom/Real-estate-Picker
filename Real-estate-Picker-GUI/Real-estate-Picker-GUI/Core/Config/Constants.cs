@@ -10,7 +10,7 @@ namespace Real_estate_Picker_GUI.Core.Config
     {
         public  string SettingsPath = Environment.CurrentDirectory + "/Settings/Settings.jsonc";        
         public Dictionary<string, string> Vendors = new Dictionary<string, string>();
-
+        public string LinksImportingFileDialogFilter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
 
 
 

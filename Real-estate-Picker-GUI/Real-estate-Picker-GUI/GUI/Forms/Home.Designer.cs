@@ -30,19 +30,28 @@ namespace Real_estate_Picker_GUI.GUI.Forms
         private void InitializeComponent()
         {
             this.topbar = new System.Windows.Forms.Panel();
+            this.cTopbar = new Real_estate_Picker_GUI.GUI.Controls.CTopbar();
             this.mainContainer = new System.Windows.Forms.Panel();
-            this.cTopbar1 = new Real_estate_Picker_GUI.GUI.Controls.CTopbar();
             this.topbar.SuspendLayout();
             this.SuspendLayout();
             // 
             // topbar
             // 
-            this.topbar.Controls.Add(this.cTopbar1);
+            this.topbar.Controls.Add(this.cTopbar);
             this.topbar.Dock = System.Windows.Forms.DockStyle.Top;
             this.topbar.Location = new System.Drawing.Point(0, 0);
             this.topbar.Name = "topbar";
             this.topbar.Size = new System.Drawing.Size(1115, 47);
             this.topbar.TabIndex = 0;
+            // 
+            // cTopbar
+            // 
+            this.cTopbar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cTopbar.Location = new System.Drawing.Point(0, 0);
+            this.cTopbar.Name = "cTopbar";
+            this.cTopbar.Size = new System.Drawing.Size(1115, 47);
+            this.cTopbar.TabIndex = 0;
+            this.cTopbar.Title = "Title";
             // 
             // mainContainer
             // 
@@ -51,15 +60,6 @@ namespace Real_estate_Picker_GUI.GUI.Forms
             this.mainContainer.Name = "mainContainer";
             this.mainContainer.Size = new System.Drawing.Size(1115, 605);
             this.mainContainer.TabIndex = 1;
-            // 
-            // cTopbar1
-            // 
-            this.cTopbar1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cTopbar1.Location = new System.Drawing.Point(0, 0);
-            this.cTopbar1.Name = "cTopbar1";
-            this.cTopbar1.Size = new System.Drawing.Size(1115, 47);
-            this.cTopbar1.TabIndex = 0;
-            this.cTopbar1.Title = "Title";
             // 
             // Home
             // 
@@ -79,7 +79,7 @@ namespace Real_estate_Picker_GUI.GUI.Forms
 
         #endregion
         private System.Windows.Forms.Panel topbar;
-        private Controls.CTopbar cTopbar1;
         private System.Windows.Forms.Panel mainContainer;
+        public Controls.CTopbar cTopbar;
     }
 }

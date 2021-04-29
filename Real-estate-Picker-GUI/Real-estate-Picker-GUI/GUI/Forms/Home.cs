@@ -1,5 +1,6 @@
 ﻿using Real_estate_Picker_GUI.Core.Config;
 using Real_estate_Picker_GUI.Core.Interfaces;
+using Real_estate_Picker_GUI.Core.Vendors;
 using Real_estate_Picker_GUI.Core.Vendors.Morizon;
 using Real_estate_Picker_GUI.GUI.Controls;
 using System;
@@ -9,6 +10,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -34,33 +36,26 @@ namespace Real_estate_Picker_GUI.GUI.Forms
 
         public Home(Context ctx)
         {
-            this.ctx = ctx;
-
             InitializeComponent();
-            this.initializeGUI();
-
+            this.ctx = ctx;
+            this.ctx.Nethandler = new Core.Net.NetHandler(this, this.ctx);
             this.morizon = new Morizon(this, this.ctx);
+            this.initializeGUI();
+            this.morizon.Show();
         }
 
         public void initializeGUI()
         {
-            this.cTopbar1.Title = this.ctx.Settings.title;
+            this.cTopbar.Title = this.ctx.Settings.title;
             this.cmarkup = new CMarkup();
             this.cmarkup.Dock = DockStyle.Fill;
             this.mainContainer.Controls.Add(this.cmarkup);
 
-            this.createSidebar();
             this.hookControls();
-        }
 
-        private void createSidebar()
-        {
             CVendor cvendor;
-
-            int counter = -1;
-            foreach(KeyValuePair<string,string> vendor in this.ctx.constants.Vendors)
+            foreach (KeyValuePair<string, string> vendor in this.ctx.constants.Vendors)
             {
-                counter += 1;
                 cvendor = new CVendor();
                 cvendor.title = vendor.Key;
                 cvendor.icon = vendor.Value;
@@ -68,22 +63,62 @@ namespace Real_estate_Picker_GUI.GUI.Forms
                 this.cmarkup.Sidebar.Controls.Add(cvendor);
             }
         }
-        public void hookControls()
+        
+        public void hookControls(){
+            this.cTopbar.Close.Click += new EventHandler(this.close);
+            this.cTopbar.Minimize.Click += new EventHandler(this.minimize);
+            this.cTopbar.Run.Click += new EventHandler(this.initializeServer);
+        }
+
+        private void selectVendor(object sender, EventArgs e)
         {
-            this.cTopbar1.Close.Click += new EventHandler(this.close);
-            this.cTopbar1.Minimize.Click += new EventHandler(this.minimize);
+            string key = (sender as Bunifu.Framework.UI.BunifuFlatButton).Text;
+            switch (key)
+            {
+                case Vendors.Morizon:
+                    this.morizon.Show();
+                    break;
+
+                case Vendors.Otodom:
+                    break;
+
+                case Vendors.Gratka:
+                    break;
+
+                case Vendors.Gumtree:
+                    break;
+
+                case Vendors.Domy:
+                    break;
+
+                case Vendors.Olx:
+                    break;
+
+                case Vendors.DomiPortal:
+                    break;
+                default:
+                    this.morizon.Show();
+                    break;
+            }
+        }
+        
+        public void initializeServer(object sender, EventArgs e) 
+        {
+            if (!this.ctx.Nethandler.IsActive())
+            {
+                this.ctx.Nethandler.Start();
+                this.cTopbar.ActionIcon = Properties.Resources.stop;
+            }
+            else
+            {
+                this.ctx.Nethandler.Stop();
+                this.cTopbar.ActionIcon = Properties.Resources.start;
+            }
         }
 
 
+        public void close(object sender, EventArgs e)  {Application.Exit(); }
 
-        public void close(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        public void minimize(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
+        public void minimize(object sender, EventArgs e) { this.WindowState = FormWindowState.Minimized; }
     }
 }

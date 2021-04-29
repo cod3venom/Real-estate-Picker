@@ -62,9 +62,9 @@ class FileSystem:
         return ""
 
     def create_dir(self, path, remove: bool = False):
-        if os.path.exists(path):
+        if os.path.exists(path) and os.path.isdir(path):
             if remove:
-                os.remove(path)
+                shutil.rmtree(path)
 
         if not os.path.exists(path):
             os.mkdir(path)

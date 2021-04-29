@@ -35,5 +35,15 @@ namespace Real_estate_Picker_GUI.GUI.Controls
         {
             get { return this.minimizeBtn; }
         }
+
+        public Bunifu.Framework.UI.BunifuImageButton Run
+        {
+            get { return this.btnServer; }
+        }
+         
+        public Image ActionIcon
+        {
+            set { this.btnServer.Image = value; }
+        }
     }
 }

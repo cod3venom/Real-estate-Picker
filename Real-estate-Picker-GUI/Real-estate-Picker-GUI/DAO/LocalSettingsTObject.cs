@@ -13,6 +13,9 @@ namespace Real_estate_Picker_GUI.DAO
         public string version { get; set; }
         public string assets { get; set; }
         public string textsPath { get; set; }
+        public string localIp { get; set; }
+        public int localPort { get; set; }
+        public int maxConnectionLimit { get; set; }
 
 
     }

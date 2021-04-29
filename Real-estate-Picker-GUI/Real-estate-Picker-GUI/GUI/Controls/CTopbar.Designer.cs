@@ -33,13 +33,15 @@ namespace Real_estate_Picker_GUI.GUI.Controls
             this.title = new System.Windows.Forms.Label();
             this.dragTitle = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.dragControls = new Bunifu.Framework.UI.BunifuDragControl(this.components);
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.btnServer = new Bunifu.Framework.UI.BunifuImageButton();
             this.minimizeBtn = new Bunifu.Framework.UI.BunifuImageButton();
             this.closeBtn = new Bunifu.Framework.UI.BunifuImageButton();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.cHorizontalSeparator1 = new Real_estate_Picker_GUI.GUI.Controls.CHorizontalSeparator();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnServer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimizeBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.closeBtn)).BeginInit();
-            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // title
@@ -69,6 +71,32 @@ namespace Real_estate_Picker_GUI.GUI.Controls
             this.dragControls.Horizontal = true;
             this.dragControls.TargetControl = null;
             this.dragControls.Vertical = true;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.btnServer);
+            this.panel3.Controls.Add(this.minimizeBtn);
+            this.panel3.Controls.Add(this.closeBtn);
+            this.panel3.Controls.Add(this.cHorizontalSeparator1);
+            this.panel3.Controls.Add(this.title);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(798, 44);
+            this.panel3.TabIndex = 2;
+            // 
+            // btnServer
+            // 
+            this.btnServer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(210)))), ((int)(((byte)(149)))));
+            this.btnServer.Image = global::Real_estate_Picker_GUI.Properties.Resources.start;
+            this.btnServer.ImageActive = null;
+            this.btnServer.Location = new System.Drawing.Point(12, 10);
+            this.btnServer.Name = "btnServer";
+            this.btnServer.Size = new System.Drawing.Size(25, 25);
+            this.btnServer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnServer.TabIndex = 2;
+            this.btnServer.TabStop = false;
+            this.btnServer.Zoom = 10;
             // 
             // minimizeBtn
             // 
@@ -100,18 +128,6 @@ namespace Real_estate_Picker_GUI.GUI.Controls
             this.closeBtn.TabStop = false;
             this.closeBtn.Zoom = 10;
             // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.minimizeBtn);
-            this.panel3.Controls.Add(this.closeBtn);
-            this.panel3.Controls.Add(this.cHorizontalSeparator1);
-            this.panel3.Controls.Add(this.title);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(798, 44);
-            this.panel3.TabIndex = 2;
-            // 
             // cHorizontalSeparator1
             // 
             this.cHorizontalSeparator1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(247)))));
@@ -128,9 +144,10 @@ namespace Real_estate_Picker_GUI.GUI.Controls
             this.Controls.Add(this.panel3);
             this.Name = "CTopbar";
             this.Size = new System.Drawing.Size(798, 44);
+            this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnServer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimizeBtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.closeBtn)).EndInit();
-            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -143,5 +160,6 @@ namespace Real_estate_Picker_GUI.GUI.Controls
         private Bunifu.Framework.UI.BunifuDragControl dragControls;
         private System.Windows.Forms.Panel panel3;
         private CHorizontalSeparator cHorizontalSeparator1;
+        private Bunifu.Framework.UI.BunifuImageButton btnServer;
     }
 }

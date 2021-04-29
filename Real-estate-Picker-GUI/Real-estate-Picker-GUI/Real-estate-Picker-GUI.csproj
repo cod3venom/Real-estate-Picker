@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{80F1FF01-1425-4690-BA8F-34C35A1E66D2}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>Real_estate_Picker_GUI</RootNamespace>
     <AssemblyName>Real-estate-Picker-GUI</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bunifu_UI_v1.5.3">
       <HintPath>..\..\..\Bunifu_UI_v1.5.3.dll</HintPath>
@@ -39,6 +42,9 @@
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SharPy">
+      <HintPath>..\..\..\..\source\repos\SharPy\bin\Debug\netstandard2.0\SharPy.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -57,10 +63,18 @@
     <Compile Include="Core\Config\Constants.cs" />
     <Compile Include="Core\Config\Context.cs" />
     <Compile Include="Core\FileSystem\Files.cs" />
+    <Compile Include="Core\Handlers\FormHandler.cs" />
+    <Compile Include="Core\Handlers\FormInvoker.cs" />
+    <Compile Include="Core\Handlers\HListBox.cs" />
+    <Compile Include="Core\Handlers\HStrings.cs" />
     <Compile Include="Core\Interfaces\IWindow.cs" />
+    <Compile Include="Core\Net\NetHandler.cs" />
+    <Compile Include="Core\Net\NetJsonBuilder.cs" />
+    <Compile Include="Core\Net\NetMessageHandler.cs" />
+    <Compile Include="Core\Net\NetStack.cs" />
     <Compile Include="Core\Texts\TextBundle.cs" />
     <Compile Include="Core\Vendors\Morizon\Morizon.cs" />
-    <Compile Include="Core\Vendors\Vendor.cs" />
+    <Compile Include="Core\Vendors\Vendors.cs" />
     <Compile Include="DAO\LocalSettingsTObject.cs" />
     <Compile Include="DAO\VendorTObject.cs" />
     <Compile Include="GUI\Controls\CButtonHover.cs">
@@ -105,12 +119,6 @@
     <Compile Include="GUI\Controls\CVerticalSeparator.Designer.cs">
       <DependentUpon>CVerticalSeparator.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Controls\StaticUI\CStaticSidebar.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="GUI\Controls\StaticUI\CStaticSidebar.Designer.cs">
-      <DependentUpon>CStaticSidebar.cs</DependentUpon>
-    </Compile>
     <Compile Include="GUI\Forms\Home.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,9 +148,6 @@
     <EmbeddedResource Include="GUI\Controls\CVerticalSeparator.resx">
       <DependentUpon>CVerticalSeparator.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\Controls\StaticUI\CStaticSidebar.resx">
-      <DependentUpon>CStaticSidebar.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Forms\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
@@ -156,6 +161,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -171,7 +179,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Core\Network\" />
+    <None Include="bin\Debug\Assets\stop.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="bin\Debug\Assets\closeButton.png" />
@@ -182,5 +190,15 @@
   <ItemGroup>
     <None Include="bin\Debug\Assets\vendors\morizon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Assets\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Assets\server.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Assets\start.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

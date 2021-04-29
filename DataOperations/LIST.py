@@ -15,6 +15,7 @@ class LIST:
         ret_code: str = ''
 
         for item in dataset:
+            item = str(item).replace('\n', '')
             ret_code += "%s \n" % item
 
         ret_code = ret_code.replace('[', '').replace(']', '').replace("'", '')
