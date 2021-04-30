@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -83,6 +83,7 @@
     <Compile Include="Core\Config\Context.cs" />
     <Compile Include="Core\FileSystem\Files.cs" />
     <Compile Include="Core\FileSystem\Python.cs" />
+    <Compile Include="Core\FileSystem\_Process.cs" />
     <Compile Include="Core\Handlers\FormHandler.cs" />
     <Compile Include="Core\Handlers\FormInvoker.cs" />
     <Compile Include="Core\Handlers\HListBox.cs" />
@@ -92,8 +93,11 @@
     <Compile Include="Core\Net\NetJsonBuilder.cs" />
     <Compile Include="Core\Net\NetMessageHandler.cs" />
     <Compile Include="Core\Net\NetStack.cs" />
+    <Compile Include="Core\Selenium\SeleniumProcess.cs" />
     <Compile Include="Core\Texts\TextBundle.cs" />
     <Compile Include="Core\Vendors\Morizon\Morizon.cs" />
+    <Compile Include="Core\Vendors\Otodom\Otodom.cs" />
+    <Compile Include="Core\Vendors\VendorMessageKeys.cs" />
     <Compile Include="Core\Vendors\Vendors.cs" />
     <Compile Include="DAO\LocalSettingsTObject.cs" />
     <Compile Include="DAO\ResponseLinkTObject.cs" />
@@ -192,14 +196,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="..\.editorconfig">
       <Link>.editorconfig</Link>
     </None>
@@ -208,6 +207,11 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>

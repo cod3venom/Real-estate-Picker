@@ -29,7 +29,7 @@ class Gratka:
         self.__images: list = []
         self.__obj: GratkaProductTObject
 
-    def start(self):
+    def start(self) -> str:
         """
         This is the entry point for the every vendor module,
         basically the plan is always same.
@@ -45,7 +45,7 @@ class Gratka:
         self.__ctx.XPATH.set_source(browser.ChromeDriver.driver().page_source)
         self.__accept_regulations()
         self.__initialize_slider()
-        self.__extract_data()
+        return self.__extract_data()
 
     def __accept_regulations(self):
         """
@@ -61,7 +61,7 @@ class Gratka:
         self.__images = self.__ctx.XPATH.extract(Selectors.GALLERY_IMAGES)
         return self.__images
 
-    def __extract_data(self):
+    def __extract_data(self) -> str:
         """
         Parse chromedriver web page source code
         with predefined xpath selectors
@@ -80,9 +80,9 @@ class Gratka:
         self.__parsed["PHONE_NUMBER"] = self.__ctx.XPATH.extract(Selectors.PHONE_NUMBER)
         self.__parsed["CONTACT_DIGNITY"] = self.__ctx.XPATH.extract(Selectors.CONTACT_DIGNITY)
 
-        self.__export()
+        return self.__export()
 
-    def __export(self):
+    def __export(self) -> str:
         """
         Prepare parsed elements for exporting.
         Text based data will be converted into .txt file,
@@ -91,7 +91,7 @@ class Gratka:
         :return:
         """
         obj = GratkaProductTObject.TO(json.dumps(self.__parsed, indent=4))
-        path = self.__ctx.FileSystem.sanitize_path(f"{self.__ctx.Settings.GRATKA_STORAGE}{obj.phone_number}_{obj.contact_dignity}_{DATE().full_date}")
+        path = self.__ctx.Settings.GRATKA_STORAGE + self.__ctx.FileSystem.sanitize_name(f"{obj.phone_number}_{obj.contact_dignity}_{DATE().full_date}")
 
         if self.__ctx.FileSystem.create_dir(path, remove=True):
             template = Template(self.__ctx.Settings.DEFAULT_TEMPLATE)
@@ -107,5 +107,7 @@ class Gratka:
 
             for index, image in enumerate(obj.images):
                 self.__ctx.HTTP.download(url=image, path=f'{path}{os.sep}{str(index)}.jpg')
+            return path
+        return ""
 
 

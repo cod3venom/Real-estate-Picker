@@ -50,5 +50,28 @@ namespace Real_estate_Picker_GUI.Core.FileSystem
         {
             return File.Exists(path);
         }
+
+        public bool OpenExplorer(string path)
+        {
+            try
+            {
+                if (Directory.Exists(path))
+                {
+                    _Process process = new _Process();
+                    process.SetRedirectInp(true);
+                    process.SetRedirectErr(true);
+                    process.SetFileName("explorer.exe");
+                    process.SetArgument(path);
+                    process.SetShell(false);
+                    process.Start();
+                    return true;
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return false;
+        }
     }
 }

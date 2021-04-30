@@ -6,6 +6,10 @@
  * Time: 7:06 PM
  * Github: https://github.com/cod3venom
 """
+import threading
+import time
+
+from Kernel.Global import browser
 from Kernel.Config.Context import Context
 from Kernel.TCP.CommandParser import CommandParser
 
@@ -26,7 +30,13 @@ class Loader:
 
         while self.__ctx.tcpClient.isConnected:
             if not self.__ctx.tcpClient.isConnected:
+                self.unload()
                 break
+
+            previous_log: dict = {}
+            if self.__ctx.Logger.GlobalMessage != previous_log:
+                previous_log = self.__ctx.Logger.GlobalMessage
+                self.__ctx.tcpClient.send_message(previous_log, 'Log >')
 
 
             message: str = self.__ctx.tcpClient.receive_messages()
@@ -34,3 +44,9 @@ class Loader:
 
                 self.__commandParser.parse_header(message)
 
+
+    def unload(self):
+        browser.ChromeDriver.driver().close()
+        browser.ChromeDriver.driver().quit()
+        print("exiting")
+        exit(0)

@@ -1,25 +1,19 @@
 ﻿using Real_estate_Picker_GUI.Core.Config;
 using Real_estate_Picker_GUI.Core.Interfaces;
+using Real_estate_Picker_GUI.DAO;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Real_estate_Picker_GUI.DAO;
 using System.Threading;
+using Real_estate_Picker_GUI.Core.Vendors;
 
 namespace Real_estate_Picker_GUI.GUI.Forms
 {
     public partial class FProgress : Form, IWindow
     {
-        private Dictionary<string, ResponseLinkTObject> progressDB = new Dictionary<string, ResponseLinkTObject>();
-        private DictHandler dicthandler = new DictHandler();
         private Context ctx;
+        private TableHandler tableHandler;
         private int index = 0;
         public FProgress(Context ctx)
         {
@@ -27,98 +21,88 @@ namespace Real_estate_Picker_GUI.GUI.Forms
             InitializeComponent();
             this.initializeGUI();
             this.hookControls();
-
+            this.tableHandler = new TableHandler(this.ctx, this.cTable1.Table);
+            
             Thread parseThread = new Thread(() => this.ParseMessage());
             parseThread.IsBackground = true;
             parseThread.Start();
         }
-
-
-        public void initializeGUI()
-        {
+        public void initializeGUI() {
             this.cTopbar.Run.Visible = false;
+            this.cTopbar.Title = this.ctx.Texts.getText(12);
+            this.cTable1.TotalTitle = this.ctx.Texts.getText(15);
         }
-
-        public void hookControls()
-        {
+        public void hookControls() {
             this.cTopbar.Close.Click += new EventHandler(this.close);
             this.cTopbar.Minimize.Click += new EventHandler(this.minimize);
         }
+        public void minimize(object sender, EventArgs e) { this.WindowState = FormWindowState.Minimized; }
+        public void close(object sender, EventArgs e) {
+            if (this.InvokeRequired)
+                this.Invoke(new MethodInvoker(delegate { this.Close(); }));
+            else
+                this.Close();
+        }
 
-        
-        public void ParseMessage()
+        public void ParseMessage() 
         {
             while(this.ctx.Nethandler.IsActive())
             {
                 if (!this.ctx.Nethandler.IsActive()) { break; }
 
                 string message = this.ctx.Nethandler.ReceivedMessage;
-
                 if (message != null)
                 {
-                    if (message.Contains("Link"))
+                    if (message.Contains(VendorMessageKeys.Folder))
                     {
-                        try
-                        {
-                            ResponseLinkTObject obj = JsonConvert.DeserializeObject<ResponseLinkTObject>(message);
-                            this.Add(obj);
-                        }
-                        catch (Exception)
-                        {
-
-                        }
+                        ResponseLinkTObject obj = JsonConvert.DeserializeObject<ResponseLinkTObject>(message);
+                        this.index += 1;
+                        this.tableHandler.Add(index, obj);
                     }
-                }
-            }
-        }
-        
-        
-        
 
-        public void Add(ResponseLinkTObject obj)
-        {
-            this.index += 1;
-            if (!this.dicthandler.Exists(this.progressDB, obj.Link))
-            {
-                if (this.cTable1.Table.InvokeRequired)
-                {
-                    this.cTable1.Table.Invoke(new MethodInvoker(delegate
+                    if (message.Contains(JobActions.Finish))
                     {
-                        this.cTable1.Table.Rows.Add(new object[] { index, obj.Link });
-                        this.dicthandler.Add(this.progressDB, index.ToString(), obj);
-                        return;
-                    }));
-                }
-                else
-                {
-                    this.cTable1.Table.Rows.Add(new object[] { index, obj.Link });
-                    this.dicthandler.Add(this.progressDB, index.ToString(), obj);
-                    return;
+                        MessageBox.Show(this.ctx.Texts.getText(13), this.ctx.Texts.getText(12),MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        break;
+                    }
+ 
                 }
             }
         }
-
-        public void minimize(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
-
-        public void close(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+  
     }
 
-    class DictHandler
+    class TableHandler
     {
- 
-        public bool Exists(Dictionary<string, ResponseLinkTObject> dict, string key)
+        private Dictionary<int, ResponseLinkTObject> progressDB = new Dictionary<int, ResponseLinkTObject>();
+        private Context ctx;
+        private DataGridView table;
+        
+        public TableHandler(Context ctx, DataGridView table)
         {
-            if (key != string.Empty)
+            this.ctx = ctx;
+            this.table = table;
+            this.table.CellClick += new DataGridViewCellEventHandler(this.OpenFolder);
+        }
+        private void OpenFolder(object sender, EventArgs e) { this.ctx.files.OpenExplorer(this.GetFolderPath());}
+        public string GetFolderPath()
+        {
+            if (this.table.SelectedCells.Count > 0)
             {
-                foreach (KeyValuePair<string, ResponseLinkTObject> values in dict)
+                int rowIndex = this.table.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = this.table.Rows[rowIndex];
+                string path = Convert.ToString(selectedRow.Cells["folderColumn"].Value);
+                return path;
+            }
+            return string.Empty;
+        }
+        public bool Exists(string value)
+        {
+            if (value != string.Empty)
+            {
+                foreach (KeyValuePair<int, ResponseLinkTObject> values in this.progressDB)
                 {
-                    if (values.Key.ToString() == key)
+                    if (values.Value.Folder == value)
                     {
                         return true;
                     }
@@ -126,39 +110,42 @@ namespace Real_estate_Picker_GUI.GUI.Forms
             }
             return false;
         }
-
-        public bool Add(Dictionary<string, ResponseLinkTObject> dict, string key, ResponseLinkTObject value)
+        public bool Add(int key, ResponseLinkTObject value)
         {
-            if (dict != null && value != null && value.Link != string.Empty)
+            if (this.progressDB != null && value != null && value.Folder != string.Empty)
             {
-                if (!this.Exists(dict, key))
+                if (!this.Exists(value.Folder))
                 {
-                    dict.Add(key, value);
+                    this.progressDB.Add(key, value);    
+                    if (this.table.InvokeRequired)
+                    {
+                        this.table.Invoke(new MethodInvoker(delegate {
+                            this.table.Rows.Add(new object[] { key, value.Folder });
+                        }));
+                    }
+                    else
+                    {
+                        this.table.Rows.Add(new object[] { key, value.Folder });
+                    }
                     return true;
                 }
-                //else
-                //{
-                //    return this.Update(dict, key, value);
-                //}
             }
             return false;
         }
-
-        public bool Update(Dictionary<string, ResponseLinkTObject> dict, string key, ResponseLinkTObject value)
+        public void CleanUp()
         {
-            if (dict != null && value != null && value.Link != string.Empty)
+            if (this.table.InvokeRequired)
             {
-
-                foreach (KeyValuePair<string, ResponseLinkTObject> values in dict)
+                this.table.Invoke(new MethodInvoker(delegate
                 {
-                    if (values.Key.ToString() == key)
-                    {
-                        dict[values.Key] = value;
-                        return true;
-                    }
-                }
+                    this.table.Rows.Clear();
+                }));
+            }else
+            {
+                this.table.Rows.Clear();
             }
-            return false;
         }
+
+        public int Total { get { return this.progressDB.Count; } }
     }
 }

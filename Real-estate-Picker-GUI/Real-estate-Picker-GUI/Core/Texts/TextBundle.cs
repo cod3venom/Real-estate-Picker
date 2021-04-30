@@ -20,7 +20,6 @@ namespace Real_estate_Picker_GUI.Core.Texts
             this.ctx = ctx;
             this.currentlanguage = CultureInfo.InstalledUICulture.Name;
             this.ctx.Settings.textsPath = string.Format("{0}{1}{2}.lang", Environment.CurrentDirectory, this.ctx.Settings.textsPath, this.currentlanguage);
-
             if (this.ctx.files.fexists(this.ctx.Settings.textsPath))
             {
                 this.loadTexts();

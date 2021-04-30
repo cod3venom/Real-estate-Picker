@@ -62,23 +62,20 @@ class FileSystem:
         return ""
 
     def create_dir(self, path, remove: bool = False):
-        path = self.sanitize_path(path)
         if os.path.exists(path) and os.path.isdir(path):
             if remove:
                 shutil.rmtree(path)
 
-        if not os.path.exists(path):
-            os.mkdir(path)
-            os.chmod(path, self.chmod_allow_everything)
-            return True
-        return False
+        os.mkdir(path)
+        os.chmod(path, self.chmod_allow_everything)
+        return os.path.exists(path)
 
     def generateRandomName(self):
         letters = string.ascii_lowercase
         return ''.join(random.choice(letters) for i in range(10))
 
-    def sanitize_path(self, path: str):
-        blacklist = ["<", ">", ',', 'm²', '"', "|", "?", "\n", "+"]
+    def sanitize_name(self, path: str):
+        blacklist = ["<", ">", ',', 'm²', '"', "|", "?", "\n", "+", "//", "\\", "/", ":"]
 
         for black in blacklist:
             if black in path:

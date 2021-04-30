@@ -24,9 +24,10 @@ namespace Real_estate_Picker_GUI.Core.Vendors.Morizon
             this.ctx = ctx;
             this.ctx.Nethandler.netMessageHandler.AddMessageHeader(Vendors.Morizon);
             this.page = new CVendorPage(this.ctx);
+            this.page.PageName = Vendors.Morizon;
             this.page.Start.Click += new EventHandler(this.Start);
             this.page.Stop.Click += new EventHandler(this.Stop);
-            this.ctx.Nethandler.setListbox(this.page.ClientsListbox);
+            this.ctx.Nethandler.setListbox(this.parent.ClientsListbox);
 
         }
 
@@ -38,29 +39,29 @@ namespace Real_estate_Picker_GUI.Core.Vendors.Morizon
         
         public void Hide()
         {
-
+            this.page.Visible = false;
         }
 
         private void Start(object sender, EventArgs e)
         {
-            if (!this.ctx.Nethandler.IsActive())
-            {
-                 MessageBox.Show(this.ctx.Texts.getText(9),this.ctx.Texts.getText(8), MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                return;
-            }
-            if(this.page.ClientsListbox.SelectedIndex == -1)
-            {
-                MessageBox.Show(this.ctx.Texts.getText(11), this.ctx.Texts.getText(10), MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-            else
-            {
-                string json = this.ctx.Nethandler.netMessageHandler.ListTOJsonMessage("Links", this.page.Links(), true);
-                this.ctx.Nethandler.Send(json, this.ctx.Nethandler.clientEndpoint);
-                this.ShowProgress();
-                 
-
-            }
+             
+                if (!this.ctx.Nethandler.IsActive())
+                {
+                    MessageBox.Show(this.ctx.Texts.getText(9), this.ctx.Texts.getText(8), MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return;
+                }
+                if (this.parent.ClientsListbox.SelectedIndex == -1)
+                {
+                    MessageBox.Show(this.ctx.Texts.getText(11), this.ctx.Texts.getText(10), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else
+                {
+                    string json = this.ctx.Nethandler.netMessageHandler.ListTOJsonMessage("Links", this.page.Links(), true);
+                    this.ctx.Nethandler.Send(json, this.ctx.Nethandler.clientEndpoint);
+                    this.ShowProgress();
+                }
+           
             
         }
 
@@ -75,7 +76,7 @@ namespace Real_estate_Picker_GUI.Core.Vendors.Morizon
         private void ShowProgress()
         {
             FProgress fProgress = new FProgress(this.ctx);
-            fProgress.ShowDialog();
+            fProgress.Show();
  
         }
 

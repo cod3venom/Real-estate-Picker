@@ -7,8 +7,7 @@
  * Github: https://github.com/cod3venom
 """
 from DataOperations.JSON import JSON
-from DataOperations.StringBuilder import StringBuilder
-from Kernel.Global import ctx
+from Kernel.Global import ctx, browser
 from Vendors.Morizon.Morizon import Morizon
 
 
@@ -25,15 +24,18 @@ class MorizonParser:
         """
         try:
             jsonData = self.json.loads(data)
-
             if jsonData:
                 for link in jsonData["Links"]:
                     morizon = Morizon(ctx=ctx, url=link)
-                    if morizon.start():
-                        ctx.tcpClient.send_message({"Link": link})
-
-
-
+                    folderPath = morizon.start()
+                    if folderPath != "":
+                        ctx.tcpClient.send_message({"Folder": folderPath})
 
         except Exception as ex:
             print(ex)
+
+        finally:
+            ctx.tcpClient.send_message({"Action": "Finished"})
+            browser.ChromeDriver.driver().close()
+            browser.ChromeDriver.driver().quit()
+            exit(-1)

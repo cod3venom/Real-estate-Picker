@@ -31,8 +31,8 @@ namespace Real_estate_Picker_GUI.GUI.Forms
         {
             this.mainContainer = new System.Windows.Forms.Panel();
             this.topContainer = new System.Windows.Forms.Panel();
-            this.cTable1 = new Real_estate_Picker_GUI.GUI.Controls.CTable();
             this.cTopbar = new Real_estate_Picker_GUI.GUI.Controls.CTopbar();
+            this.cTable1 = new Real_estate_Picker_GUI.GUI.Controls.CTable();
             this.mainContainer.SuspendLayout();
             this.topContainer.SuspendLayout();
             this.SuspendLayout();
@@ -43,7 +43,7 @@ namespace Real_estate_Picker_GUI.GUI.Forms
             this.mainContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainContainer.Location = new System.Drawing.Point(0, 44);
             this.mainContainer.Name = "mainContainer";
-            this.mainContainer.Size = new System.Drawing.Size(457, 406);
+            this.mainContainer.Size = new System.Drawing.Size(564, 406);
             this.mainContainer.TabIndex = 0;
             // 
             // topContainer
@@ -52,31 +52,32 @@ namespace Real_estate_Picker_GUI.GUI.Forms
             this.topContainer.Dock = System.Windows.Forms.DockStyle.Top;
             this.topContainer.Location = new System.Drawing.Point(0, 0);
             this.topContainer.Name = "topContainer";
-            this.topContainer.Size = new System.Drawing.Size(457, 44);
+            this.topContainer.Size = new System.Drawing.Size(564, 44);
             this.topContainer.TabIndex = 1;
-            // 
-            // cTable1
-            // 
-            this.cTable1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cTable1.Location = new System.Drawing.Point(0, 0);
-            this.cTable1.Name = "cTable1";
-            this.cTable1.Size = new System.Drawing.Size(457, 406);
-            this.cTable1.TabIndex = 0;
             // 
             // cTopbar
             // 
             this.cTopbar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cTopbar.Location = new System.Drawing.Point(0, 0);
             this.cTopbar.Name = "cTopbar";
-            this.cTopbar.Size = new System.Drawing.Size(457, 44);
+            this.cTopbar.Size = new System.Drawing.Size(564, 44);
             this.cTopbar.TabIndex = 0;
             this.cTopbar.Title = "topBarTitle";
+            // 
+            // cTable1
+            // 
+            this.cTable1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cTable1.Location = new System.Drawing.Point(0, 0);
+            this.cTable1.Name = "cTable1";
+            this.cTable1.Size = new System.Drawing.Size(564, 406);
+            this.cTable1.TabIndex = 0;
+            this.cTable1.TotalTitle = "Ilość rekordów: ";
             // 
             // FProgress
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(457, 450);
+            this.ClientSize = new System.Drawing.Size(564, 450);
             this.Controls.Add(this.mainContainer);
             this.Controls.Add(this.topContainer);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

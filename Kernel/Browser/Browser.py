@@ -6,6 +6,8 @@
  * Time: 17:05
  * Github: https://github.com/cod3venom
 """
+import sys
+
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException, \
@@ -29,10 +31,17 @@ class Browser:
     def __init__(self, ctx: Context):
         self.ctx = ctx
         self.__chromeConfig = ChromiumConfig()
+        headless = False
+        for arg in sys.argv:
+            if arg == "--debug":
+                headless = True
+            else:
+                headless = False
+
         self.__chromeDriver = ChromeDriver(parent=self,
                                            browser=webdriver.Chrome(executable_path=self.ctx.Settings.BINARY_PATH_WINDOWS,
                                                                     chrome_options=self.__chromeConfig.get_options(
-                                                                        headless=True)))
+                                                                        headless=headless)))
         self.__element = Elements(self)
         self.__javascript = Javascript(self)
 
@@ -205,7 +214,6 @@ class Javascript:
             return flag
 
     def execute_js(self, code: str, *args, interval: int = 0):
-        print(code)
         try:
             if self.__parent.ChromeDriver.driver() is not None:
                 ret_code = self.__parent.ChromeDriver.driver().execute_script(code, args)

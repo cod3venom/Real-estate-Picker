@@ -24,6 +24,7 @@ namespace Real_estate_Picker_GUI.GUI.Controls
 
             this.hListBox = new HListBox(this.linksListBox);
             this.hStrings = new HStrings();
+            this.lblPage.Text = this.ctx.Texts.getText(14);
             this.lblAddLink.Text = this.ctx.Texts.getText(2);
             this.btnAdd.Text = this.ctx.Texts.getText(3);
             this.btnImport.Text = this.ctx.Texts.getText(4);
@@ -41,6 +42,11 @@ namespace Real_estate_Picker_GUI.GUI.Controls
             this.hookControls();
         }
 
+        public string PageName
+        {
+            set { this.lblPageName.Text = value.ToString(); }
+            get { return this.lblPageName.Text; }
+        }
         public Button Start
         {
             get { return this.btnStart; }
@@ -50,11 +56,7 @@ namespace Real_estate_Picker_GUI.GUI.Controls
         {
             get { return this.btnStop; }
         }
-
-        public ListBox ClientsListbox
-        {
-            get { return this.clientsListbox; }
-        }
+ 
         public List<string> Links ()
         {
             string content = this.ctx.files.ReadFile(this.openFileDialog.FileName);

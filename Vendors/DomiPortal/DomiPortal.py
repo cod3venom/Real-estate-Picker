@@ -29,7 +29,7 @@ class DomiPortal:
         self.__images: list = []
         self.__obj: DomiPortalProductTObject
 
-    def start(self):
+    def start(self) -> str:
         """
         This is the entry point for the every vendor module,
         basically the plan is always same.
@@ -45,7 +45,7 @@ class DomiPortal:
         self.__ctx.XPATH.set_source(browser.ChromeDriver.driver().page_source)
         self.__accept_regulations()
         self.__initialize_slider()
-        self.__extract_data()
+        return self.__extract_data()
 
     def __accept_regulations(self):
         """
@@ -64,7 +64,7 @@ class DomiPortal:
         self.__images = self.__ctx.XPATH.extract(Selectors.GALLERY_IMAGES)
         return self.__images
 
-    def __extract_data(self):
+    def __extract_data(self) -> str:
         """
         Parse chromedriver web page source code
         with predefined xpath selectors
@@ -82,7 +82,7 @@ class DomiPortal:
         self.__parsed["DESCRIPTION"] = self.__ctx.XPATH.extract(Selectors.DESCRIPTION)
         self.__parsed["PHONE_NUMBER"] = self.__ctx.XPATH.extract(Selectors.PHONE_NUMBER)
 
-        self.__export()
+        return self.__export()
 
     def __export(self):
         """
@@ -93,8 +93,7 @@ class DomiPortal:
         :return:
         """
         obj = DomiPortalProductTObject.TO(json.dumps(self.__parsed, indent=4))
-        path = self.__ctx.FileSystem.sanitize_path(
-            f"{self.__ctx.Settings.DOMIPORTAL_STORAGE}{obj.phone_number}_{obj.location}_{DATE().full_date}")
+        path = self.__ctx.Settings.DOMIPORTAL_STORAGE + self.__ctx.FileSystem.sanitize_name(f"{obj.phone_number}_{obj.location}_{DATE().full_date}")
 
         if self.__ctx.FileSystem.create_dir(path, remove=True):
             template = Template(self.__ctx.Settings.DEFAULT_TEMPLATE)
@@ -109,3 +108,5 @@ class DomiPortal:
 
             for index, image in enumerate(obj.images):
                 self.__ctx.HTTP.download(url=image, path=f'{path}{os.sep}{str(index)}.jpg')
+            return path
+        return ""

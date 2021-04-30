@@ -30,11 +30,11 @@ class Gumtree:
         self.__parsed: dict = {}
         self.__images = []
 
-    def start(self):
+    def start(self) -> str:
         browser.ChromeDriver.navigate(self.__url, 2)
         self.__ctx.XPATH.set_source(browser.ChromeDriver.driver().page_source)
         self.__initialize_slider()
-        self.__extract_data()
+        return self.__extract_data()
 
     def __initialize_slider(self):
         browser.Javascript.execute_js('''document.querySelector('img[data-index="0"]').click()''')
@@ -50,7 +50,7 @@ class Gumtree:
 
         browser.Javascript.execute_js(code=Selectors.GALLERY_CLOSE)
 
-    def __extract_data(self):
+    def __extract_data(self) -> str:
         self.__parsed["TITLE"] = self.__ctx.XPATH.extract(Selectors.TITLE)
         self.__parsed["IMAGES"] = self.__images
         self.__parsed["PRICE"] = self.__ctx.XPATH.extract(Selectors.PRICE)
@@ -61,11 +61,11 @@ class Gumtree:
         self.__parsed["PHONE_NUMBER"] = self.__ctx.XPATH.extract(Selectors.PHONE_NUMBER)
         self.__parsed["CONTACT_DIGNITY"] = LIST.list_to_str(self.__ctx.XPATH.extract(Selectors.CONTACT_DIGNITY))
 
-        self.__export()
+        return self.__export()
 
-    def __export(self):
+    def __export(self) -> str:
         obj = GumtreeProductTObject.TO(self.__ctx.JSON.dumps(self.__parsed))
-        path = self.__ctx.FileSystem.sanitize_path(f"{self.__ctx.Settings.GUMTREE_STORAGE}{obj.title}_{DATE().full_date}_{DATE().full_date}")
+        path = self.__ctx.Settings.GUMTREE_STORAGE + self.__ctx.FileSystem.sanitize_name(f"{obj.title}_{DATE().full_date}")
 
         if self.__ctx.FileSystem.create_dir(path, remove=True):
             template = Template(self.__ctx.Settings.DEFAULT_TEMPLATE)
@@ -80,3 +80,5 @@ class Gumtree:
             template.save(path)
             for index, image in enumerate(obj.images):
                 self.__ctx.HTTP.download(url=image, path=f'{path}//{str(index)}.jpg')
+            return path
+        return ""

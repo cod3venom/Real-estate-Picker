@@ -10,7 +10,7 @@
 import datetime
 import inspect
 import os
-
+import locale
 from colorama import Fore
 
 
@@ -44,7 +44,17 @@ class Texts:
     constants = Constants()
 
     def __init__(self, file: str):
-        self.file = file
+
+        current_lang = ""
+        region_language = locale.getdefaultlocale()
+        if "en_US" in region_language:
+            self.file  = file + "text_EN.lang"
+
+        if "pl_PL" in region_language:
+            self.file = file + "text_PL.lang"
+        else:
+            self.file = file + "text_EN.lang"
+
 
     def loadTexts(self):
         if os.path.isfile(self.file):
@@ -75,10 +85,12 @@ class Logger:
     texts_file: str
     log_format: str
 
+
     def __init__(self, texts_file: str, log_format: str, autoInit: bool = False):
         self.texts_file = texts_file
         self.log_format = log_format
         self.texts = Texts(self.texts_file)
+        self.__globalMessage: dict = {}
         if autoInit:
             self.texts.loadTexts()
 
@@ -86,10 +98,13 @@ class Logger:
         self.level = Constants.EMPTY
         self.levels = Levels()
         self.time = Constants.EMPTY
-        self.text = Constants.EMPTY
         self.color = Constants.EMPTY
         self.caller = Constants.EMPTY
         self.colors = Colors()
+
+    @property
+    def GlobalMessage(self) -> dict:
+        return self.__globalMessage
 
     def initColor(self):
         if self.level == self.levels.Info:
@@ -103,7 +118,8 @@ class Logger:
         if self.level == self.levels.hackerType:
             self.color = self.colors.HackerType
 
-    def Print(self, msg_num: int, level: Levels, message: str = "") -> dict:
+    def Print(self, msg_num: int, level: Levels, message: str = ""):
+        text = ""
         self.level = level
         self.initColor()
 
@@ -112,15 +128,12 @@ class Logger:
         self.time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
         if msg_num > 0:
-            self.text = self.texts.getText(msg_num)
+            text = self.texts.getText(msg_num)
         else:
             if message:
-                self.text = str(message)
+                text = str(message)
 
         text = self.log_format.format(self.colors.Success, self.colors.Warning + self.time,
-                                      self.color + self.caller, "HUMANIZER", self.colors.Default + self.text)
+                                      self.color + self.caller, "Real Estate", self.colors.Default + message)
         print(text)
-        self.text = self.constants.EMPTY
-        text = self.constants.EMPTY
-        return {"Message ID": msg_num, "Message": message, "Level": level}
-
+        self.__globalMessage = {"Log": text}

@@ -11,6 +11,7 @@ from Kernel.Global import ctx
 
 
 class Selectors:
+    ACCEPT_REGULATIONS = ctx.Settings.DOMY_SELECTORS["ACCEPT_REGULATIONS"]
     TITLE = ctx.Settings.DOMY_SELECTORS["TITLE"]
     IMAGES_TOTAL = ctx.Settings.DOMY_SELECTORS["IMAGES_TOTAL"]
     SCROLL_TO_GALLERY = ctx.Settings.DOMY_SELECTORS["SCROLL_TO_GALLERY"]

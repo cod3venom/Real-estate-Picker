@@ -28,7 +28,7 @@ class Domy:
         self.__images: list = []
         self.__obj: DomyProductTObject
 
-    def start(self):
+    def start(self) -> str:
         """
         This is the entry point for the every vendor module,
         basically the plan is always same.
@@ -42,8 +42,18 @@ class Domy:
         """
         browser.ChromeDriver.navigate(self.__url, 1)
         self.__ctx.XPATH.set_source(browser.ChromeDriver.driver().page_source)
+        self.__accept_regulations()
         self.__initialize_slider()
-        self.__extract_data()
+        return self.__extract_data()
+
+    def __accept_regulations(self):
+        """
+        Accept regulations, cookies,
+        and preloaded modals
+        :return:
+        """
+        button = browser.Element.findElementByXpath(Selectors.ACCEPT_REGULATIONS)
+        browser.Element.click(button)
 
     def __initialize_slider(self):
         """
@@ -68,7 +78,7 @@ class Domy:
                 image = browser.Javascript.execute_js(Selectors.GALLERY_SELECTED)
                 self.__images.append(image)
 
-    def __extract_data(self):
+    def __extract_data(self) -> str:
         """
         Parsed chromedriver web page source code
         with predefined xpath selectors
@@ -84,9 +94,9 @@ class Domy:
         self.__parsed["PHONE_NUMBER"] = self.__ctx.XPATH.extract(Selectors.PHONE_NUMBER)
         self.__parsed["CONTACT_DIGNITY"] = self.__ctx.XPATH.extract(Selectors.CONTACT_DIGNITY)
 
-        self.__export()
+        return self.__export()
 
-    def __export(self):
+    def __export(self) -> str:
         """
         Prepare parsed elements for exporting.
         Text based data will be converted into .txt file,
@@ -95,8 +105,7 @@ class Domy:
         :return:
         """
         obj = DomyProductTObject.TO(json.dumps(self.__parsed, indent=4))
-        path = self.__ctx.FileSystem.sanitize_path(
-            f"{self.__ctx.Settings.DOMY_STORAGE}{obj.phone_number}_{obj.contact_dignity}_{DATE().full_date}")
+        path = self.__ctx.Settings.DOMY_STORAGE + self.__ctx.FileSystem.sanitize_name(f"{obj.phone_number}_{obj.contact_dignity}_{DATE().full_date}")
 
         if self.__ctx.FileSystem.create_dir(path, remove=True):
             template = Template(self.__ctx.Settings.DEFAULT_TEMPLATE)
@@ -114,3 +123,5 @@ class Domy:
             self.__ctx.HTTP.add_cookies('')
             for index, image in enumerate(obj.images):
                 self.__ctx.HTTP.download(url=image, path=f'{path}{os.sep}{str(index)}.jpg')
+            return path
+        return ""

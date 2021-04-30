@@ -3,6 +3,7 @@ using Real_estate_Picker_GUI.Core.FileSystem;
 using Real_estate_Picker_GUI.Core.Interfaces;
 using Real_estate_Picker_GUI.Core.Vendors;
 using Real_estate_Picker_GUI.Core.Vendors.Morizon;
+using Real_estate_Picker_GUI.Core.Vendors.Otodom;
 using Real_estate_Picker_GUI.GUI.Controls;
 using System;
 using System.Collections.Generic;
@@ -20,10 +21,11 @@ namespace Real_estate_Picker_GUI.GUI.Forms
     public partial class Home : Form, IWindow
     {
         private Context ctx;
+        private Python python;
         public CMarkup cmarkup;
 
         private Morizon morizon;
-        private Python python;
+        private Otodom otodom;
 
         protected override CreateParams CreateParams
         {
@@ -36,6 +38,8 @@ namespace Real_estate_Picker_GUI.GUI.Forms
             }
         }
 
+        public ListBox ClientsListbox {  get{ return this.clientsListbox; } }
+        public RichTextBox LogsArea { get { return this.richText; } }
         public Home(Context ctx)
         {
             InitializeComponent();
@@ -43,6 +47,7 @@ namespace Real_estate_Picker_GUI.GUI.Forms
             this.python = new Python(this.ctx);
             this.ctx.Nethandler = new Core.Net.NetHandler(this, this.ctx);
             this.morizon = new Morizon(this, this.ctx);
+            this.otodom = new Otodom(this, this.ctx);
             this.initializeGUI();
             this.morizon.Show();
         }
@@ -83,6 +88,7 @@ namespace Real_estate_Picker_GUI.GUI.Forms
                     break;
 
                 case Vendors.Otodom:
+                    this.otodom.Show();
                     break;
 
                 case Vendors.Gratka:
@@ -125,6 +131,22 @@ namespace Real_estate_Picker_GUI.GUI.Forms
             }
         }
 
+        public void ParseMessage()
+        {
+            while (this.ctx.Nethandler.IsActive())
+            {
+                if (!this.ctx.Nethandler.IsActive()) { break; }
+
+                string message = this.ctx.Nethandler.ReceivedMessage;
+                if (message != null)
+                {
+                    if (message.Contains(VendorMessageKeys.Log))
+                    {
+                        this.LogsArea.AppendText(message);   
+                    }
+                }
+            }
+        }
 
         public void close(object sender, EventArgs e)  {Application.Exit(); }
 

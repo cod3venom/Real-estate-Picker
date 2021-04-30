@@ -1,9 +1,11 @@
 
 {
   "VERSION": "1.0",
+  "AUTHOR": "cod3venom",
+  "AUTHOR_MAIL": "levan.ostrowski@gmail.com",
   "TERMINAL_PREFIX": "RealEstate_picker.{}@root > ",
   "LOG_FORMAT": "{}[{}][{}] {} > {}",
-  "EN_US": "/Settings/Texts/text_EN.lang",
+  "TEXTS_PATH": "/Settings/Texts/",
 
   "BINARY_PATH_LINUX": "/Settings/bin/chromedriver",
   "BINARY_PATH_WINDOWS": "/Settings/bin/chromedriver.exe",
@@ -21,7 +23,7 @@
   "OTODOM_STORAGE": "/Storage/Otodom/",
 
   "MORIZON_SELECTORS" :{
-    "ACCEPT_REGULATIONS": "//button[text()='ZGADZAM SIĘ']",
+    "ACCEPT_REGULATIONS": "//button[@aria-label='accept and close']",
     "TITLE": "normalize-space(//title/text())",
     "IMAGES": "//img[@data-number]/@src",
     "IMAGES_TOTAL": "count(//img[@data-number]/@src)",
@@ -56,7 +58,7 @@
     "ACCEPT_REGULATIONS": "//button[@id='onetrust-accept-btn-handler'][text() = 'Akceptuję']",
     "TITLE": "normalize-space(//title/text())",
     "PHONE_BUTTON": "//button[text() = 'Zadzwoń']",
-    "PHONE_NUMBER": "return document.querySelector(\"button[data-cy='ad-contact-phone']\").textContent;",
+    "PHONE_NUMBER": "normalize-space(translate(//button[@data-cy='ad-contact-phone'], ':', ''))",
     "GALLERY_MAIN": "div[class='swiper-zoom-container'] > img",
     "GALLERY_MAIN_CLICK": "document.querySelector('div[class=\"swiper-zoom-container\"] > img').click();",
     "GALLERY_IMAGES": "//div[@class='swiper-zoom-container']/img/@src",
@@ -64,7 +66,6 @@
     "GALLERY_CLOSE": "document.querySelector(\"div[data-testid='close-modal']\").click();",
     "IMAGES_TOTAL": "//div[@data-cy='adPhotos-slidesNum']/text()[2]",
     "PRICE": "normalize-space(concat(//div[@data-testid='ad-price-container']/h3/text()[1],' ', //div[@data-testid='ad-price-container']/h3/text()[3]))",
-    "LOCATION": "return Array.from(document.querySelectorAll('p')).find(function(target){if(target.textContent === 'Lokalizacja'){ let needle = target.parentNode.innerText; needle = needle.replaceAll('\\n', ' '); return needle.replaceAll('Lokalizacja', ''); }});",
     "MEASUREMENT": "normalize-space(translate(//p[contains(text(), 'Powierzchnia')]/text(), 'Powierzhcnia: ' , ''))",
     "ROOMS_AMOUNT": "normalize-space(//p[contains(text(), 'Liczba pokoi')]/text())",
     "CONTACT_DIGNITY": "normalize-space(//a[@name='user_ads']//h2/text())",
@@ -83,6 +84,7 @@
     "DESCRIPTION": "return document.querySelector(\"div[class='description__rolled ql-container']\").innerText;"
   },
   "DOMY_SELECTORS" :{
+    "ACCEPT_REGULATIONS": "//button[@aria-label='accept and close']",
     "TITLE": "normalize-space(//title/text())",
     "IMAGES_TOTAL": "normalize-space(translate(//span[@id = 'photoNumber']/../text()[2], 'z', ''))",
     "SCROLL_TO_GALLERY": "img[id=\"imageBig\"]",

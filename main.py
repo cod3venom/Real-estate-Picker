@@ -1,15 +1,22 @@
-from Kernel.Bootloader.Loader import Loader
-from Kernel.Global import ctx
 import sys
+
+from Kernel.Bootloader.ArgParser import ArgParser
+from Kernel.Config.Logo import Logo
+from Kernel.Global import ctx
 
 
 class Main:
 
     def start(self):
-        boot_loader = Loader(ctx=ctx, ipAddress=sys.argv[1], port=sys.argv[2])
-        boot_loader.load()
+        try:
+            Logo()
+            arg_parser = ArgParser()
+        except KeyboardInterrupt:
+            ctx.Logger.Print(10, ctx.LogLevel.Info)
+            sys.exit(0)
 
 
 if __name__ == "__main__":
+
     main = Main()
     main.start()

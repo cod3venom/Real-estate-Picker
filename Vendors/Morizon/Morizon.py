@@ -9,7 +9,7 @@
 import json
 import os
 import time
-
+import threading
 from DAO.MorizonProductTObject import MorizonProductTObject
 from DataOperations.DATE import DATE
 from Kernel.Config.Context import Context
@@ -27,7 +27,7 @@ class Morizon:
         self.__images: list = []
         self.__obj: MorizonProductTObject
 
-    def start(self) -> bool:
+    def start(self) -> str:
         """
         This is the entry point for the every vendor module,
         basically the plan is always same.
@@ -44,11 +44,11 @@ class Morizon:
             self.__ctx.XPATH.set_source(browser.ChromeDriver.driver().page_source)
             self.__accept_regulations()
             self.__initialize_slider()
-            self.__extract_data()
-            return True
+            return self.__extract_data()
         except Exception:
             pass
-        return False
+        return ""
+
 
     def __accept_regulations(self):
         """
@@ -80,7 +80,7 @@ class Morizon:
                 self.__images.append(image)
 
 
-    def __extract_data(self):
+    def __extract_data(self) -> str:
         """
         Parsed chromedriver web page source code
         with predefined xpath selectors
@@ -96,7 +96,7 @@ class Morizon:
         self.__parsed["PHONE_NUMBER"] = str(self.__ctx.XPATH.extract(Selectors.PHONE_NUMBER)).replace(':', '')
         self.__parsed["CONTACT_DIGNITY"] = self.__ctx.XPATH.extract(Selectors.CONTACT_DIGNITY)
 
-        self.__export()
+        return self.__export()
 
     def __export(self):
         """
@@ -107,7 +107,7 @@ class Morizon:
         :return:
         """
         obj = MorizonProductTObject.TO(json.dumps(self.__parsed, indent=4))
-        path = self.__ctx.FileSystem.sanitize_path(f"{self.__ctx.Settings.MORIZON_STORAGE}{obj.phone_number}_{obj.contact_dignity}_{DATE().full_date}")
+        path = self.__ctx.Settings.MORIZON_STORAGE + self.__ctx.FileSystem.sanitize_name(f"{obj.phone_number}_{obj.contact_dignity}_{DATE().full_date}")
 
         if self.__ctx.FileSystem.create_dir(path, remove=True):
             template = Template(self.__ctx.Settings.DEFAULT_TEMPLATE)
@@ -125,4 +125,5 @@ class Morizon:
             self.__ctx.HTTP.add_cookies('')
             for index, image in enumerate(obj.images):
                 self.__ctx.HTTP.download(url=image, path=f'{path}{os.sep}{str(index)}.jpg')
-
+            return path
+        return None

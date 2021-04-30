@@ -6,6 +6,8 @@
  * Time: 21:48
  * Github: https://github.com/cod3venom
 """
+import os
+
 from Kernel.Config.Context import Context
 from Kernel.FileSystem.FileSystem import FileSystem
 
@@ -51,4 +53,4 @@ class Template:
 
     def save(self, path):
         self.sanitize()
-        return FileSystem().writeToFile(path + '/opis.txt', self.__template)
+        return FileSystem().writeToFile(path + os.sep + 'opis.txt', self.__template)

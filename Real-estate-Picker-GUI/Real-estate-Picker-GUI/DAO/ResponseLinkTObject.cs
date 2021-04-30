@@ -9,5 +9,6 @@ namespace Real_estate_Picker_GUI.DAO
     public class ResponseLinkTObject
     {
         public string Link { get; set; }
+        public string Folder { get; set; }
     }
 }

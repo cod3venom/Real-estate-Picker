@@ -89,7 +89,7 @@ namespace Real_estate_Picker_GUI.Core.Net
                     }
                 }
             }
-            catch (SocketException sockex) { MessageBox.Show(sockex.ToString()); }
+            catch (SocketException) {   }
             catch (Exception ex) { MessageBox.Show(ex.ToString()); }
         }
         public void Stop()
@@ -97,52 +97,54 @@ namespace Real_estate_Picker_GUI.Core.Net
             if(this.isActive)
             {
                 this.isActive = false;
-                if (this.socketWatch.Connected)
-                {
-                    this.socketWatch.Shutdown(SocketShutdown.Both);
-                }
                 this.socketWatch.Close();
                 this.sockDict.Clear();
                 this.threadDict.Clear();
+                this.hListobx.clear();
                 this.Clear();
             }
         }
 
         public bool Send(string message, EndPoint IpEndpoint = null, string ipAddress = "", Socket client = null)
         {
-            if (message != string.Empty)
+            try
             {
-                byte[] messageBytes = Encoding.UTF8.GetBytes(message);
-                byte[] messageSize = Encoding.UTF8.GetBytes(messageBytes.Length.ToString());
-                if (IpEndpoint != null)
+                if (message != string.Empty)
                 {
-                    client = this.SocketByEndpoint(IpEndpoint);
-                    if(client != null)
+                    byte[] messageBytes = Encoding.UTF8.GetBytes(message);
+                    byte[] messageSize = Encoding.UTF8.GetBytes(messageBytes.Length.ToString());
+                    if (IpEndpoint != null)
                     {
-                        client.Send(messageSize);
-                        client.Send(messageBytes);
+                        client = this.SocketByEndpoint(IpEndpoint);
+                        if (client != null)
+                        {
+                            client.Send(messageSize);
+                            client.Send(messageBytes);
+                        }
+                        return true;
                     }
-                    return true;
-                }
-                if(ipAddress != string.Empty)
-                {
-                    client = this.SocketByIP(ipAddress);
+                    if (ipAddress != string.Empty)
+                    {
+                        client = this.SocketByIP(ipAddress);
+                        if (client != null)
+                        {
+                            client.Send(messageSize);
+                            client.Send(messageBytes);
+                        }
+                    }
                     if (client != null)
                     {
-                        client.Send(messageSize);
-                        this.client.Send(messageBytes);
+                        if (client.Connected)
+                        {
+                            client.Send(messageSize);
+                            client.Send(messageBytes);
+                        }
                     }
                 }
-                if(client != null)
-                {
-                    if (client.Connected)
-                    {
-                        client.Send(messageSize);
-                        client.Send(messageBytes);
-                    }
-                }
+                return false;
             }
-            return false;
+            catch (SocketException){ return false; }
+            catch(Exception) { return false; }
         }
 
         public void Receive(Socket client)

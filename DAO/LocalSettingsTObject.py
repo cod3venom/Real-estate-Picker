@@ -18,10 +18,13 @@ class LocalSettingsTObject:
         json_data = json.loads(FileSystem().readfile(settings_file))
         workDir = os.getcwd()
         self.VERSION = json_data["VERSION"]
+        self.AUTHOR = json_data["AUTHOR"]
+        self.AUTHOR_MAIL = json_data["AUTHOR_MAIL"]
+
         self.TERMINAL_PREFIX = json_data["TERMINAL_PREFIX"].format(self.VERSION)
 
         self.LOG_FORMAT = json_data["LOG_FORMAT"]
-        self.EN_US: str = str(workDir + json_data["EN_US"]).replace("/", os.sep)
+        self.TEXTS_PATH: str = str(workDir + json_data["TEXTS_PATH"]).replace("/", os.sep)
 
         self.BINARY_PATH_LINUX = str(workDir + json_data["BINARY_PATH_LINUX"]).replace("/", os.sep)
         self.BINARY_PATH_WINDOWS = str(workDir + json_data["BINARY_PATH_WINDOWS"]).replace("/", os.sep)

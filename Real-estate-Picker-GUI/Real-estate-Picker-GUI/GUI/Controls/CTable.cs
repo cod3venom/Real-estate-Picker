@@ -17,10 +17,32 @@ namespace Real_estate_Picker_GUI.GUI.Controls
         {
             InitializeComponent();
             this.initialize_GUI();
+            this.hookActions();
         }
         public DataGridView Table
         {
             get { return this.table; }
+        }
+        
+        public string TotalTitle
+        {
+            set { this.totalRecordsTitleLabel.Text = value.ToString(); }
+            get { return this.totalRecordsTitleLabel.Text; }
+        }
+
+        public void SetTotalAmount (string amount)
+        {
+            if(this.totalRecordsAmountLabel.InvokeRequired)
+            {
+                this.totalRecordsAmountLabel.Invoke(new MethodInvoker(delegate
+                {
+                    this.totalRecordsAmountLabel.Text = amount;
+                }));
+            }
+            else
+            {
+                this.totalRecordsAmountLabel.Text = amount;
+            }
         }
 
         private void initialize_GUI()
@@ -37,7 +59,14 @@ namespace Real_estate_Picker_GUI.GUI.Controls
             this.Table.RowHeadersVisible = false;
         }
 
- 
-        
+        private void hookActions()
+        {
+            this.table.RowsAdded += new DataGridViewRowsAddedEventHandler(this.OnNewRowAdded);
+        }
+
+        private void OnNewRowAdded(object sender, EventArgs e)
+        {
+            this.totalRecordsAmountLabel.Text = this.table.Rows.Count.ToString();
+        }
     }
 }

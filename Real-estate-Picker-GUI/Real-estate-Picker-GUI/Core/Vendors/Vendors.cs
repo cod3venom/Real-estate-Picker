@@ -17,4 +17,11 @@ namespace Real_estate_Picker_GUI.Core.Vendors
         public const string DomiPortal = "DomiPortal";
     }
 
+    public static class JobActions
+    {
+        public const string Start = "Start";
+        public const string Stop = "Stop";
+        public const string Finish = "Finish";
+    }
+
 }

@@ -46,7 +46,7 @@ class Olx:
         self.__accept_regulations()
         self.__initialize_slider()
         self.__reveal_phone_number()
-        self.__extract_data()
+        return self.__extract_data()
 
     def __accept_regulations(self):
         """
@@ -54,7 +54,7 @@ class Olx:
         and preloaded modals
         :return:
         """
-        time.sleep(3)
+        time.sleep(1)
         accept_btn = browser.Element.findElementByXpath(Selectors.ACCEPT_REGULATIONS)
         browser.Element.click(accept_btn)
 
@@ -67,41 +67,34 @@ class Olx:
         be added into the self.__images variable
         :return:
         """
-        time.sleep(3)
-        #open_gallery = browser.Element.findElementByCss(Selectors.GALLERY_MAIN)
-        #browser.Element.click(open_gallery)
-
         self.__ctx.XPATH.set_source(browser.ChromeDriver.driver().page_source)
         self.__images = self.__ctx.XPATH.extract(Selectors.GALLERY_IMAGES)
-        #browser.Javascript.execute_js(code=Selectors.GALLERY_CLOSE)
         return self.__images
 
     def __reveal_phone_number(self):
         button = browser.Element.findElementByXpath(Selectors.PHONE_BUTTON)
         browser.Element.click(button, 1)
 
-    def __extract_data(self):
+    def __extract_data(self) -> str:
         """
         Parse chromedriver web page source code
         with predefined xpath selectors
         :return:
         """
         self.__ctx.XPATH.set_source(browser.ChromeDriver.driver().page_source)
-        time.sleep(2)
-
+        time.sleep(1)
         self.__parsed["TITLE"] = self.__ctx.XPATH.extract(Selectors.TITLE)
         self.__parsed["IMAGES"] = self.__images
         self.__parsed["PRICE"] = self.__ctx.XPATH.extract(Selectors.PRICE)
-        self.__parsed["LOCATION"] = self.__ctx.XPATH.extract(Selectors.LOCATION)
         self.__parsed["MEASUREMENT"] = self.__ctx.XPATH.extract(Selectors.MEASUREMENT)
         self.__parsed["ROOMS_AMOUNT"] = str(self.__ctx.XPATH.extract(Selectors.ROOMS_AMOUNT)).replace('Liczba pokoi:', '').replace('pokoje', '')
         self.__parsed["DESCRIPTION"] = LIST.list_to_str(self.__ctx.XPATH.extract(Selectors.DESCRIPTION))
-        self.__parsed["PHONE_NUMBER"] = str(browser.Javascript.execute_js(Selectors.PHONE_NUMBER)).replace(':', '')
+        self.__parsed["PHONE_NUMBER"] = self.__ctx.XPATH.extract(Selectors.PHONE_NUMBER)
         self.__parsed["CONTACT_DIGNITY"] = self.__ctx.XPATH.extract(Selectors.CONTACT_DIGNITY)
 
-        self.__export()
+        return self.__export()
 
-    def __export(self):
+    def __export(self) -> str:
         """
         Prepare parsed elements for exporting.
         Text based data will be converted into .txt file,
@@ -110,7 +103,7 @@ class Olx:
         :return:
         """
         obj = OlxProductTObject.TO(json.dumps(self.__parsed, indent=4))
-        path = self.__ctx.FileSystem.sanitize_path(f"{self.__ctx.Settings.OLX_STORAGE}{obj.phone_number}_{obj.contact_dignity}_{DATE().full_date}")
+        path = self.__ctx.Settings.OLX_STORAGE + self.__ctx.FileSystem.sanitize_name(f"{obj.phone_number}_{obj.contact_dignity}_{DATE().full_date}")
         if self.__ctx.FileSystem.create_dir(path, remove=True):
             template = Template(self.__ctx.Settings.DEFAULT_TEMPLATE)
             template.add_description(obj.description)
@@ -125,4 +118,6 @@ class Olx:
 
             for index, image in enumerate(obj.images):
                 self.__ctx.HTTP.download(url=image, path=f'{path}{os.sep}{str(index)}.jpg')
+            return path
+        return ""
 

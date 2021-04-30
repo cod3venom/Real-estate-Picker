@@ -13,6 +13,7 @@ using Real_estate_Picker_GUI.Core.Texts;
 using Real_estate_Picker_GUI.Core.Handlers;
 using Real_estate_Picker_GUI.Core.Net;
 using System.Net.Sockets;
+using Real_estate_Picker_GUI.Core.Selenium;
 
 namespace Real_estate_Picker_GUI.Core.Config
 {
@@ -24,6 +25,7 @@ namespace Real_estate_Picker_GUI.Core.Config
         private LocalSettingsTObject settings;
         private TextBundle texts;
         private NetHandler nethandler;
+        private SeleniumProcess seleniumProcess;
         
 
         public Context()
@@ -31,6 +33,8 @@ namespace Real_estate_Picker_GUI.Core.Config
             this.files = new Files();
             this.settings = JsonConvert.DeserializeObject<LocalSettingsTObject>(files.ReadFile(this.constants.SettingsPath));
             this.texts = new TextBundle(this);
+            this.seleniumProcess = new SeleniumProcess();
+            this.seleniumProcess.Kill();
             
         }
 
@@ -53,6 +57,11 @@ namespace Real_estate_Picker_GUI.Core.Config
         {
             set { this.nethandler = value; }
             get { return this.nethandler; }
+        }
+
+        public SeleniumProcess SeleniumProcess
+        {
+            get { return this.seleniumProcess; }
         }
  
 

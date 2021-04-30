@@ -8,6 +8,7 @@
 """
 from Kernel.Config.Constants import Constants
 from Kernel.TCP.DataParser.MorizonParser import MorizonParser
+from Kernel.TCP.DataParser.OtodomParser import OtodomParser
 from Kernel.TCP.Vendors import Vendors
 
 
@@ -15,6 +16,7 @@ class CommandParser:
 
     def __init__(self):
         self.morizonParser = MorizonParser()
+        self.otodomParser = OtodomParser()
 
 
     def parse_header(self, data: str):
@@ -34,6 +36,8 @@ class CommandParser:
 
                 if header == Vendors.Morizon:
                     self.morizonParser.parse(data=data)
+                if header == Vendors.Otodom:
+                    self.otodomParser.parse(data=data)
 
 
 

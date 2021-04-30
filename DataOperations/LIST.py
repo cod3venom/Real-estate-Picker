@@ -20,3 +20,11 @@ class LIST:
 
         ret_code = ret_code.replace('[', '').replace(']', '').replace("'", '')
         return ret_code
+
+
+
+    @staticmethod
+    def str_to_lines(dataset: str) -> list:
+        if "\n" in dataset:
+            return dataset.split("\n")
+        return []

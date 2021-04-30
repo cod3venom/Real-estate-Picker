@@ -1,0 +1,9 @@
+{
+  "title": "Real Estate Picker",
+  "version": "1.0",
+  "assets": "\\SharpSettings\\Settings\\Assets\\",
+  "textsPath": "\\SharpSettings\\Settings\\texts\\",
+  "localIp": "192.168.0.157",
+  "localPort": 1337,
+  "maxConnectionLimit": 1
+}

@@ -30,7 +30,7 @@ class Otodom:
         self.__images: list = []
         self.__obj: OtodomProductTObject
 
-    def start(self):
+    def start(self) -> str:
         """
         This is the entry point for the every vendor module,
         basically the plan is always same.
@@ -42,12 +42,16 @@ class Otodom:
         6) Push all data into the created folder
         :return:
         """
-        browser.ChromeDriver.navigate(self.__url, 1)
-        self.__ctx.XPATH.set_source(browser.ChromeDriver.driver().page_source)
-        self.__accept_regulations()
-        self.__initialize_slider()
-        self.__reveal_phone_number()
-        self.__extract_data()
+        try:
+            browser.ChromeDriver.navigate(self.__url, 1)
+            self.__ctx.XPATH.set_source(browser.ChromeDriver.driver().page_source)
+            self.__accept_regulations()
+            self.__initialize_slider()
+            self.__reveal_phone_number()
+            return self.__extract_data()
+        except Exception:
+            pass
+        return ""
 
     def __accept_regulations(self):
         """
@@ -85,7 +89,7 @@ class Otodom:
         button = browser.Element.findElementByXpath(Selectors.PHONE_BUTTON)
         browser.Element.click(button, 1)
 
-    def __extract_data(self):
+    def __extract_data(self) -> str:
         """
         Parse chromedriver web page source code
         with predefined xpath selectors
@@ -104,9 +108,9 @@ class Otodom:
         self.__parsed["PHONE_NUMBER"] = str(self.__ctx.XPATH.extract(Selectors.PHONE_NUMBER)).replace(':', '')
         self.__parsed["CONTACT_DIGNITY"] = self.__ctx.XPATH.extract(Selectors.CONTACT_DIGNITY)
 
-        self.__export()
+        return self.__export()
 
-    def __export(self):
+    def __export(self) -> str:
         """
         Prepare parsed elements for exporting.
         Text based data will be converted into .txt file,
@@ -115,8 +119,7 @@ class Otodom:
         :return:
         """
         obj = OtodomProductTObject.TO(json.dumps(self.__parsed, indent=4))
-        path = self.__ctx.FileSystem.sanitize_path(
-            f"{self.__ctx.Settings.OTODOM_STORAGE}{obj.phone_number}_{obj.contact_dignity}_{DATE().full_date}")
+        path = self.__ctx.Settings.OTODOM_STORAGE + self.__ctx.FileSystem.sanitize_name(f"{obj.phone_number}_{obj.contact_dignity}_{DATE().full_date}")
         if self.__ctx.FileSystem.create_dir(path, remove=True):
             template = Template(self.__ctx.Settings.DEFAULT_TEMPLATE)
             template.add_description(obj.description)
@@ -130,5 +133,6 @@ class Otodom:
             template.save(path)
 
             for index, image in enumerate(obj.images):
-                time.sleep(2)
                 self.__ctx.HTTP.download(url=image, path=f'{path}{os.sep}{str(index)}.jpg')
+            return path
+        return ""

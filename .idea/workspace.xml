@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="09c143d8-9dcf-4218-bc77-62486599e6d0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Kernel/Bootloader/ArgParser.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Kernel/Bootloader/Args.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Kernel/Config/Logo.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Kernel/TCP/DataParser/OtodomParser.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Settings/Texts/text_PL.lang" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/install.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAO/LocalSettingsTObject.py" beforeDir="false" afterPath="$PROJECT_DIR$/DAO/LocalSettingsTObject.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAO/OlxProductTObject.py" beforeDir="false" afterPath="$PROJECT_DIR$/DAO/OlxProductTObject.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataOperations/LIST.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataOperations/LIST.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kernel/Bootloader/Loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/Kernel/Bootloader/Loader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kernel/Browser/Browser.py" beforeDir="false" afterPath="$PROJECT_DIR$/Kernel/Browser/Browser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kernel/Config/Context.py" beforeDir="false" afterPath="$PROJECT_DIR$/Kernel/Config/Context.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kernel/FileSystem/FileSystem.py" beforeDir="false" afterPath="$PROJECT_DIR$/Kernel/FileSystem/FileSystem.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kernel/Logger/Logger.py" beforeDir="false" afterPath="$PROJECT_DIR$/Kernel/Logger/Logger.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kernel/TCP/CommandParser.py" beforeDir="false" afterPath="$PROJECT_DIR$/Kernel/TCP/CommandParser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kernel/TCP/DataParser/MorizonParser.py" beforeDir="false" afterPath="$PROJECT_DIR$/Kernel/TCP/DataParser/MorizonParser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kernel/TCP/TcpClient.py" beforeDir="false" afterPath="$PROJECT_DIR$/Kernel/TCP/TcpClient.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/.vs/Real-estate-Picker-GUI/v16/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/Real-estate-Picker-GUI/.vs/Real-estate-Picker-GUI/v16/.suo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/Core/Config/Constants.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/Core/Config/Constants.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/Core/Config/Context.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/Core/Config/Context.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/Core/FileSystem/Files.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/Core/FileSystem/Files.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/Core/FileSystem/Python.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/Core/FileSystem/Python.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/Core/Net/NetHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/Core/Net/NetHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/Core/Texts/TextBundle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/Core/Texts/TextBundle.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/Core/Vendors/Morizon/Morizon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/Core/Vendors/Morizon/Morizon.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/Core/Vendors/Vendors.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/Core/Vendors/Vendors.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/DAO/ResponseLinkTObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/DAO/ResponseLinkTObject.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/GUI/Controls/CMarkup.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/GUI/Controls/CMarkup.Designer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/GUI/Controls/CTable.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/GUI/Controls/CTable.Designer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/GUI/Controls/CTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/GUI/Controls/CTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/GUI/Controls/CTable.resx" beforeDir="false" afterPath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/GUI/Controls/CTable.resx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/GUI/Controls/CVendorPage.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/GUI/Controls/CVendorPage.Designer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/GUI/Controls/CVendorPage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/GUI/Controls/CVendorPage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/GUI/Forms/FProgress.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/GUI/Forms/FProgress.Designer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/GUI/Forms/FProgress.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/GUI/Forms/FProgress.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/GUI/Forms/Home.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/GUI/Forms/Home.Designer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/GUI/Forms/Home.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/GUI/Forms/Home.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/Properties/Resources.resx" beforeDir="false" afterPath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/Properties/Resources.resx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/Real-estate-Picker-GUI.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/Real-estate-Picker-GUI.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/bin/Debug/Assets/closeButton.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/bin/Debug/Assets/minimizeButton.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/bin/Debug/Assets/server.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/bin/Debug/Assets/settings.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/bin/Debug/Assets/start.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/bin/Debug/Assets/stop.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/bin/Debug/Assets/vendors/domiportal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/bin/Debug/Assets/vendors/domy.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/bin/Debug/Assets/vendors/gratka.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/bin/Debug/Assets/vendors/gumtree.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/bin/Debug/Assets/vendors/morizon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/bin/Debug/Assets/vendors/olx.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/bin/Debug/Assets/vendors/otodom.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/bin/Debug/Bunifu_UI_v1.5.3.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/bin/Debug/Microsoft.Dynamic.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/bin/Debug/Microsoft.Dynamic.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/bin/Debug/Microsoft.Scripting.Metadata.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/bin/Debug/Microsoft.Scripting.Metadata.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/bin/Debug/Microsoft.Scripting.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/bin/Debug/Microsoft.Scripting.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/bin/Debug/Newtonsoft.Json.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/bin/Debug/Newtonsoft.Json.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/bin/Debug/Real-estate-Picker-GUI.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/bin/Debug/Real-estate-Picker-GUI.exe.config" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/bin/Debug/Real-estate-Picker-GUI.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/bin/Debug/Settings/Settings.jsonc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/bin/Debug/Settings/texts/pl-PL.lang" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/bin/Debug/System.Buffers.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/bin/Debug/System.Buffers.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/bin/Debug/System.Memory.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/bin/Debug/System.Memory.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/bin/Debug/System.Numerics.Vectors.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/bin/Debug/System.Numerics.Vectors.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/bin/Debug/System.Runtime.CompilerServices.Unsafe.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/bin/Debug/System.Runtime.CompilerServices.Unsafe.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/obj/Debug/DesignTimeResolveAssemblyReferences.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/obj/Debug/DesignTimeResolveAssemblyReferences.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/obj/Debug/Real-estate-Picker-GUI.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/obj/Debug/Real-estate-Picker-GUI.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/obj/Debug/Real-estate-Picker-GUI.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/obj/Debug/Real-estate-Picker-GUI.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/obj/Debug/Real-estate-Picker-GUI.csproj.GenerateResource.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/obj/Debug/Real-estate-Picker-GUI.csproj.GenerateResource.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/obj/Debug/Real-estate-Picker-GUI.csprojAssemblyReference.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/obj/Debug/Real-estate-Picker-GUI.exe" beforeDir="false" afterPath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/obj/Debug/Real-estate-Picker-GUI.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/obj/Debug/Real-estate-Picker-GUI.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/obj/Debug/Real-estate-Picker-GUI.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/obj/Debug/TempPE/Properties.Resources.Designer.cs.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Real-estate-Picker-GUI/Real-estate-Picker-GUI/obj/Debug/TempPE/Properties.Resources.Designer.cs.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Settings/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Settings/Settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Settings/Texts/text_EN.lang" beforeDir="false" afterPath="$PROJECT_DIR$/Settings/Texts/text_EN.lang" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Template/Template.py" beforeDir="false" afterPath="$PROJECT_DIR$/Template/Template.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vendors/DomiPortal/DomiPortal.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vendors/DomiPortal/DomiPortal.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vendors/Domy/Domy.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vendors/Domy/Domy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vendors/Domy/Selectors.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vendors/Domy/Selectors.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vendors/Gratka/Gratka.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vendors/Gratka/Gratka.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vendors/Gumtree/Gumtree.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vendors/Gumtree/Gumtree.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vendors/Morizon/Morizon.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vendors/Morizon/Morizon.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vendors/Olx/Olx.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vendors/Olx/Olx.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vendors/Olx/Selectors.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vendors/Olx/Selectors.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vendors/Otodom/Otodom.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vendors/Otodom/Otodom.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1rjvDDUKb4Jbgkwt0N7m6CdaqMY" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/GUI" />
+    <property name="nodejs_interpreter_path" value="node" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="fileTemplates" />
+  </component>
+  <component name="RunManager" selected="Python.Domiportal multiple links ">
+    <configuration name="GUI" type="NodeJSConfigurationType" path-to-node="$PROJECT_DIR$/../../../../Program Files/nodejs/node" node-parameters="npm start" working-dir="$PROJECT_DIR$/GUI">
+      <method v="2" />
+    </configuration>
+    <configuration name="Domiportal multiple links " type="PythonConfigurationType" factoryName="Python">
+      <module name="Real-estate-Picker" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/AppData/Local/Programs/Python/Python39/python3.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="DomiPortal C:\Users\venom\Desktop\Real-estate-Picker\links\domiportal.txt --debug" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Gumtree multiple links" type="PythonConfigurationType" factoryName="Python">
+      <module name="Real-estate-Picker" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/AppData/Local/Programs/Python/Python39/python3.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="Gumtree C:\Users\venom\Desktop\Real-estate-Picker\links\gumtree.txt" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Morizon Multiple links" type="PythonConfigurationType" factoryName="Python">
+      <module name="Real-estate-Picker" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/AppData/Local/Programs/Python/Python39/python3.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="Morizon C:\Users\venom\Desktop\Real-estate-Picker\links\otodom.txt" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Otodom  Multiple links" type="PythonConfigurationType" factoryName="Python">
+      <module name="Real-estate-Picker" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/AppData/Local/Programs/Python/Python39/python3.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="Otodom C:\Users\venom\Desktop\Real-estate-Picker\links\otodom.txt" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Otodom single" type="PythonConfigurationType" factoryName="Python">
+      <module name="Real-estate-Picker" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/AppData/Local/Programs/Python/Python39/python3.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="Otodom url https://www.otodom.pl/pl/oferta/bez-prowizji-2-osobne-pok-balkon-nowolipki-ID4biJP.html#84474f067d" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="RUN" type="PythonConfigurationType" factoryName="Python">
+      <module name="Real-estate-Picker" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/AppData/Local/Programs/Python/Python39/python3.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="192.168.0.157 1337" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Single link" type="PythonConfigurationType" factoryName="Python">
+      <module name="Real-estate-Picker" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/AppData/Local/Programs/Python/Python39/python3.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="Morizon https://www.morizon.pl/oferta/sprzedaz-mieszkanie-warszawa-mokotow-ludwika-narbutta-136m2-mzn2038532792" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Node.js.GUI" />
+      <item itemvalue="Python.RUN" />
+      <item itemvalue="Python.Single link" />
+      <item itemvalue="Python.Otodom single" />
+      <item itemvalue="Python.Morizon Multiple links" />
+      <item itemvalue="Python.Otodom  Multiple links" />
+      <item itemvalue="Python.Gumtree multiple links" />
+      <item itemvalue="Python.Domiportal multiple links " />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="09c143d8-9dcf-4218-bc77-62486599e6d0" name="Default Changelist" comment="" />
+      <created>1619502191286</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1619502191286</updated>
+      <workItem from="1619502192524" duration="33000" />
+      <workItem from="1619502247409" duration="729000" />
+      <workItem from="1619502990941" duration="14000" />
+      <workItem from="1619503016036" duration="2305000" />
+      <workItem from="1619712058568" duration="83000" />
+      <workItem from="1619714114840" duration="17377000" />
+      <workItem from="1619763022654" duration="31264000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.lang" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="320" y="79" key="#Project_Structure" timestamp="1619714202297">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="320" y="79" key="#Project_Structure/0.0.1680.1010@0.0.1680.1010" timestamp="1619714202297" />
+    <state x="656" y="151" key="#RUN" timestamp="1619503066056">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="656" y="151" key="#RUN/0.0.1680.1010@0.0.1680.1010" timestamp="1619503066056" />
+    <state x="294" y="160" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1619804048734">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="294" y="160" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1619804048734" />
+    <state x="593" y="307" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1619793246026">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="593" y="307" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1680.1010@0.0.1680.1010" timestamp="1619793246026" />
+    <state x="620" y="260" key="FileChooserDialogImpl" timestamp="1619505359592">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="620" y="260" key="FileChooserDialogImpl/0.0.1680.1010@0.0.1680.1010" timestamp="1619505359592" />
+    <state width="1637" height="291" key="GridCell.Tab.0.bottom" timestamp="1619804117290">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state width="1637" height="291" key="GridCell.Tab.0.bottom/0.0.1680.1010@0.0.1680.1010" timestamp="1619804117290" />
+    <state width="1637" height="291" key="GridCell.Tab.0.center" timestamp="1619804117290">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state width="1637" height="291" key="GridCell.Tab.0.center/0.0.1680.1010@0.0.1680.1010" timestamp="1619804117290" />
+    <state width="1637" height="291" key="GridCell.Tab.0.left" timestamp="1619804117290">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state width="1637" height="291" key="GridCell.Tab.0.left/0.0.1680.1010@0.0.1680.1010" timestamp="1619804117290" />
+    <state width="1637" height="291" key="GridCell.Tab.0.right" timestamp="1619804117290">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state width="1637" height="291" key="GridCell.Tab.0.right/0.0.1680.1010@0.0.1680.1010" timestamp="1619804117290" />
+    <state width="1637" height="291" key="GridCell.Tab.1.bottom" timestamp="1619804117290">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state width="1637" height="291" key="GridCell.Tab.1.bottom/0.0.1680.1010@0.0.1680.1010" timestamp="1619804117290" />
+    <state width="1637" height="291" key="GridCell.Tab.1.center" timestamp="1619804117290">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state width="1637" height="291" key="GridCell.Tab.1.center/0.0.1680.1010@0.0.1680.1010" timestamp="1619804117290" />
+    <state width="1637" height="291" key="GridCell.Tab.1.left" timestamp="1619804117290">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state width="1637" height="291" key="GridCell.Tab.1.left/0.0.1680.1010@0.0.1680.1010" timestamp="1619804117290" />
+    <state width="1637" height="291" key="GridCell.Tab.1.right" timestamp="1619804117290">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state width="1637" height="291" key="GridCell.Tab.1.right/0.0.1680.1010@0.0.1680.1010" timestamp="1619804117290" />
+    <state x="341" y="150" key="SettingsEditor" timestamp="1619715369134">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="341" y="150" key="SettingsEditor/0.0.1680.1010@0.0.1680.1010" timestamp="1619715369134" />
+    <state width="848" height="513" key="XDebugger.FullValuePopup" timestamp="1619796002328">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state width="848" height="513" key="XDebugger.FullValuePopup/0.0.1680.1010@0.0.1680.1010" timestamp="1619796002328" />
+    <state x="547" y="107" width="585" height="795" key="find.popup" timestamp="1619798055764">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="547" y="107" width="585" height="795" key="find.popup/0.0.1680.1010@0.0.1680.1010" timestamp="1619798055764" />
+    <state x="557" y="313" key="jetbrains.nodejs.interpreters-dialog" timestamp="1619505331295">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="557" y="313" key="jetbrains.nodejs.interpreters-dialog/0.0.1680.1010@0.0.1680.1010" timestamp="1619505331295" />
+    <state x="496" y="233" key="run.anything.popup" timestamp="1619807152719">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="496" y="233" key="run.anything.popup/0.0.1680.1010@0.0.1680.1010" timestamp="1619807152719" />
+    <state x="503" y="217" width="672" height="678" key="search.everywhere.popup" timestamp="1619715625699">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="503" y="217" width="672" height="678" key="search.everywhere.popup/0.0.1680.1010@0.0.1680.1010" timestamp="1619715625699" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Kernel/TCP/DataParser/MorizonParser.py</url>
+          <line>19</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Kernel/Bootloader/ArgParser.py</url>
+          <line>46</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Kernel/Bootloader/ArgParser.py</url>
+          <line>32</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Real_estate_Picker$RUN.coverage" NAME="RUN Coverage Results" MODIFIED="1619790580517" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Real_estate_Picker$Multiple_links.coverage" NAME="Morizon Multiple links Coverage Results" MODIFIED="1619796121254" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Real_estate_Picker$Domiportal_multiple_links_.coverage" NAME="Domiportal multiple links  Coverage Results" MODIFIED="1619804106256" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Real_estate_Picker$Single_link.coverage" NAME="Single link Coverage Results" MODIFIED="1619803777986" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Real_estate_Picker$Gumtree_multiple_links.coverage" NAME="Gumtree multiple links Coverage Results" MODIFIED="1619798733105" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Real_estate_Picker$Otodom_single.coverage" NAME="Otodom single Coverage Results" MODIFIED="1619795180203" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Real_estate_Picker$Otodom__Multiple_links.coverage" NAME="Otodom  Multiple links Coverage Results" MODIFIED="1619796797048" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>

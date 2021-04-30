@@ -45,7 +45,7 @@ namespace Real_estate_Picker_GUI.GUI.Controls
             this.background.Dock = System.Windows.Forms.DockStyle.Fill;
             this.background.Location = new System.Drawing.Point(0, 0);
             this.background.Name = "background";
-            this.background.Size = new System.Drawing.Size(1156, 788);
+            this.background.Size = new System.Drawing.Size(1197, 788);
             this.background.TabIndex = 0;
             // 
             // pagesContainer
@@ -53,7 +53,7 @@ namespace Real_estate_Picker_GUI.GUI.Controls
             this.pagesContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pagesContainer.Location = new System.Drawing.Point(181, 0);
             this.pagesContainer.Name = "pagesContainer";
-            this.pagesContainer.Size = new System.Drawing.Size(975, 788);
+            this.pagesContainer.Size = new System.Drawing.Size(1016, 788);
             this.pagesContainer.TabIndex = 6;
             // 
             // leftBarContainer
@@ -80,7 +80,7 @@ namespace Real_estate_Picker_GUI.GUI.Controls
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.background);
             this.Name = "CMarkup";
-            this.Size = new System.Drawing.Size(1156, 788);
+            this.Size = new System.Drawing.Size(1197, 788);
             this.background.ResumeLayout(false);
             this.leftBarContainer.ResumeLayout(false);
             this.ResumeLayout(false);

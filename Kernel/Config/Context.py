@@ -26,11 +26,12 @@ class Context:
         self.__constants = Constants()
         self.__localSettings = LocalSettingsTObject(self.__constants.SETTINGS_FILE)
 
-        self.__logger = Logger(texts_file=self.__localSettings.EN_US, log_format=self.__localSettings.LOG_FORMAT)
+        self.__texts = Texts(file=self.__localSettings.TEXTS_PATH)
+        self.__texts.loadTexts()
+
+        self.__logger = Logger(texts_file=self.__texts.file, log_format=self.__localSettings.LOG_FORMAT)
         self.__levels = Levels()
 
-        self.__texts = Texts(file=self.__localSettings.EN_US)
-        self.__texts.loadTexts()
 
         self.__fileSystem = FileSystem()
         self.__json = JSON()
