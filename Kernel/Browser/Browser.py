@@ -7,7 +7,7 @@
  * Github: https://github.com/cod3venom
 """
 import sys
-
+import platform
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException, \
@@ -38,10 +38,11 @@ class Browser:
             else:
                 headless = False
 
-        self.__chromeDriver = ChromeDriver(parent=self,
-                                           browser=webdriver.Chrome(executable_path=self.ctx.Settings.BINARY_PATH_WINDOWS,
-                                                                    chrome_options=self.__chromeConfig.get_options(
-                                                                        headless=headless)))
+        binary_path: str = self.ctx.Settings.BINARY_PATH_LINUX
+        if platform.system() == "Windows":
+            binary_path = self.ctx.Settings.BINARY_PATH_WINDOWS
+
+        self.__chromeDriver = ChromeDriver(parent=self, browser=webdriver.Chrome(executable_path=binary_path, chrome_options=self.__chromeConfig.get_options(headless=headless)))
         self.__element = Elements(self)
         self.__javascript = Javascript(self)
 
