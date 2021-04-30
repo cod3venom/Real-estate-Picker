@@ -13,7 +13,6 @@ from selenium.common.exceptions import NoSuchElementException, StaleElementRefer
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.common.action_chains import ActionChains
-
 import time
 
 from urllib3.exceptions import MaxRetryError
@@ -29,12 +28,11 @@ class Browser:
 
     def __init__(self, ctx: Context):
         self.ctx = ctx
-
         self.__chromeConfig = ChromiumConfig()
         self.__chromeDriver = ChromeDriver(parent=self,
-                                           browser=webdriver.Chrome(executable_path=self.ctx.Settings.BINARY_PATH_LINUX,
+                                           browser=webdriver.Chrome(executable_path=self.ctx.Settings.BINARY_PATH_WINDOWS,
                                                                     chrome_options=self.__chromeConfig.get_options(
-                                                                        headless=False)))
+                                                                        headless=True)))
         self.__element = Elements(self)
         self.__javascript = Javascript(self)
 

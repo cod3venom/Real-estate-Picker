@@ -11,3 +11,5 @@ import os
 
 class Constants:
     SETTINGS_FILE = os.getcwd() + '/Settings/Settings.json'
+
+    ARROW_RIGHT = '>'

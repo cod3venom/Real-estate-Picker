@@ -1,4 +1,5 @@
 ﻿using Real_estate_Picker_GUI.Core.Config;
+using Real_estate_Picker_GUI.Core.FileSystem;
 using Real_estate_Picker_GUI.Core.Interfaces;
 using Real_estate_Picker_GUI.Core.Vendors;
 using Real_estate_Picker_GUI.Core.Vendors.Morizon;
@@ -22,6 +23,7 @@ namespace Real_estate_Picker_GUI.GUI.Forms
         public CMarkup cmarkup;
 
         private Morizon morizon;
+        private Python python;
 
         protected override CreateParams CreateParams
         {
@@ -38,6 +40,7 @@ namespace Real_estate_Picker_GUI.GUI.Forms
         {
             InitializeComponent();
             this.ctx = ctx;
+            this.python = new Python(this.ctx);
             this.ctx.Nethandler = new Core.Net.NetHandler(this, this.ctx);
             this.morizon = new Morizon(this, this.ctx);
             this.initializeGUI();
@@ -108,11 +111,17 @@ namespace Real_estate_Picker_GUI.GUI.Forms
             {
                 this.ctx.Nethandler.Start();
                 this.cTopbar.ActionIcon = Properties.Resources.stop;
+
+                Thread pythread = new Thread(() => python.Start());
+                //pythread.Start();
+
             }
             else
             {
                 this.ctx.Nethandler.Stop();
                 this.cTopbar.ActionIcon = Properties.Resources.start;
+                Thread.Sleep(5);
+                this.python.Stop();
             }
         }
 

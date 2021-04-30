@@ -86,7 +86,6 @@ namespace Real_estate_Picker_GUI.Core.Net
                         recvThread.IsBackground = true;
                         recvThread.Start();
                         this.threadDict.Add(clientEndpoint, recvThread);
-                        this.Send("Hello ", clientEndpoint);
                     }
                 }
             }
@@ -114,20 +113,23 @@ namespace Real_estate_Picker_GUI.Core.Net
             if (message != string.Empty)
             {
                 byte[] messageBytes = Encoding.UTF8.GetBytes(message);
+                byte[] messageSize = Encoding.UTF8.GetBytes(messageBytes.Length.ToString());
                 if (IpEndpoint != null)
                 {
                     client = this.SocketByEndpoint(IpEndpoint);
                     if(client != null)
                     {
+                        client.Send(messageSize);
                         client.Send(messageBytes);
                     }
                     return true;
                 }
-                if(ipAddress != "")
+                if(ipAddress != string.Empty)
                 {
                     client = this.SocketByIP(ipAddress);
                     if (client != null)
                     {
+                        client.Send(messageSize);
                         this.client.Send(messageBytes);
                     }
                 }
@@ -135,6 +137,7 @@ namespace Real_estate_Picker_GUI.Core.Net
                 {
                     if (client.Connected)
                     {
+                        client.Send(messageSize);
                         client.Send(messageBytes);
                     }
                 }

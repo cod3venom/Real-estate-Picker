@@ -20,7 +20,7 @@ class DATE:
 
     @property
     def time(self):
-        return self.__now().strftime("%H:%M:%S")
+        return self.__now().strftime("%H-%M-%S")
 
     @property
     def full_date(self):

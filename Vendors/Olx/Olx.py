@@ -96,7 +96,7 @@ class Olx:
         self.__parsed["MEASUREMENT"] = self.__ctx.XPATH.extract(Selectors.MEASUREMENT)
         self.__parsed["ROOMS_AMOUNT"] = str(self.__ctx.XPATH.extract(Selectors.ROOMS_AMOUNT)).replace('Liczba pokoi:', '').replace('pokoje', '')
         self.__parsed["DESCRIPTION"] = LIST.list_to_str(self.__ctx.XPATH.extract(Selectors.DESCRIPTION))
-        self.__parsed["PHONE_NUMBER"] = browser.Javascript.execute_js(Selectors.PHONE_NUMBER)
+        self.__parsed["PHONE_NUMBER"] = str(browser.Javascript.execute_js(Selectors.PHONE_NUMBER)).replace(':', '')
         self.__parsed["CONTACT_DIGNITY"] = self.__ctx.XPATH.extract(Selectors.CONTACT_DIGNITY)
 
         self.__export()

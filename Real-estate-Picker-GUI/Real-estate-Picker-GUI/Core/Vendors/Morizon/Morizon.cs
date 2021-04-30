@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -18,12 +19,13 @@ namespace Real_estate_Picker_GUI.Core.Vendors.Morizon
 
         public Morizon (Home parent, Context ctx)
         {
+
             this.parent = parent;
             this.ctx = ctx;
+            this.ctx.Nethandler.netMessageHandler.AddMessageHeader(Vendors.Morizon);
             this.page = new CVendorPage(this.ctx);
             this.page.Start.Click += new EventHandler(this.Start);
             this.page.Stop.Click += new EventHandler(this.Stop);
-            
             this.ctx.Nethandler.setListbox(this.page.ClientsListbox);
 
         }
@@ -53,9 +55,9 @@ namespace Real_estate_Picker_GUI.Core.Vendors.Morizon
             }
             else
             {
-                this.ctx.Nethandler.netMessageHandler.AddMessageHeader(Vendors.Morizon);
-                string json = this.ctx.Nethandler.netMessageHandler.AddList("Links", this.page.Links());
+                string json = this.ctx.Nethandler.netMessageHandler.ListTOJsonMessage("Links", this.page.Links(), true);
                 this.ctx.Nethandler.Send(json, this.ctx.Nethandler.clientEndpoint);
+                this.ShowProgress();
                  
 
             }
@@ -64,7 +66,17 @@ namespace Real_estate_Picker_GUI.Core.Vendors.Morizon
 
         private void Stop(object sender, EventArgs e)
         {
+            
+            this.ctx.Nethandler.netMessageHandler.Add("Action", "Stop");
+            string json = this.ctx.Nethandler.netMessageHandler.DictToJsonMessage(true);
 
+        }
+
+        private void ShowProgress()
+        {
+            FProgress fProgress = new FProgress(this.ctx);
+            fProgress.ShowDialog();
+ 
         }
 
     }

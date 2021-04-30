@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Real_estate_Picker_GUI.Core.Net
@@ -39,7 +40,10 @@ namespace Real_estate_Picker_GUI.Core.Net
             foreach(string value in values) {
                 items +='"' + value + '"' + ',';
             }
+            items = this.ReplaceLastOccurence(items, ",", "");
             placeholder = placeholder.Replace("items", items).Replace("\n", "");
+            Regex regex = new Regex("(\r\n|\r|\n)");
+            placeholder = regex.Replace(placeholder, "");
             return placeholder;
         }
 

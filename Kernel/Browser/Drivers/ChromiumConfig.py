@@ -17,6 +17,7 @@ class ChromiumConfig:
         option.add_argument('--disable-dev-shm-usage')
         option.add_argument('--disable-extensions')
         option.add_experimental_option("excludeSwitches", ["enable-automation"])
+        option.add_experimental_option('excludeSwitches', ['enable-logging'])
         option.add_argument("--disable-blink-features=AutomationControlled")
 
         if incognito:

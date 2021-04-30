@@ -17,3 +17,6 @@ class StringBuilder:
 
     def __str__(self):
         return str(self.string)
+
+    def reset(self):
+        self.string = ""

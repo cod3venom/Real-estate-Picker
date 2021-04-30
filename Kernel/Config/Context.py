@@ -16,9 +16,11 @@ from Kernel.FileSystem.FileSystem import FileSystem
 from Kernel.HTTP.httpClient import HttpClient
 from Kernel.Logger.Logger import Levels, Logger, Texts
 from Kernel.Parser.Xpath import Xpath
+from Kernel.TCP.TcpClient import TcpClient
 
 
 class Context:
+
 
     def __init__(self):
         self.__constants = Constants()
@@ -38,6 +40,10 @@ class Context:
 
         self.__http.set_session(requests.Session())
         self.__xpath = Xpath()
+        self.tcpClient = TcpClient()
+
+
+
 
     @property
     def Constants(self):

@@ -27,7 +27,7 @@ class Morizon:
         self.__images: list = []
         self.__obj: MorizonProductTObject
 
-    def start(self):
+    def start(self) -> bool:
         """
         This is the entry point for the every vendor module,
         basically the plan is always same.
@@ -39,11 +39,16 @@ class Morizon:
         6) Push all data into the created folder
         :return:
         """
-        browser.ChromeDriver.navigate(self.__url, 1)
-        self.__ctx.XPATH.set_source(browser.ChromeDriver.driver().page_source)
-        self.__accept_regulations()
-        self.__initialize_slider()
-        self.__extract_data()
+        try:
+            browser.ChromeDriver.navigate(self.__url, 1)
+            self.__ctx.XPATH.set_source(browser.ChromeDriver.driver().page_source)
+            self.__accept_regulations()
+            self.__initialize_slider()
+            self.__extract_data()
+            return True
+        except Exception:
+            pass
+        return False
 
     def __accept_regulations(self):
         """
@@ -88,7 +93,7 @@ class Morizon:
         self.__parsed["MEASUREMENT"] = self.__ctx.XPATH.extract(Selectors.MEASUREMENT)
         self.__parsed["ROOMS_AMOUNT"] = self.__ctx.XPATH.extract(Selectors.ROOMS_AMOUNT)
         self.__parsed["DESCRIPTION"] = self.__ctx.XPATH.extract(Selectors.DESCRIPTION)
-        self.__parsed["PHONE_NUMBER"] = self.__ctx.XPATH.extract(Selectors.PHONE_NUMBER)
+        self.__parsed["PHONE_NUMBER"] = str(self.__ctx.XPATH.extract(Selectors.PHONE_NUMBER)).replace(':', '')
         self.__parsed["CONTACT_DIGNITY"] = self.__ctx.XPATH.extract(Selectors.CONTACT_DIGNITY)
 
         self.__export()
