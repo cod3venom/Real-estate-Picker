@@ -39,7 +39,7 @@ class LocalSettingsTObject:
         self.OLX_STORAGE = str(workDir + json_data["OLX_STORAGE"]).replace("/", os.sep)
         self.GRATKA_STORAGE = str(workDir + json_data["GRATKA_STORAGE"]).replace("/", os.sep)
         self.DOMY_STORAGE = str(workDir + json_data["DOMY_STORAGE"]).replace("/", os.sep)
-        self.DOMIPORTAL_STORAGE = str(workDir + json_data["DOMIPORTAL_STORAGE"]).replace("/", os.sep)
+        self.DOMIPORTA_STORAGE = str(workDir + json_data["DOMIPORTA_STORAGE"]).replace("/", os.sep)
         self.OTODOM_STORAGE = str(workDir + json_data["OTODOM_STORAGE"]).replace("/", os.sep)
 
         self.MORIZON_SELECTORS = json_data["MORIZON_SELECTORS"]
@@ -47,5 +47,5 @@ class LocalSettingsTObject:
         self.OLX_SELECTORS = json_data["OLX_SELECTORS"]
         self.GRATKA_SELECTORS = json_data["GRATKA_SELECTORS"]
         self.DOMY_SELECTORS = json_data["DOMY_SELECTORS"]
-        self.DOMIPORTAL_SELECTORS = json_data["DOMIPORTAL_SELECTORS"]
+        self.DOMIPORTA_SELECTORS = json_data["DOMIPORTA_SELECTORS"]
         self.OTODOM_SELECTORS = json_data["OTODOM_SELECTORS"]

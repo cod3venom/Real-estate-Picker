@@ -13,7 +13,7 @@ from DataOperations.StringBuilder import StringBuilder
 from Kernel.Global import ctx
 
 
-class DomiPortalProductTObject:
+class DomiPortaProductTObject:
     
     def __init__(self,TITLE: str, DESCRIPTION: str, IMAGES: str, PRICE: str, LOCATION: str, MEASUREMENT: str, ROOMS_AMOUNT: str, PHONE_NUMBER: str):
          self.title = TITLE
@@ -41,7 +41,7 @@ class DomiPortalProductTObject:
 
     def __repr__(self):
         buffer = StringBuilder()
-        buffer.append("<DomiPortalProductTObject:")
+        buffer.append("<DomiPortaProductTObject:")
         buffer.append(" TITLE=" + str(self.title))
         buffer.append(" DESCRIPTION=" + str(self.description))
         buffer.append(" IMAGES=" + str(self.images))

@@ -19,7 +19,7 @@
   "OLX_STORAGE": "/Storage/Olx/",
   "GRATKA_STORAGE": "/Storage/Gratka/",
   "DOMY_STORAGE": "/Storage/Domy/",
-  "DOMIPORTAL_STORAGE": "/Storage/DomiPortal/",
+  "DOMIPORTA_STORAGE": "/Storage/DomiPorta/",
   "OTODOM_STORAGE": "/Storage/Otodom/",
 
   "MORIZON_SELECTORS" :{
@@ -98,7 +98,7 @@
     "CONTACT_DIGNITY": "normalize-space(//span[@class = 'agentName']/text())",
     "DESCRIPTION": "//div[@id = 'description']/p/text()"
   },
-  "DOMIPORTAL_SELECTORS" :{
+  "DOMIPORTA_SELECTORS" :{
     "ACCEPT_REGULATIONS": "//button[@id='onetrust-accept-btn-handler']",
     "TITLE": "normalize-space(//title/text())",
     "SCROLL_TO_GALLERY": "div[id=\"sliderGallery\"]",

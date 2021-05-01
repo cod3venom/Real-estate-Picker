@@ -11,23 +11,23 @@ import json
 import os
 import time
 
-from DAO.DomiPortalProductTObject import DomiPortalProductTObject
+from DAO.DomiPortaProductTObject import DomiPortaProductTObject
 from DataOperations.DATE import DATE
 from DataOperations.LIST import LIST
 from Kernel.Config.Context import Context
 from Kernel.Global import browser
 from Template.Template import Template
-from Vendors.DomiPortal.Selectors import Selectors
+from Vendors.DomiPorta.Selectors import Selectors
 
 
-class DomiPortal:
+class DomiPorta:
 
     def __init__(self, ctx: Context, url: str):
         self.__ctx = ctx
         self.__url = url
         self.__parsed: dict = {}
         self.__images: list = []
-        self.__obj: DomiPortalProductTObject
+        self.__obj: DomiPortaProductTObject
 
     def start(self) -> str:
         """
@@ -41,11 +41,15 @@ class DomiPortal:
         6) Push all data into the created folder
         :return:
         """
-        browser.ChromeDriver.navigate(self.__url, 1)
-        self.__ctx.XPATH.set_source(browser.ChromeDriver.driver().page_source)
-        self.__accept_regulations()
-        self.__initialize_slider()
-        return self.__extract_data()
+        try:
+            browser.ChromeDriver.navigate(self.__url, 1)
+            self.__ctx.XPATH.set_source(browser.ChromeDriver.driver().page_source)
+            self.__accept_regulations()
+            self.__initialize_slider()
+            return self.__extract_data()
+        except Exception as ex:
+            print(ex)
+        return ""
 
     def __accept_regulations(self):
         """
@@ -92,8 +96,8 @@ class DomiPortal:
         storage directory.
         :return:
         """
-        obj = DomiPortalProductTObject.TO(json.dumps(self.__parsed, indent=4))
-        path = self.__ctx.Settings.DOMIPORTAL_STORAGE + self.__ctx.FileSystem.sanitize_name(f"{obj.phone_number}_{obj.location}_{DATE().full_date}")
+        obj = DomiPortaProductTObject.TO(json.dumps(self.__parsed, indent=4))
+        path = self.__ctx.Settings.DOMIPORTA_STORAGE + self.__ctx.FileSystem.sanitize_name(f"{obj.phone_number}_{obj.location}_{DATE().full_date}")
 
         if self.__ctx.FileSystem.create_dir(path, remove=True):
             template = Template(self.__ctx.Settings.DEFAULT_TEMPLATE)
@@ -107,6 +111,6 @@ class DomiPortal:
             template.save(path)
 
             for index, image in enumerate(obj.images):
-                self.__ctx.HTTP.download(url=image, path=f'{path}{os.sep}{str(index)}.jpg')
+                self.__ctx.HTTP.download(url=image, path=f'{path}{os.sep}A{str(index)}.jpg')
             return path
         return ""

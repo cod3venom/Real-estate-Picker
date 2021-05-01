@@ -2,11 +2,13 @@
   <dictionary name="venom">
     <words>
       <w>domi</w>
+      <w>domiporta</w>
       <w>domy</w>
       <w>gratka</w>
       <w>ipaddress</w>
       <w>morizon</w>
       <w>otodom</w>
+      <w>porta</w>
     </words>
   </dictionary>
 </component>

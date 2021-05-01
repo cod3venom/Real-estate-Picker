@@ -41,11 +41,15 @@ class Gratka:
         6) Push all data into the created folder
         :return:
         """
-        browser.ChromeDriver.navigate(self.__url, 1)
-        self.__ctx.XPATH.set_source(browser.ChromeDriver.driver().page_source)
-        self.__accept_regulations()
-        self.__initialize_slider()
-        return self.__extract_data()
+        try:
+            browser.ChromeDriver.navigate(self.__url, 1)
+            self.__ctx.XPATH.set_source(browser.ChromeDriver.driver().page_source)
+            self.__accept_regulations()
+            self.__initialize_slider()
+            return self.__extract_data()
+        except Exception as ex:
+            print(ex)
+        return ""
 
     def __accept_regulations(self):
         """
@@ -106,7 +110,7 @@ class Gratka:
             template.save(path)
 
             for index, image in enumerate(obj.images):
-                self.__ctx.HTTP.download(url=image, path=f'{path}{os.sep}{str(index)}.jpg')
+                self.__ctx.HTTP.download(url=image, path=f'{path}{os.sep}A{str(index)}.jpg')
             return path
         return ""
 

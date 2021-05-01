@@ -49,8 +49,8 @@ class Otodom:
             self.__initialize_slider()
             self.__reveal_phone_number()
             return self.__extract_data()
-        except Exception:
-            pass
+        except Exception as ex:
+            print(ex)
         return ""
 
     def __accept_regulations(self):
@@ -133,6 +133,6 @@ class Otodom:
             template.save(path)
 
             for index, image in enumerate(obj.images):
-                self.__ctx.HTTP.download(url=image, path=f'{path}{os.sep}{str(index)}.jpg')
+                self.__ctx.HTTP.download(url=image, path=f'{path}{os.sep}A{str(index)}.jpg')
             return path
         return ""

@@ -13,7 +13,7 @@ from DataOperations.LIST import LIST
 from Kernel.Bootloader.Args import Args
 from Kernel.Global import ctx, browser
 from Kernel.TCP.Vendors import Vendors
-from Vendors.DomiPortal.DomiPortal import DomiPortal
+from Vendors.DomiPorta.DomiPorta import DomiPorta
 from Vendors.Domy.Domy import Domy
 from Vendors.Gratka.Gratka import Gratka
 from Vendors.Gumtree.Gumtree import Gumtree
@@ -71,8 +71,8 @@ class ArgParser:
             result = source.start()
             return
 
-        if vendor == Vendors.DomiPortal:
-            source = DomiPortal(ctx=ctx, url=link)
+        if vendor == Vendors.DomiPorta:
+            source = DomiPorta(ctx=ctx, url=link)
             result = source.start()
             return
 
@@ -86,12 +86,15 @@ class ArgParser:
 
 
     def run_multiple_links(self, vendor: str, file):
-
         content = ctx.FileSystem.readfile(file)
+        print(content)
         if content != "":
             lines = LIST.str_to_lines(content)
             for line in lines:
                 self.run_singe_link(vendor, line)
+        else:
+            ctx.Logger.Print(0, ctx.LogLevel.Warning, ctx.Texts.getText(11).format(file))
+            return 0
 
 
 

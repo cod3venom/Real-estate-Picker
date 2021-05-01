@@ -7,6 +7,7 @@
  * Github: https://github.com/cod3venom
 """
 import json
+import os
 import time
 
 from DataOperations.DATE import DATE
@@ -31,10 +32,14 @@ class Gumtree:
         self.__images = []
 
     def start(self) -> str:
-        browser.ChromeDriver.navigate(self.__url, 2)
-        self.__ctx.XPATH.set_source(browser.ChromeDriver.driver().page_source)
-        self.__initialize_slider()
-        return self.__extract_data()
+        try:
+            browser.ChromeDriver.navigate(self.__url, 2)
+            self.__ctx.XPATH.set_source(browser.ChromeDriver.driver().page_source)
+            self.__initialize_slider()
+            return self.__extract_data()
+        except Exception as ex:
+            print(ex)
+        return ""
 
     def __initialize_slider(self):
         browser.Javascript.execute_js('''document.querySelector('img[data-index="0"]').click()''')
@@ -79,6 +84,6 @@ class Gumtree:
             template.add_date(DATE().full_date)
             template.save(path)
             for index, image in enumerate(obj.images):
-                self.__ctx.HTTP.download(url=image, path=f'{path}//{str(index)}.jpg')
+                self.__ctx.HTTP.download(url=image, path=f'{path}{os.sep}A{str(index)}.jpg')
             return path
         return ""

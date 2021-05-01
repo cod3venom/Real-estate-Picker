@@ -15,4 +15,4 @@ class Vendors:
     Gumtree = "Gumtree"
     Domy = "Domy"
     Olx = "Olx"
-    DomiPortal = "DomiPortal"
+    DomiPorta = "DomiPorta"
