@@ -6,13 +6,12 @@
  * Time: 16:09
  * Github: https://github.com/cod3venom
 """
-from urllib.error import URLError
-
+import time
+import io
 import requests as req
 import requests.exceptions
 from tqdm import tqdm
-from colorama import Fore
-
+from PIL import Image
 from Kernel.FileSystem.FileSystem import FileSystem
 
 
@@ -65,7 +64,7 @@ class HttpClient:
     def get(self, url: str, stream: bool = False):
         return self.get_session().get(self.sanitize_url(url), headers=self.__headers, stream=stream)
 
-    def download(self, url, path):
+    def download(self, url, path, crop: bool = False, crop_px: int = 0):
         try:
             binary = self.get(url=url, stream=True).content
             with open(path, 'wb') as writer:
@@ -73,7 +72,15 @@ class HttpClient:
                 file_name = FileSystem().file_name_from_path(path)
                 for i in tqdm(range(100), colour="BLUE", desc=f"Downloading : {file_name}"):
                     pass
-                writer.write(binary)
+                if not crop:
+                    writer.write(binary)
+
+                elif crop:
+                    local_image = Image.open(io.BytesIO(binary))
+                    width, height = local_image.size
+
+                    local_image.crop((0, 0, 0 + width, 0 + height - crop_px)).save(path)
+
                 return path
         except Exception as ex:
             return None

@@ -113,9 +113,9 @@
   "OTODOM_SELECTORS" :{
     "ACCEPT_REGULATIONS": "//button[@id='onetrust-accept-btn-handler']",
     "TITLE": "normalize-space(//title/text())",
-    "SCROLL_TO_GALLERY": "div[class = \"image-gallery image-gallery-using-mouse\"]",
+    "SCROLL_TO_GALLERY": "img[class = \"image-gallery-image\"]",
     "IMAGES_TOTAL": "normalize-space(//span[@class = 'image-gallery-index-total'])",
-    "GALLERY_IMAGES": "\nlet imagesList = Array();document.querySelectorAll(\"div[aria-label *= 'Go to Slide'] img\").forEach(img => imagesList.push(img.getAttribute(\"src\")));return imagesList;",
+    "GALLERY_IMAGES": "let imagesList = Array();document.querySelectorAll(\"div[aria-label *= 'Go to Slide'] img\").forEach(img => imagesList.push(img.getAttribute(\"src\")));return imagesList;",
     "GALLERY_NEXT": "document.querySelector(\"button[data-cy='frontend.ad-media-gallery.next-photo']\").click();",
     "PRICE": "normalize-space(//strong[@aria-label = 'Cena']/text())",
     "LOCATION" : "normalize-space(//a[@href = '#map']/text())",

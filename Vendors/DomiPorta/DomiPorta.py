@@ -110,7 +110,9 @@ class DomiPorta:
             template.add_date(DATE().full_date)
             template.save(path)
 
+            name_index: int = 1
             for index, image in enumerate(obj.images):
-                self.__ctx.HTTP.download(url=image, path=f'{path}{os.sep}A{str(index)}.jpg')
+                name_index += 1
+                self.__ctx.HTTP.download(url=image, path=f'{path}{os.sep}{str(name_index)}A.jpg')
             return path
         return ""

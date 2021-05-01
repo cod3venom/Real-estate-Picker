@@ -2,9 +2,21 @@
 # Created by https://www.toptal.com/developers/gitignore/api/python,intellij
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,intellij
 
+
+.*
+Vendors/Otodom/*/
+Vendors/Olx/*/
+Vendors/Morizon/*/
+Vendors/Gumtree/*/
+Vendors/Gratka/*/
+Vendors/Domy/*/
+Vendors/DomiPorta/*/
+
 ### Intellij ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
+
+
 
 # User-specific stuff
 .idea/**/workspace.xml

@@ -72,7 +72,8 @@ class Otodom:
         :return:
         """
         browser.Javascript.scrollToElement(Selectors.SCROLL_TO_GALLERY)
-        time.sleep(2)
+        big_image = browser.Element.findElementByCss(Selectors.SCROLL_TO_GALLERY)
+        browser.Element.click(big_image)
 
         total_images = self.__ctx.XPATH.extract(Selectors.IMAGES_TOTAL)
 
@@ -132,7 +133,9 @@ class Otodom:
             template.add_date(DATE().full_date)
             template.save(path)
 
+            name_index: int = 1
             for index, image in enumerate(obj.images):
-                self.__ctx.HTTP.download(url=image, path=f'{path}{os.sep}A{str(index)}.jpg')
+                name_index += 1
+                self.__ctx.HTTP.download(url=image, path=f'{path}{os.sep}{str(name_index)}A.jpg', crop=True, crop_px=60)
             return path
         return ""
