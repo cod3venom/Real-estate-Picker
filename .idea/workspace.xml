@@ -21,16 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="09c143d8-9dcf-4218-bc77-62486599e6d0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Kernel/HTTP/httpClient.py" beforeDir="false" afterPath="$PROJECT_DIR$/Kernel/HTTP/httpClient.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Settings/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Settings/Settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vendors/DomiPorta/DomiPorta.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vendors/DomiPorta/DomiPorta.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vendors/Domy/Domy.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vendors/Domy/Domy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vendors/Gratka/Gratka.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vendors/Gratka/Gratka.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vendors/Gumtree/Gumtree.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vendors/Gumtree/Gumtree.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vendors/Morizon/Morizon.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vendors/Morizon/Morizon.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vendors/Olx/Olx.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vendors/Olx/Olx.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vendors/Otodom/Otodom.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vendors/Otodom/Otodom.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -254,7 +244,7 @@
       <workItem from="1619714114840" duration="17377000" />
       <workItem from="1619763022654" duration="32733000" />
       <workItem from="1619863744481" duration="4127000" />
-      <workItem from="1619899103072" duration="4084000" />
+      <workItem from="1619899103072" duration="4168000" />
     </task>
     <servers />
   </component>
