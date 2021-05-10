@@ -109,7 +109,7 @@ class Gratka:
             template.add_date(DATE().full_date)
             template.save(path)
 
-            name_index: int = 1
+            name_index: int = 0
             for index, image in enumerate(obj.images):
                 name_index += 1
                 self.__ctx.HTTP.download(url=image, path=f'{path}{os.sep}{str(name_index)}A.jpg')

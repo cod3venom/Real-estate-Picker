@@ -1,4 +1,3 @@
-
 """
  * Project: RealEstate_picker.
  * Author: Levan Ostrowski
@@ -14,31 +13,32 @@ from Kernel.Global import ctx
 
 
 class OtodomProductTObject:
-    
-    def __init__(self,TITLE: str, DESCRIPTION: str, IMAGES: str, PRICE: str, LOCATION: str, MEASUREMENT: str, ROOMS_AMOUNT: str, PHONE_NUMBER: str, CONTACT_DIGNITY: str):
-         self.title = TITLE
-         self.description = DESCRIPTION
-         self.images = IMAGES
-         self.price = PRICE
-         self.location = LOCATION
-         self.measurement = MEASUREMENT
-         self.rooms_amount = ROOMS_AMOUNT
-         self.phone_number = PHONE_NUMBER
-         self.contact_dignity = CONTACT_DIGNITY
 
-        
-    
-         ctx.Logger.Print(0,ctx.LogLevel.Success, self.__repr__())
-    
+    def __init__(self, TITLE: str, DESCRIPTION: str, IMAGES: str, PRICE: str, LOCATION: str, MEASUREMENT: str,
+                 ROOMS_AMOUNT: str, PHONE_NUMBER: str, CONTACT_DIGNITY: str):
+        self.title = TITLE
+        self.description = DESCRIPTION
+        self.images = IMAGES
+        self.price = PRICE
+        self.location = LOCATION
+        self.measurement = MEASUREMENT
+        self.rooms_amount = ROOMS_AMOUNT
+        self.phone_number = PHONE_NUMBER
+        self.contact_dignity = CONTACT_DIGNITY
+
+        ctx.Logger.Print(0, ctx.LogLevel.Success, self.__repr__())
+
     @classmethod
     def TO(cls, jsData: str):
         try:
             if jsData != "":
                 return cls(**json.loads(jsData))
             else:
-                return cls(**{'title': 'empty', 'description': 'empty', 'images': 'empty', 'price': 'empty', 'location': 'empty', 'measurement': 'empty', 'rooms_amount': 'empty', 'phone_number': 'empty', 'contact_dignity': 'empty'})
+                return cls(**{'title': 'empty', 'description': 'empty', 'images': 'empty', 'price': 'empty',
+                              'location': 'empty', 'measurement': 'empty', 'rooms_amount': 'empty',
+                              'phone_number': 'empty', 'contact_dignity': 'empty'})
         except KeyError as KeyErr:
-            pass # print (True, 3, levels.Error) 
+            pass  # print (True, 3, levels.Error)
 
     def __repr__(self):
         buffer = StringBuilder()
@@ -54,4 +54,3 @@ class OtodomProductTObject:
         buffer.append(" CONTACT_DIGNITY=" + str(self.contact_dignity))
         buffer.append(">")
         return buffer.string
- 

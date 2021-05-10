@@ -46,8 +46,10 @@ class Otodom:
             browser.ChromeDriver.navigate(self.__url, 1)
             self.__ctx.XPATH.set_source(browser.ChromeDriver.driver().page_source)
             self.__accept_regulations()
-            self.__initialize_slider()
             self.__reveal_phone_number()
+            self.__initialize_slider()
+
+
             return self.__extract_data()
         except Exception as ex:
             print(ex)
@@ -72,6 +74,10 @@ class Otodom:
         :return:
         """
         browser.Javascript.scrollToElement(Selectors.SCROLL_TO_GALLERY)
+        if browser.Element.exists(Selectors.VIRTUAL_WALK_BUTTON):
+            virtual_walk_btn = browser.Element.findElementByCss(Selectors.VIRTUAL_WALK_BUTTON)
+            browser.Element.click(virtual_walk_btn)
+
         big_image = browser.Element.findElementByCss(Selectors.SCROLL_TO_GALLERY)
         browser.Element.click(big_image)
 
@@ -82,13 +88,18 @@ class Otodom:
                 time.sleep(1)
                 browser.Javascript.execute_js(Selectors.GALLERY_NEXT)
 
+        #browser.Element.click(browser.Element.findElementByXpath(Selectors.GALLERY_CLOSE))
+
         time.sleep(3)
         self.__images = browser.Javascript.execute_js(Selectors.GALLERY_IMAGES)
         return self.__images
 
     def __reveal_phone_number(self):
         button = browser.Element.findElementByXpath(Selectors.PHONE_BUTTON)
-        browser.Element.click(button, 1)
+        browser.Element.click(button)
+        time.sleep(2)
+
+        browser.Element.click(browser.Element.findElementByCss(Selectors.CONTACT_MODAL_CLOSE_BUTTON))
 
     def __extract_data(self) -> str:
         """
@@ -133,7 +144,7 @@ class Otodom:
             template.add_date(DATE().full_date)
             template.save(path)
 
-            name_index: int = 1
+            name_index: int = 0
             for index, image in enumerate(obj.images):
                 name_index += 1
                 self.__ctx.HTTP.download(url=image, path=f'{path}{os.sep}{str(name_index)}A.jpg', crop=True, crop_px=60)
