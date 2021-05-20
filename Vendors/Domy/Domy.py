@@ -72,14 +72,17 @@ class Domy:
         """
         # Scroll to gallery element
         browser.Javascript.scrollToElement(Selectors.SCROLL_TO_GALLERY)
-
+        # Gallery full screen
+        browser.Javascript.execute_js(Selectors.GALLERY_FULL_SCREEN, 2)
         # Select first image
         self.__images.append(browser.Javascript.execute_js(Selectors.GALLERY_SELECTED))
 
         total_images = self.__ctx.XPATH.extract(Selectors.IMAGES_TOTAL)
+        time.sleep(2)
+        next_btn = browser.Element.findElementByCss(Selectors.GALLERY_NEXT)
         if total_images is not None:
             for i in range(1, int(total_images)):
-                browser.Javascript.execute_js(Selectors.GALLERY_NEXT)
+                browser.Element.click(next_btn)
                 time.sleep(2)
                 image = browser.Javascript.execute_js(Selectors.GALLERY_SELECTED)
                 self.__images.append(image)

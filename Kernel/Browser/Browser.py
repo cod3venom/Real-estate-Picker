@@ -210,14 +210,17 @@ class Javascript:
         if self.__parent.ChromeDriver.driver() is not None:
             code = self.__parent.ctx.JsBundle.js_get(codeName)
             flag = self.execute_js(code=code, interval=interval)
+            self.__parent.ctx.Logger.Print(0, self.__parent.ctx.LogLevel.Success, self.__parent.ctx.Texts.getText(13).format(code))
             if len(flag) > 0:
                 self.__parent.ctx.Logger.Print(0, self.__parent.ctx.LogLevel.Success, self.__parent.ctx.Texts.getText(5).format(str(codeName)))
             return flag
 
     def execute_js(self, code: str, *args, interval: int = 0):
+
         try:
             if self.__parent.ChromeDriver.driver() is not None:
                 ret_code = self.__parent.ChromeDriver.driver().execute_script(code, args)
+                self.__parent.ctx.Logger.Print(0, self.__parent.ctx.LogLevel.Success, self.__parent.ctx.Texts.getText(13).format(code))
                 if interval > 0:
                     time.sleep(interval)
                 return ret_code

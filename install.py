@@ -45,17 +45,17 @@ cities = {
     }
 }
 
-# with open("requirements.txt", "r") as reader:
-#     content = reader.read()
-#     if "\n" in content:
-#         requirements = content.split("\n")
-#         for requirement in requirements:
-#             os.system(f"python3 -m pip install {requirement}")
-#
-#
-# for vendor in storage:
-#     if not os.path.exists(vendor):
-#         os.mkdir(vendor)
+with open("requirements.txt", "r") as reader:
+    content = reader.read()
+    if "\n" in content:
+        requirements = content.split("\n")
+        for requirement in requirements:
+            os.system(f"python3 -m pip install {requirement}")
+
+
+for vendor in storage:
+    if not os.path.exists(vendor):
+        os.mkdir(vendor)
 
 
 env_base_path = input("Enter path for DATABASE folder > ")

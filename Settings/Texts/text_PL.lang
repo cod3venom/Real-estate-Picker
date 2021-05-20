@@ -1,12 +1,13 @@
-1 # Nawigowano do - {}
-2 # Kliknięto - {}
-3 # element znaleziony przez css - {}
-4 # Element nie znaleziony przez css
-5 # JSCode wykonano pomyślnie - {}
-6 # Wyodrębniono pomyślnie przez xpath - {}
-7 # WIADOMOŚĆ TCP: {}
-8 # Nie prawidłowe zródło : {}
-9 # Coś poszło nie tak, skontaktuj się z autorem : {}
-10 # Operację przerwano przez użytkownika
-11 # Nie odnaleziono pliku z linkami : {}
-12 # Pobrano w : {}
+1# Nawigowano do - {}
+2# Kliknięto - {}
+3# element znaleziony przez css - {}
+4# Element nie znaleziony przez css
+5# JSCode wykonano pomyślnie - {}
+6# Wyodrębniono pomyślnie przez xpath - {}
+7# WIADOMOŚĆ TCP: {}
+8# Nie prawidłowe zródło : {}
+9# Coś poszło nie tak, skontaktuj się z autorem : {}
+10# Operację przerwano przez użytkownika
+11# Nie odnaleziono pliku z linkami : {}
+12# Pobrano w : {}
+13# Javascript : {}

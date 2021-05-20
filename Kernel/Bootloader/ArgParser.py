@@ -13,7 +13,7 @@ from DAO.PLEstateSheetTObject import PLEstateSheetTObject
 from DataOperations.LIST import LIST
 from Kernel.Bootloader.Args import Args
 from Kernel.Global import ctx, browser
-from Kernel.TCP.Vendors import Vendors
+from Kernel.TCP.Vendors import Vendors, VendorHosts
 from Kernel.SpreadSheet.Ods import Ods
 from Kernel.SpreadSheet.SheetTypes import SheetTypes
 from Vendors.DomiPorta.DomiPorta import DomiPorta
@@ -62,26 +62,26 @@ class ArgParser:
 
 
     def run_not_segregated(self, link, sheetObj: PLEstateSheetTObject = None):
-        if Vendors.Morizon.lower() in link:
-            source = Morizon(ctx=ctx, url=link, sheetObj=sheetObj).start()
+        # if Vendors.Morizon.lower() in link:
+        #     source = Morizon(ctx=ctx, url=link, sheetObj=sheetObj).start()
+        #
+        # if Vendors.Otodom.lower() in link:
+        #     source = Otodom(ctx=ctx, url=link, sheetObj=sheetObj).start()
+        #
+        # if Vendors.Gratka.lower() in link:
+        #     source = Gratka(ctx=ctx, url=link, sheetObj=sheetObj).start()
+        #
+        # if Vendors.Gumtree.lower() in link:
+        #     source = Gumtree(ctx=ctx, url=link, sheetObj=sheetObj).start()
 
-        if Vendors.Otodom.lower() in link:
-            source = Otodom(ctx=ctx, url=link, sheetObj=sheetObj).start()
-
-        if Vendors.Gratka.lower() in link:
-            source = Gratka(ctx=ctx, url=link, sheetObj=sheetObj).start()
-
-        if Vendors.Gumtree.lower() in link:
-            source = Gumtree(ctx=ctx, url=link, sheetObj=sheetObj).start()
-
-        if Vendors.Domy.lower() in link:
+        if VendorHosts.Domy in link:
             source = Domy(ctx=ctx, url=link, sheetObj=sheetObj).start()
 
-        if Vendors.Olx.lower() in link:
-            source = Olx(ctx=ctx, url=link, sheetObj=sheetObj).start()
-
-        if Vendors.DomiPorta.lower() in link:
-            source = DomiPorta(ctx=ctx, url=link, sheetObj=sheetObj).start()
+        # if Vendors.Olx.lower() in link:
+        #     source = Olx(ctx=ctx, url=link, sheetObj=sheetObj).start()
+        #
+        # if Vendors.DomiPorta.lower() in link:
+        #     source = DomiPorta(ctx=ctx, url=link, sheetObj=sheetObj).start()
 
 
     def run_from_txt(self):

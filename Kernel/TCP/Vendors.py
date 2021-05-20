@@ -16,3 +16,13 @@ class Vendors:
     Domy = "Domy"
     Olx = "Olx"
     DomiPorta = "DomiPorta"
+
+
+class VendorHosts:
+    Morizon = "morizon.pl"
+    Otodom = "otodom.pl"
+    Gratka = "gratka.pl"
+    Gumtree = "gumtree.pl"
+    Domy = "domy.pl"
+    Olx = "olx.pl"
+    DomiPorta = "domiporta.pl"
