@@ -52,12 +52,12 @@
     "MEASUREMENT": "normalize-space(//div[@class='attribute']/span[@class='name'][contains(text(), 'Wielkość (m2)')]/../span[@class='value']/text())",
     "ROOMS_AMOUNT": "translate(normalize-space(//div[@class='attribute']/span[@class='name'][contains(text(), 'Liczba pokoi')]/../span[@class='value']/text()), 'pokoje', '')",
     "CONTACT_DIGNITY": "//span[@class='username'][1]/a[1]/text()",
-    "DESCRIPTION": "//div[@class='vip-details']/div[@class='description']/span/text()"
+    "DESCRIPTION": "normalize-space(//div[@class='vip-details']/div[@class='description']/span)"
   },
   "OLX_SELECTORS" : {
     "ACCEPT_REGULATIONS": "//button[@id='onetrust-accept-btn-handler'][text() = 'Akceptuję']",
     "TITLE": "normalize-space(//title/text())",
-    "PHONE_BUTTON": "//button[text() = 'Zadzwoń']",
+    "PHONE_BUTTON": "document.querySelectorAll(\"button\").forEach(function(btn, index) {if (btn.innerText === \"Zadzwoń\"){btn.click(); return;}})",
     "PHONE_NUMBER": "normalize-space(translate(//button[@data-cy='ad-contact-phone'], ':', ''))",
     "GALLERY_MAIN": "div[class='swiper-zoom-container'] > img",
     "GALLERY_MAIN_CLICK": "document.querySelector('div[class=\"swiper-zoom-container\"] > img').click();",

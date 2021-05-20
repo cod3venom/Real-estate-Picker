@@ -11,6 +11,7 @@ import os
 import time
 import threading
 from DAO.MorizonProductTObject import MorizonProductTObject
+from DAO.PLEstateSheetTObject import PLEstateSheetTObject
 from DataOperations.DATE import DATE
 from Kernel.Config.Context import Context
 from Kernel.Global import browser
@@ -20,12 +21,13 @@ from Vendors.Morizon.Selectors import Selectors
 
 class Morizon:
 
-    def __init__(self, ctx: Context, url: str):
+    def __init__(self, ctx: Context, url: str, sheetObj: PLEstateSheetTObject = None):
         self.__ctx = ctx
         self.__url = url
         self.__parsed: dict = {}
         self.__images: list = []
         self.__obj: MorizonProductTObject
+        self.sheetObj = sheetObj
 
     def start(self) -> str:
         """
@@ -108,6 +110,13 @@ class Morizon:
         """
         obj = MorizonProductTObject.TO(json.dumps(self.__parsed, indent=4))
         path = self.__ctx.Settings.MORIZON_STORAGE + self.__ctx.FileSystem.sanitize_name(f"{obj.phone_number}_{obj.contact_dignity}_{DATE().full_date}")
+
+        if self.sheetObj:
+            path = f'{self.__ctx.ESTATE_BASE}{self.sheetObj.city}{os.sep}{self.sheetObj.district}{os.sep}{self.sheetObj.street} {self.sheetObj.street_number} {self.sheetObj.price}{os.sep}'
+            self.__ctx.FileSystem.path_creator(direction=path, create=True)
+
+
+        self.__ctx.Logger.Print(0, self.__ctx.LogLevel.Success, self.__ctx.Texts.getText(12).format(path))
 
         if self.__ctx.FileSystem.create_dir(path, remove=True):
             template = Template(self.__ctx.Settings.DEFAULT_TEMPLATE)

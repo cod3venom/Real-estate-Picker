@@ -6,6 +6,8 @@
  * Time: 16:17
  * Github: https://github.com/cod3venom
 """
+import os
+
 import requests
 
 from DAO.LocalSettingsTObject import LocalSettingsTObject
@@ -85,3 +87,7 @@ class Context:
     @property
     def XPATH(self):
         return self.__xpath
+
+    @property
+    def ESTATE_BASE(self):
+        return os.environ.get("ESTATE_BASE")

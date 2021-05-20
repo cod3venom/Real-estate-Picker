@@ -92,3 +92,15 @@ class FileSystem:
         if len(on_delimiter) > 0:
             return on_delimiter[len(on_delimiter) - 1]
         return ""
+
+
+    def path_creator(self, direction: str, create:bool = False):
+        full_path = ""
+        if os.sep in direction:
+            paths = direction.split(os.sep)
+            for path in paths:
+                full_path += path + os.sep
+                if create:
+                    if not os.path.exists(full_path):
+                        os.mkdir(full_path)
+        return full_path

@@ -8,19 +8,10 @@
 """
 import os
 import sys
+from Kernel.FileSystem.FileSystem import FileSystem
 
-commands = [
-    "python3 main.py vendor=DomiPorta file=links\\DomiPorta.txt",
-    "python3 main.py vendor=Domy file=links\\domy.txt",
-    "python3 main.py vendor=Gratka file=links\\gratka.txt",
-    "python3 main.py vendor=Gumtree file=links\\gumtree.txt",
-    "python3 main.py vendor=Morizon file=links\\morizon.txt",
-    "python3 main.py vendor=Olx file=links\\olx.txt",
-    "python3 main.py vendor=Otodom file=links\\otodom.txt",
-]
+path = r"C:\Users\venom\Desktop\BASE\WARSZAWA\BIELANY"
+fs = FileSystem()
 
-mode = sys.argv[1]
-
-for cmd in commands:
-    os.system(cmd + " " + mode)
-
+new = fs.path_creator(direction=path, create=True)
+print(new)

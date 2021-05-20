@@ -9,10 +9,13 @@
 import sys
 import atexit
 
+from DAO.PLEstateSheetTObject import PLEstateSheetTObject
 from DataOperations.LIST import LIST
 from Kernel.Bootloader.Args import Args
 from Kernel.Global import ctx, browser
 from Kernel.TCP.Vendors import Vendors
+from Kernel.SpreadSheet.Ods import Ods
+from Kernel.SpreadSheet.SheetTypes import SheetTypes
 from Vendors.DomiPorta.DomiPorta import DomiPorta
 from Vendors.Domy.Domy import Domy
 from Vendors.Gratka.Gratka import Gratka
@@ -29,76 +32,81 @@ class ArgParser:
         self.args = Args()
         self.args.sysArgvTOdict()
         self.parser()
+        self.vendor = ""
+        self.file = ""
+        self.file_type = ""
+        self.link = ""
 
     def parser(self):
-        if self.args.keyExists("vendor"):
-            vendor = self.args.getValueOf("vendor")
+        if self.args.keyExists("type"):
+            self.file_type = self.args.getValueOf("type")
 
-            if self.args.keyExists("link"):
-                link = self.args.getValueOf("link")
-                self.run_singe_link(vendor=vendor, link=link)
+        if self.args.keyExists("file"):
+            self.file = self.args.getValueOf("file")
 
-            if self.args.keyExists("file"):
-                file = self.args.getValueOf("file")
-                self.run_multiple_links(vendor=vendor, file=file)
+        if self.args.keyExists("link"):
+            self.link = self.args.getValueOf("link")
 
 
 
-    def run_singe_link(self, vendor: str, link: str):
-        result: str = ""
-        if vendor == Vendors.Morizon:
-            source = Morizon(ctx=ctx, url=link)
-            result = source.start()
-            return
-        if vendor == Vendors.Otodom:
-            source = Otodom(ctx=ctx, url=link)
-            result = source.start()
-            return
-        if vendor == Vendors.Gratka:
-            source = Gratka(ctx=ctx, url=link)
-            result = source.start()
-            return
-        if vendor == Vendors.Gumtree:
-            source = Gumtree(ctx=ctx, url=link)
-            result = source.start()
-            return
-        if vendor == Vendors.Domy:
-            source = Domy(ctx=ctx, url=link)
-            result = source.start()
-            return
-        if vendor == Vendors.Olx:
-            source = Olx(ctx=ctx, url=link)
-            result = source.start()
-            return
+        if self.file_type == "" and self.link != "":
+            self.run_not_segregated(self.link)
 
-        if vendor == Vendors.DomiPorta:
-            source = DomiPorta(ctx=ctx, url=link)
-            result = source.start()
-            return
+        elif self.file != "":
+            if self.file_type == SheetTypes.TXT:
+                self.run_from_txt()
 
-        else:
-            ctx.Logger.Print(0, ctx.LogLevel.Warning, ctx.Texts.getText(8).format(vendor))
-            return 0
+            if self.file_type == SheetTypes.ODS:
+                self.run_from_ods()
 
 
 
+    def run_not_segregated(self, link, sheetObj: PLEstateSheetTObject = None):
+        if Vendors.Morizon.lower() in link:
+            source = Morizon(ctx=ctx, url=link, sheetObj=sheetObj).start()
+
+        if Vendors.Otodom.lower() in link:
+            source = Otodom(ctx=ctx, url=link, sheetObj=sheetObj).start()
+
+        if Vendors.Gratka.lower() in link:
+            source = Gratka(ctx=ctx, url=link, sheetObj=sheetObj).start()
+
+        if Vendors.Gumtree.lower() in link:
+            source = Gumtree(ctx=ctx, url=link, sheetObj=sheetObj).start()
+
+        if Vendors.Domy.lower() in link:
+            source = Domy(ctx=ctx, url=link, sheetObj=sheetObj).start()
+
+        if Vendors.Olx.lower() in link:
+            source = Olx(ctx=ctx, url=link, sheetObj=sheetObj).start()
+
+        if Vendors.DomiPorta.lower() in link:
+            source = DomiPorta(ctx=ctx, url=link, sheetObj=sheetObj).start()
 
 
-
-    def run_multiple_links(self, vendor: str, file):
-        content = ctx.FileSystem.readfile(file)
-        print(content)
+    def run_from_txt(self):
+        content = ctx.FileSystem.readfile(self.file)
         if content != "":
             lines = LIST.str_to_lines(content)
-            for line in lines:
-                self.run_singe_link(vendor, line)
+            for link in lines:
+                self.run_not_segregated(link)
         else:
-            ctx.Logger.Print(0, ctx.LogLevel.Warning, ctx.Texts.getText(11).format(file))
+            ctx.Logger.Print(0, ctx.LogLevel.Warning, ctx.Texts.getText(11).format(self.file))
             return 0
+
+    def run_from_ods(self):
+        ods = Ods()
+        data = ods.read(self.file).select_records(["MIASTO", "DZIELNICA", "ULICA", "NR", "LINK", "CENA"])
+
+        for key in data:
+            record = ods.dict_to_str(data[key])
+            plSheetObj = PLEstateSheetTObject.TO(record)
+
+            if plSheetObj:
+                self.run_not_segregated(plSheetObj.link, plSheetObj)
 
 
 
     def on_exit(self):
         browser.ChromeDriver.driver().close()
         browser.ChromeDriver.driver().quit()
-

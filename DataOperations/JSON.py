@@ -13,8 +13,7 @@ from json.decoder import JSONDecodeError
 class JSON:
 
     __json_builder_str: str = '{JSON}'
-    def __init__(self):
-        pass
+
 
     def dict_to_str(self, dataset: dict) -> str:
         ret_code: str = '{'

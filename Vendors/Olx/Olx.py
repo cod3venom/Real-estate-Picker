@@ -12,6 +12,7 @@ import os
 import time
 
 from DAO.OlxProductTObject import OlxProductTObject
+from DAO.PLEstateSheetTObject import PLEstateSheetTObject
 from DataOperations.DATE import DATE
 from DataOperations.LIST import LIST
 from Kernel.Config.Context import Context
@@ -22,12 +23,13 @@ from Vendors.Olx.Selectors import Selectors
 
 class Olx:
 
-    def __init__(self, ctx: Context, url: str):
+    def __init__(self, ctx: Context, url: str, sheetObj: PLEstateSheetTObject = None):
         self.__ctx = ctx
         self.__url = url
         self.__parsed: dict = {}
         self.__images: list = []
         self.__obj: OlxProductTObject
+        self.sheetObj = sheetObj
 
     def start(self):
         """
@@ -76,8 +78,7 @@ class Olx:
         return self.__images
 
     def __reveal_phone_number(self):
-        button = browser.Element.findElementByXpath(Selectors.PHONE_BUTTON)
-        browser.Element.click(button, 1)
+        browser.Javascript.execute_js(Selectors.PHONE_BUTTON, interval=1)
 
     def __extract_data(self) -> str:
         """
@@ -108,6 +109,13 @@ class Olx:
         """
         obj = OlxProductTObject.TO(json.dumps(self.__parsed, indent=4))
         path = self.__ctx.Settings.OLX_STORAGE + self.__ctx.FileSystem.sanitize_name(f"{obj.phone_number}_{obj.contact_dignity}_{DATE().full_date}")
+
+        if self.sheetObj:
+            path = f'{self.__ctx.ESTATE_BASE}{self.sheetObj.city}{os.sep}{self.sheetObj.district}{os.sep}{self.sheetObj.street} {self.sheetObj.street_number} {self.sheetObj.price}{os.sep}'
+            self.__ctx.FileSystem.path_creator(direction=path, create=True)
+
+        self.__ctx.Logger.Print(0, self.__ctx.LogLevel.Success, self.__ctx.Texts.getText(12).format(path))
+
         if self.__ctx.FileSystem.create_dir(path, remove=True):
             template = Template(self.__ctx.Settings.DEFAULT_TEMPLATE)
             template.add_description(obj.description)

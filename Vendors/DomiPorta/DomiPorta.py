@@ -12,6 +12,7 @@ import os
 import time
 
 from DAO.DomiPortaProductTObject import DomiPortaProductTObject
+from DAO.PLEstateSheetTObject import PLEstateSheetTObject
 from DataOperations.DATE import DATE
 from DataOperations.LIST import LIST
 from Kernel.Config.Context import Context
@@ -22,12 +23,13 @@ from Vendors.DomiPorta.Selectors import Selectors
 
 class DomiPorta:
 
-    def __init__(self, ctx: Context, url: str):
+    def __init__(self, ctx: Context, url: str, sheetObj: PLEstateSheetTObject = None):
         self.__ctx = ctx
         self.__url = url
         self.__parsed: dict = {}
         self.__images: list = []
         self.__obj: DomiPortaProductTObject
+        self.sheetObj = sheetObj
 
     def start(self) -> str:
         """
@@ -98,6 +100,12 @@ class DomiPorta:
         """
         obj = DomiPortaProductTObject.TO(json.dumps(self.__parsed, indent=4))
         path = self.__ctx.Settings.DOMIPORTA_STORAGE + self.__ctx.FileSystem.sanitize_name(f"{obj.phone_number}_{obj.location}_{DATE().full_date}")
+
+        if self.sheetObj:
+            path = f'{self.__ctx.ESTATE_BASE}{self.sheetObj.city}{os.sep}{self.sheetObj.district}{os.sep}{self.sheetObj.street} {self.sheetObj.street_number} {self.sheetObj.price}{os.sep}'
+            self.__ctx.FileSystem.path_creator(direction=path, create=True)
+
+        self.__ctx.Logger.Print(0, self.__ctx.LogLevel.Success, self.__ctx.Texts.getText(12).format(path))
 
         if self.__ctx.FileSystem.create_dir(path, remove=True):
             template = Template(self.__ctx.Settings.DEFAULT_TEMPLATE)
