@@ -43,7 +43,7 @@
     "TITLE": "normalize-space(//title/text())",
     "PHONE_NUMBER": "translate(//a[@class='button telephone']/@href, 'tel:', '')",
     "GALLERY_MAIN": "//div[@class='vip-gallery']",
-    "GALLERY_SELECTED": "return document.querySelector(\"img[id='preview-image']\").getAttribute(\"src\");",
+    "GALLERY_SELECTED": "img[id='preview-image']",
     "GALLERY_NEXT": "//span[@class='icon-vip-popup-arrow-right']",
     "GALLERY_CLOSE": "document.querySelector(\"div[id='icon-close']\").click();",
     "IMAGES_TOTAL": "count(//div[contains(@class, 'thumbs images')]/div/img/@src)",

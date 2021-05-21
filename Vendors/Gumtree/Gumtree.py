@@ -48,12 +48,15 @@ class Gumtree:
         gallery_next_button = browser.Element.findElementByXpath(Selectors.GALLERY_NEXT)
         total_images = self.__ctx.XPATH.extract(Selectors.IMAGES_TOTAL)
 
+
+
         if total_images is not None:
-            for i in range(1, int(total_images)):
+            for i in range(int(total_images)):
+                time.sleep(2)
+                actual_image = browser.Element.findElementByCss(Selectors.GALLERY_SELECTED)
+                self.__images.append(actual_image.get_attribute('src'))
+                time.sleep(2)
                 browser.Element.click(gallery_next_button)
-                time.sleep(3)
-                actual_image = browser.Javascript.execute_js(code=Selectors.GALLERY_SELECTED)
-                self.__images.append(actual_image)
 
         browser.Javascript.execute_js(code=Selectors.GALLERY_CLOSE)
 
@@ -64,7 +67,7 @@ class Gumtree:
         self.__parsed["LOCATION"] = LIST.list_to_str(self.__ctx.XPATH.extract(Selectors.LOCATION))
         self.__parsed["MEASUREMENT"] = self.__ctx.XPATH.extract(Selectors.MEASUREMENT)
         self.__parsed["ROOMS_AMOUNT"] = self.__ctx.XPATH.extract(Selectors.ROOMS_AMOUNT)
-        self.__parsed["DESCRIPTION"] = LIST.list_to_str(self.__ctx.XPATH.extract(Selectors.DESCRIPTION))
+        self.__parsed["DESCRIPTION"] = self.__ctx.XPATH.extract(Selectors.DESCRIPTION)
         self.__parsed["PHONE_NUMBER"] = self.__ctx.XPATH.extract(Selectors.PHONE_NUMBER)
         self.__parsed["CONTACT_DIGNITY"] = LIST.list_to_str(self.__ctx.XPATH.extract(Selectors.CONTACT_DIGNITY))
 

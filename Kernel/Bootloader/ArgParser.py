@@ -29,13 +29,16 @@ class ArgParser:
 
     def __init__(self):
         atexit.register(self.on_exit)
-        self.args = Args()
-        self.args.sysArgvTOdict()
-        self.parser()
         self.vendor = ""
         self.file = ""
         self.file_type = ""
         self.link = ""
+        self.single = False
+
+        self.args = Args()
+        self.args.sysArgvTOdict()
+        self.parser()
+
 
     def parser(self):
         if self.args.keyExists("type"):
@@ -46,6 +49,11 @@ class ArgParser:
 
         if self.args.keyExists("link"):
             self.link = self.args.getValueOf("link")
+
+        if self.args.keyExists("single"):
+            self.single = True
+
+
 
 
 
@@ -58,6 +66,8 @@ class ArgParser:
 
             if self.file_type == SheetTypes.ODS:
                 self.run_from_ods()
+
+
 
 
 
