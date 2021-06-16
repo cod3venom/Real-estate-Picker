@@ -54,9 +54,6 @@ class ArgParser:
             self.single = True
 
 
-
-
-
         if self.file_type == "" and self.link != "":
             self.run_not_segregated(self.link)
 
@@ -106,7 +103,7 @@ class ArgParser:
 
     def run_from_ods(self):
         ods = Ods()
-        data = ods.read(self.file).select_records(["MIASTO", "DZIELNICA", "ULICA", "NR", "LINK", "CENA"])
+        data = ods.read(self.file).select_records(["MIASTO", "DZIELNICA", "ULICA", "NR", "LINK", "CENA", "UWAGI", "PROWIZJA"])
 
         for key in data:
             record = ods.dict_to_str(data[key])

@@ -63,12 +63,31 @@ class DomiPorta:
         browser.Element.click(button)
 
     def __initialize_slider(self) -> list:
-        self.__ctx.XPATH.set_source(browser.ChromeDriver.driver().page_source)
         browser.Javascript.scrollToElement(Selectors.SCROLL_TO_GALLERY)
+
+
         time.sleep(3)
 
-        self.__images = self.__ctx.XPATH.extract(Selectors.GALLERY_IMAGES)
-        return self.__images
+        gallery_main = browser.Element.findElementByCss(Selectors.GALLERY_MAIN)
+
+        if gallery_main:
+            browser.Element.click(gallery_main)
+
+            next_btn = browser.Element.findElementByCss(Selectors.GALLERY_NEXT_BUTTON)
+            total_images = int(browser.Javascript.execute_js(Selectors.TOTAL_IMAGES))
+
+            if next_btn and total_images:
+                for i in range(1, int(total_images)):
+                    time.sleep(3)
+                    browser.Element.click(next_btn)
+
+            images = browser.Javascript.execute_js(Selectors.GALLERY_SELECTED_IMAGE)
+            if type(images) == list:
+                self.__images = images
+
+            return self.__images
+
+
 
     def __extract_data(self) -> str:
         """
@@ -116,6 +135,12 @@ class DomiPorta:
             template.add_phone_number(obj.phone_number)
             template.add_link(self.__url)
             template.add_date(DATE().full_date)
+
+            if self.sheetObj:
+                template.add_attention(self.sheetObj.uwagi)
+                template.add_percentage(self.sheetObj.prowizja)
+
+            template.add_vendor_abbreviation(self.__ctx.Settings.VENDOR_ABBREVIATIONS["DOMIPORTA"])
             template.save(path)
 
             name_index: int = 0

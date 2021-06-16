@@ -73,9 +73,20 @@ class Olx:
         be added into the self.__images variable
         :return:
         """
+        browser.Javascript.scrollToElement(Selectors.GALLERY_MAIN)
+        browser.Javascript.execute_js(Selectors.GALLERY_MAIN_CLICK)
+
         self.__ctx.XPATH.set_source(browser.ChromeDriver.driver().page_source)
-        self.__images = self.__ctx.XPATH.extract(Selectors.GALLERY_IMAGES)
-        return self.__images
+        images = self.__ctx.XPATH.extract(Selectors.GALLERY_IMAGES)
+        if type(images) == list:
+            self.__images = images
+
+
+
+
+        # self.__ctx.XPATH.set_source(browser.ChromeDriver.driver().page_source)
+        # self.__images = self.__ctx.XPATH.extract(Selectors.GALLERY_IMAGES)
+        # return self.__images
 
     def __reveal_phone_number(self):
         browser.Javascript.execute_js(Selectors.PHONE_BUTTON, interval=1)
@@ -126,6 +137,14 @@ class Olx:
             template.add_contact_dignity(obj.contact_dignity)
             template.add_link(self.__url)
             template.add_date(DATE().full_date)
+
+            if self.sheetObj:
+                template.add_attention(self.sheetObj.uwagi)
+                template.add_percentage(self.sheetObj.prowizja)
+                if self.sheetObj:
+                    template.add_attention(self.sheetObj.uwagi)
+                template.add_percentage(self.sheetObj.prowizja)
+            template.add_vendor_abbreviation(self.__ctx.Settings.VENDOR_ABBREVIATIONS["OLX"])
             template.save(path)
 
             name_index: int = 0

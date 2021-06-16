@@ -33,6 +33,7 @@ class LocalSettingsTObject:
 
         self.DEFAULT_ENCODING = json_data["DEFAULT_ENCODING"]
         self.DEFAULT_TEMPLATE = str(workDir + json_data["DEFAULT_TEMPLATE"]).replace("/", os.sep)
+        self.VENDOR_ABBREVIATIONS = json_data["VENDOR_ABBREVIATIONS"]
 
         self.MORIZON_STORAGE = str(workDir + json_data["MORIZON_STORAGE"]).replace("/", os.sep)
         self.GUMTREE_STORAGE = str(workDir + json_data["GUMTREE_STORAGE"]).replace("/", os.sep)

@@ -16,7 +16,7 @@ storage = [
     "Storage" + os.sep + "Morizon",
     "Storage" + os.sep + "Gumtree",
     "Storage" + os.sep + "Gratka",
-    "Storage" + os.sep + "Domi",
+    "Storage" + os.sep + "Domy",
     "Storage" + os.sep + "DomiPorta",
 
 ]
@@ -45,12 +45,12 @@ cities = {
     }
 }
 
-with open("requirements.txt", "r") as reader:
-    content = reader.read()
-    if "\n" in content:
-        requirements = content.split("\n")
-        for requirement in requirements:
-            os.system(f"python3 -m pip install {requirement}")
+# with open("requirements.txt", "r") as reader:
+#     content = reader.read()
+#     if "\n" in content:
+#         requirements = content.split("\n")
+#         for requirement in requirements:
+#             os.system(f"python3 -m pip install {requirement}")
 
 
 for vendor in storage:

@@ -42,6 +42,18 @@ class Template:
     def add_date(self, date: str):
         self.__template = self.__template.replace('$(DATE)', date)
 
+    def add_attention(self, attention: str):
+        self.__template = self.__template.replace('$(ATTENTION)', attention)
+
+    def add_percentage(self, percentage: str):
+        if percentage != "":
+            if "%" not in percentage:
+                percentage += "%"
+        self.__template = self.__template.replace('$(PERCENTAGE)', percentage)
+
+    def add_vendor_abbreviation(self, vendor_abbreviation: str):
+        self.__template = self.__template.replace('$(VENDOR_ABBREVIATION)', vendor_abbreviation)
+
     def report(self):
         return self.__template
 

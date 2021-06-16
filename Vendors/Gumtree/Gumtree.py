@@ -37,11 +37,21 @@ class Gumtree:
         try:
             browser.ChromeDriver.navigate(self.__url, 2)
             self.__ctx.XPATH.set_source(browser.ChromeDriver.driver().page_source)
+            self.__accept_regulations()
             self.__initialize_slider()
             return self.__extract_data()
         except Exception as ex:
             print(ex)
         return ""
+
+    def __accept_regulations(self):
+        """
+        Accept regulations, cookies,
+        and preloaded modals
+        :return:
+        """
+        accept_btn = browser.Element.findElementByXpath(Selectors.ACCEPT_REGULATIONS)
+        browser.Element.click(accept_btn)
 
     def __initialize_slider(self):
         browser.Javascript.execute_js('''document.querySelector('img[data-index="0"]').click()''')
@@ -52,11 +62,10 @@ class Gumtree:
 
         if total_images is not None:
             for i in range(int(total_images)):
-                time.sleep(2)
                 actual_image = browser.Element.findElementByCss(Selectors.GALLERY_SELECTED)
                 self.__images.append(actual_image.get_attribute('src'))
-                time.sleep(2)
                 browser.Element.click(gallery_next_button)
+                time.sleep(2)
 
         browser.Javascript.execute_js(code=Selectors.GALLERY_CLOSE)
 
@@ -93,6 +102,12 @@ class Gumtree:
             template.add_contact_dignity(obj.contact_dignity)
             template.add_link(self.__url)
             template.add_date(DATE().full_date)
+
+            if self.sheetObj:
+                template.add_attention(self.sheetObj.uwagi)
+                template.add_percentage(self.sheetObj.prowizja)
+
+            template.add_vendor_abbreviation(self.__ctx.Settings.VENDOR_ABBREVIATIONS["GUMTREE"])
             template.save(path)
             name_index: int = 0
             for index, image in enumerate(obj.images):

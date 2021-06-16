@@ -13,13 +13,15 @@ from Kernel.Global import ctx
 
 class PLEstateSheetTObject:
 
-    def __init__(self, MIASTO: str = "", DZIELNICA: str = "", ULICA: str = "", NR: str = "", LINK: str = "", CENA: str = ""):
+    def __init__(self, MIASTO: str = "", DZIELNICA: str = "", ULICA: str = "", NR: str = "", LINK: str = "", CENA: str = "", UWAGI: str = "", PROWIZJA: str = ""):
         self.city = MIASTO
         self.district = DZIELNICA
         self.street = ULICA
         self.street_number = NR
         self.link = LINK
         self.price = CENA
+        self.uwagi = UWAGI
+        self.prowizja = PROWIZJA
 
         ctx.Logger.Print(0, ctx.LogLevel.Success, self.__repr__())
 
@@ -31,7 +33,7 @@ class PLEstateSheetTObject:
                 return cls(**json.loads(jsData))
             else:
                 return cls(
-                    **{'city': 'empty', 'district': 'empty', 'street': 'empty', 'street_number': 'empty', 'link': 'empty', 'price': 'empty'})
+                    **{'city': 'empty', 'district': 'empty', 'street': 'empty', 'street_number': 'empty', 'link': 'empty', 'price': 'empty', 'uwagi': 'empty', 'prowizja': 'empty'})
         except KeyError as KeyErr:
             pass  # print (True, 3, levels.Error)
 
@@ -45,5 +47,7 @@ class PLEstateSheetTObject:
         buffer.append(" NR=" + str(self.street_number))
         buffer.append(" LINK=" + str(self.link))
         buffer.append(" PRICE=" + str(self.price))
+        buffer.append(" UWAGI=" + str(self.uwagi))
+        buffer.append(" PROWIZJA=" + str(self.prowizja))
         buffer.append(">")
         return buffer.string

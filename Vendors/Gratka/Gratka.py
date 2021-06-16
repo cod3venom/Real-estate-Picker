@@ -10,6 +10,7 @@ import json
 import os
 import time
 
+from selenium.webdriver.remote.webelement import WebElement
 
 from DAO.GratkaProductTObject import GratkaProductTObject
 from DAO.PLEstateSheetTObject import PLEstateSheetTObject
@@ -63,8 +64,12 @@ class Gratka:
         browser.Element.click(button)
 
     def __initialize_slider(self) -> list:
-        self.__ctx.XPATH.set_source(browser.ChromeDriver.driver().page_source)
-        self.__images = self.__ctx.XPATH.extract(Selectors.GALLERY_IMAGES)
+        first_image = browser.Element.findElementByXpath(Selectors.GALLERY)
+        if first_image:
+            browser.Element.click(first_image)
+            time.sleep(2)
+            self.__ctx.XPATH.set_source(browser.ChromeDriver.driver().page_source)
+            self.__images = self.__ctx.XPATH.extract(Selectors.GALLERY_IMAGES)
         return self.__images
 
     def __extract_data(self) -> str:
@@ -115,6 +120,12 @@ class Gratka:
             template.add_contact_dignity(obj.contact_dignity)
             template.add_link(self.__url)
             template.add_date(DATE().full_date)
+
+            if self.sheetObj:
+                template.add_attention(self.sheetObj.uwagi)
+                template.add_percentage(self.sheetObj.prowizja)
+
+            template.add_vendor_abbreviation(self.__ctx.Settings.VENDOR_ABBREVIATIONS["GRATKA"])
             template.save(path)
 
             name_index: int = 0

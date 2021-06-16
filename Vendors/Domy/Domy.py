@@ -74,18 +74,21 @@ class Domy:
         browser.Javascript.scrollToElement(Selectors.SCROLL_TO_GALLERY)
         # Gallery full screen
         browser.Javascript.execute_js(Selectors.GALLERY_FULL_SCREEN, 2)
-        # Select first image
-        self.__images.append(browser.Javascript.execute_js(Selectors.GALLERY_SELECTED))
 
         total_images = self.__ctx.XPATH.extract(Selectors.IMAGES_TOTAL)
         time.sleep(2)
         next_btn = browser.Element.findElementByCss(Selectors.GALLERY_NEXT)
         if total_images is not None:
-            for i in range(1, int(total_images)):
+            # + 1 is important to keep clicking slider arrow
+            # until it will achieve the last image
+            for i in range(1, int(total_images) + 1):
+                self.__ctx.XPATH.set_source(browser.ChromeDriver.driver().page_source)
+                image = str(self.__ctx.XPATH.extract(Selectors.GALLERY_SELECTED))
+                self.__images.append(image)
+
                 browser.Element.click(next_btn)
                 time.sleep(2)
-                image = browser.Javascript.execute_js(Selectors.GALLERY_SELECTED)
-                self.__images.append(image)
+
 
     def __extract_data(self) -> str:
         """
@@ -133,6 +136,12 @@ class Domy:
             template.add_contact_dignity(obj.contact_dignity)
             template.add_link(self.__url)
             template.add_date(DATE().full_date)
+
+            if self.sheetObj:
+                template.add_attention(self.sheetObj.uwagi)
+                template.add_percentage(self.sheetObj.prowizja)
+
+            template.add_vendor_abbreviation(self.__ctx.Settings.VENDOR_ABBREVIATIONS["DOMY"])
             template.save(path)
 
             self.__ctx.HTTP.add_referer(self.__url)

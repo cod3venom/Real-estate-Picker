@@ -11,6 +11,7 @@ from Kernel.Global import ctx
 
 
 class Selectors:
+    ACCEPT_REGULATIONS = ctx.Settings.GUMTREE_SELECTORS["ACCEPT_REGULATIONS"]
     TITLE = ctx.Settings.GUMTREE_SELECTORS["TITLE"]
     PHONE_NUMBER = ctx.Settings.GUMTREE_SELECTORS["PHONE_NUMBER"]
     GALLERY_MAIN = ctx.Settings.GUMTREE_SELECTORS["GALLERY_MAIN"]

@@ -4,6 +4,8 @@
 
 
 .*
+Storage
+Storage/*
 Storage/Otodom/*/
 Storage/Olx/*/
 Storage/Morizon/*/

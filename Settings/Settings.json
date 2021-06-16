@@ -22,6 +22,15 @@
   "DOMIPORTA_STORAGE": "/Storage/DomiPorta/",
   "OTODOM_STORAGE": "/Storage/Otodom/",
 
+  "VENDOR_ABBREVIATIONS": {
+    "GRATKA":"GRT",
+    "DOMY":"DM",
+    "DOMIPORTA":"DMP",
+    "OTODOM":"ODM",
+    "MORIZON":"MRZ",
+    "GUMTREE":"GMT",
+    "OLX":"OX"
+  },
   "MORIZON_SELECTORS" :{
     "ACCEPT_REGULATIONS": "//button[@aria-label='accept and close']",
     "TITLE": "normalize-space(//title/text())",
@@ -40,6 +49,7 @@
   },
 
   "GUMTREE_SELECTORS": {
+    "ACCEPT_REGULATIONS": "//button[@id = 'onetrust-accept-btn-handler']",
     "TITLE": "normalize-space(//title/text())",
     "PHONE_NUMBER": "translate(//a[@class='button telephone']/@href, 'tel:', '')",
     "GALLERY_MAIN": "//div[@class='vip-gallery']",
@@ -61,10 +71,10 @@
     "PHONE_NUMBER": "normalize-space(translate(//button[@data-cy='ad-contact-phone'], ':', ''))",
     "GALLERY_MAIN": "div[class='swiper-zoom-container'] > img",
     "GALLERY_MAIN_CLICK": "document.querySelector('div[class=\"swiper-zoom-container\"] > img').click();",
-    "GALLERY_IMAGES": "//div[@class='swiper-zoom-container']/img/@src",
+    "GALLERY_IMAGES": "//div[@data-testid = \"swiper-thumbnail\"]/img/@src",
     "GALLERY_NEXT": "//button[@aria-label='Next slide']",
     "GALLERY_CLOSE": "document.querySelector(\"div[data-testid='close-modal']\").click();",
-    "IMAGES_TOTAL": "//div[@data-cy='adPhotos-slidesNum']/text()[2]",
+    "IMAGES_TOTAL": "normalize-space(//div[@data-cy='adPhotos-slidesNum']/text()[2])",
     "PRICE": "normalize-space(concat(//div[@data-testid='ad-price-container']/h3/text()[1],' ', //div[@data-testid='ad-price-container']/h3/text()[3]))",
     "MEASUREMENT": "normalize-space(translate(//p[contains(text(), 'Powierzchnia')]/text(), 'Powierzhcnia: ' , ''))",
     "ROOMS_AMOUNT": "normalize-space(//p[contains(text(), 'Liczba pokoi')]/text())",
@@ -72,10 +82,11 @@
     "DESCRIPTION": "//div[@data-cy='ad_description']/div/text()"
   },
   "GRATKA_SELECTORS" : {
-    "ACCEPT_REGULATIONS": "//a[text() = 'Przejdź do serwisu']",
+    "ACCEPT_REGULATIONS": "//span[text() = 'Przejdź do serwisu']",
     "TITLE": "normalize-space(//title/text())",
     "PHONE_NUMBER": "normalize-space(//a/@data-full-phone-number)",
-    "GALLERY_IMAGES": "//div[@class='gallery__overflowBox']/ul//img[@loading='lazy']/@src",
+    "GALLERY": "//div[@id = \"image-0\"]/img",
+    "GALLERY_IMAGES": "//div[contains(@class, \"galleryWrapper__imageBox galleryWrapper__imageBox--big\")]/img/@src",
     "PRICE": "normalize-space(concat(//span[@class = 'priceInfo__value']/text(), //span[@class = 'priceInfo__value']/span/text()))",
     "LOCATION": "normalize-space(//span[text() = 'Lokalizacja']/../b[@class = 'parameters__value'])",
     "MEASUREMENT": "normalize-space(concat(//span[contains(text() , 'Powierzchnia')]/../b/text(), //span[contains(text() , 'Powierzchnia')]/../b/sup/text()))",
@@ -89,7 +100,7 @@
     "IMAGES_TOTAL": "normalize-space(translate(//span[@id = 'photoNumber']/../text()[2], 'z', ''))",
     "SCROLL_TO_GALLERY": "img[id=\"imageBig\"]",
     "GALLERY_FULL_SCREEN":"let image = document.getElementById(\"imageBig\"); if (image instanceof Element) { return image.click(); }",
-    "GALLERY_SELECTED": "let image = document.getElementById(\"imageBigCB\"); if (image instanceof Element) { return image.getAttribute(\"src\"); }",
+    "GALLERY_SELECTED": "normalize-space(//img[@id = 'imageBigCB']/@src)",
     "GALLERY_NEXT": "div[class*='imageBoxBigRight']",
     "PRICE": "normalize-space(//div[contains(text(), 'Cena:')]/strong/text())",
     "LOCATION" : "normalize-space(//b[contains(text(), 'Lokalizacja:')]/../a/text())",
@@ -102,8 +113,11 @@
   "DOMIPORTA_SELECTORS" :{
     "ACCEPT_REGULATIONS": "//button[@id='onetrust-accept-btn-handler']",
     "TITLE": "normalize-space(//title/text())",
-    "SCROLL_TO_GALLERY": "div[id=\"sliderGallery\"]",
-    "GALLERY_IMAGES": "//div[@role = 'option']/img[contains(@src, 'pictures/big/')]/@src",
+    "SCROLL_TO_GALLERY": "div[id=\"sliderGallery\"] img",
+    "GALLERY_MAIN": "picture[class *= \"slick-current slick-active\"]",
+    "GALLERY_SELECTED_IMAGE": "function getImg() {    const sources = [];    const images = [].slice.call(document.querySelectorAll(`div [data-picture-number][aria-hidden] picture > img`));    if (Array.isArray(images)){        images.forEach(function (img) {            const src = img.getAttribute(\"src\");            if (!sources.includes(src)){                sources.push(src);            }        });    }    return sources;}return getImg();",
+    "GALLERY_NEXT_BUTTON": "div[class *= \"gallery-carousel__button--next\"]",
+    "TOTAL_IMAGES": "let total=document.querySelector(\".gallery-count > span\");if(total instanceof Element){total=total.innerText.toString();if(total.includes(\"z\")){let numbers=total.split(\"z\");if(numbers.length>1){return numbers[1]}}}return 0;",
     "PRICE": "normalize-space(//span[text() = 'Cena']/../span/p/text())",
     "LOCATION" : "normalize-space(//span[@itemprop = 'address'])",
     "MEASUREMENT": "normalize-space(//span[text() = 'Powierzchnia całkowita']/../span[2])",

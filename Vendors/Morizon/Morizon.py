@@ -128,6 +128,12 @@ class Morizon:
             template.add_contact_dignity(obj.contact_dignity)
             template.add_link(self.__url)
             template.add_date(DATE().full_date)
+
+            if self.sheetObj:
+                template.add_attention(self.sheetObj.uwagi)
+                template.add_percentage(self.sheetObj.prowizja)
+
+            template.add_vendor_abbreviation(self.__ctx.Settings.VENDOR_ABBREVIATIONS["MORIZON"])
             template.save(path)
 
             self.__ctx.HTTP.add_referer(self.__url)
