@@ -11,7 +11,7 @@ import atexit
 
 from DAO.PLEstateSheetTObject import PLEstateSheetTObject
 from DataOperations.LIST import LIST
-from Kernel.Bootloader.Args import Args
+from Kernel.Global import args
 from Kernel.Global import ctx, browser
 from Kernel.TCP.Vendors import Vendors, VendorHosts
 from Kernel.SpreadSheet.Ods import Ods
@@ -35,22 +35,20 @@ class ArgParser:
         self.link = ""
         self.single = False
 
-        self.args = Args()
-        self.args.sysArgvTOdict()
         self.parser()
 
 
     def parser(self):
-        if self.args.keyExists("type"):
-            self.file_type = self.args.getValueOf("type")
+        if args.keyExists("type"):
+            self.file_type = args.getValueOf("type")
 
-        if self.args.keyExists("file"):
-            self.file = self.args.getValueOf("file")
+        if args.keyExists("file"):
+            self.file = args.getValueOf("file")
 
-        if self.args.keyExists("link"):
-            self.link = self.args.getValueOf("link")
+        if args.keyExists("link"):
+            self.link = args.getValueOf("link")
 
-        if self.args.keyExists("single"):
+        if args.keyExists("single"):
             self.single = True
 
 

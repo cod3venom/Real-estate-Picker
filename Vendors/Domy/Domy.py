@@ -46,6 +46,7 @@ class Domy:
             browser.ChromeDriver.navigate(self.__url, 1)
             self.__ctx.XPATH.set_source(browser.ChromeDriver.driver().page_source)
             self.__accept_regulations()
+            self.__remove_ad_banner()
             self.__initialize_slider()
             return self.__extract_data()
         except Exception as ex:
@@ -60,6 +61,10 @@ class Domy:
         """
         button = browser.Element.findElementByXpath(Selectors.ACCEPT_REGULATIONS)
         browser.Element.click(button)
+
+
+    def __remove_ad_banner(self):
+        browser.Javascript.execute_js(Selectors.REMOVE_TOP_AD_BANNER)
 
     def __initialize_slider(self):
         """

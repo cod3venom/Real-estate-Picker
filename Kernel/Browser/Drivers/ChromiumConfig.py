@@ -8,14 +8,19 @@
 """
 
 from selenium.webdriver.chrome.options import Options
+from Kernel.Bootloader.Args import Args
+import Kernel.Global as global_config
 
 
 class ChromiumConfig:
+    def __init__(self):
+        self.args = Args()
+        self.args.sysArgvTOdict()
+        self.ctx = global_config.ctx
 
     def get_options(self, incognito: bool = False, app_mode: str = "", headless: bool = False):
         option = Options()
         option.add_argument('--disable-dev-shm-usage')
-        option.add_argument('--disable-extensions')
         option.add_experimental_option("excludeSwitches", ["enable-automation"])
         option.add_experimental_option('excludeSwitches', ['enable-logging'])
         option.add_argument("--disable-blink-features=AutomationControlled")
@@ -31,6 +36,10 @@ class ChromiumConfig:
             option.add_argument('disable-gpu')
         else:
             option.add_argument('window-size=1700,1500')
-            #option.add_argument('--kiosk')
-        return option
 
+        if self.args.keyExists('--adblock'):
+            option.add_extension(self.ctx.Settings.ADBLOCKER_CRX)
+        else:
+            option.add_argument('--disable-extensions')
+
+        return option

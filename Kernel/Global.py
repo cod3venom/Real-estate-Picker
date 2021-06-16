@@ -8,6 +8,11 @@
 """
 from Kernel.Browser.Browser import Browser
 from Kernel.Config.Context import Context
+from Kernel.Bootloader.Args import Args
 
 ctx = Context()
+
+args = Args()
+args.sysArgvTOdict()
+
 browser = Browser(ctx)

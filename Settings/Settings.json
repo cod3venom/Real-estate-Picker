@@ -13,6 +13,7 @@
 
   "DEFAULT_ENCODING": "utf-8",
   "DEFAULT_TEMPLATE": "/Settings/Templates/default.temp",
+  "ADBLOCKER_CRX": "/Settings/Extensions/adblock.crx",
 
   "MORIZON_STORAGE" : "/Storage/Morizon/",
   "GUMTREE_STORAGE" : "/Storage/Gumtree/",
@@ -108,7 +109,8 @@
     "ROOMS_AMOUNT": "normalize-space(//div[contains(text(), 'Liczba pokoi:')]/strong/text())",
     "PHONE_NUMBER": "normalize-space(//div[@class = 'agentDetails']//b/text())",
     "CONTACT_DIGNITY": "normalize-space(//span[@class = 'agentName']/text())",
-    "DESCRIPTION": "//div[@id = 'description']/p/text()"
+    "DESCRIPTION": "//div[@id = 'description']/p/text()",
+    "REMOVE_TOP_AD_BANNER": "let element=document.getElementById(\"bb-banner-top\");if(element instanceof Element){element.remove();console.log(\"AD BANNER HAS BEEN REMOVED SUCCESSFULLY\")}"
   },
   "DOMIPORTA_SELECTORS" :{
     "ACCEPT_REGULATIONS": "//button[@id='onetrust-accept-btn-handler']",

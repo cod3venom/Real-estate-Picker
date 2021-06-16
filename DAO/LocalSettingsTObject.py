@@ -30,6 +30,7 @@ class LocalSettingsTObject:
         self.BINARY_PATH_WINDOWS = str(workDir + json_data["BINARY_PATH_WINDOWS"]).replace("/", os.sep)
 
         self.JS_PATH = str(workDir + json_data["JS_PATH"]).replace("/", os.sep)
+        self.ADBLOCKER_CRX = str(workDir + json_data["ADBLOCKER_CRX"]).replace("/", os.sep)
 
         self.DEFAULT_ENCODING = json_data["DEFAULT_ENCODING"]
         self.DEFAULT_TEMPLATE = str(workDir + json_data["DEFAULT_TEMPLATE"]).replace("/", os.sep)
