@@ -79,7 +79,9 @@ class Olx:
         self.__ctx.XPATH.set_source(browser.ChromeDriver.driver().page_source)
         images = self.__ctx.XPATH.extract(Selectors.GALLERY_IMAGES)
         if type(images) == list:
-            self.__images = images
+            for image in images:
+                image = str(image).replace('100x100', '1200x1200')
+                self.__images.append(image)
 
 
 
