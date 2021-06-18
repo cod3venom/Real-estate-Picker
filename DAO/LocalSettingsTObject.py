@@ -30,11 +30,15 @@ class LocalSettingsTObject:
         self.BINARY_PATH_WINDOWS = str(workDir + json_data["BINARY_PATH_WINDOWS"]).replace("/", os.sep)
 
         self.JS_PATH = str(workDir + json_data["JS_PATH"]).replace("/", os.sep)
+        self.LOGS_PATH = str(workDir + json_data["LOGS_PATH"]).replace("/", os.sep)
+
         self.ADBLOCKER_CRX = str(workDir + json_data["ADBLOCKER_CRX"]).replace("/", os.sep)
 
         self.DEFAULT_ENCODING = json_data["DEFAULT_ENCODING"]
         self.DEFAULT_TEMPLATE = str(workDir + json_data["DEFAULT_TEMPLATE"]).replace("/", os.sep)
         self.VENDOR_ABBREVIATIONS = json_data["VENDOR_ABBREVIATIONS"]
+
+        self.OLX_AUTH_PAGE = json_data["OLX_AUTH_PAGE"]
 
         self.MORIZON_STORAGE = str(workDir + json_data["MORIZON_STORAGE"]).replace("/", os.sep)
         self.GUMTREE_STORAGE = str(workDir + json_data["GUMTREE_STORAGE"]).replace("/", os.sep)

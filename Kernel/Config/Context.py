@@ -31,7 +31,7 @@ class Context:
         self.__texts = Texts(file=self.__localSettings.TEXTS_PATH)
         self.__texts.loadTexts()
 
-        self.__logger = Logger(texts_file=self.__texts.file, log_format=self.__localSettings.LOG_FORMAT)
+        self.__logger = Logger(texts_file=self.__texts.file, log_format=self.__localSettings.LOG_FORMAT, logs_dir=self.__localSettings.LOGS_PATH)
         self.__levels = Levels()
 
 

@@ -16,12 +16,14 @@ from DAO.PLEstateSheetTObject import PLEstateSheetTObject
 from DataOperations.DATE import DATE
 from DataOperations.LIST import LIST
 from Kernel.Config.Context import Context
-from Kernel.Global import browser
+from Kernel.Global import browser, args
 from Template.Template import Template
+from Vendors.Olx.Auth import Auth
 from Vendors.Olx.Selectors import Selectors
 
 
 class Olx:
+
 
     def __init__(self, ctx: Context, url: str, sheetObj: PLEstateSheetTObject = None):
         self.__ctx = ctx
@@ -30,6 +32,8 @@ class Olx:
         self.__images: list = []
         self.__obj: OlxProductTObject
         self.sheetObj = sheetObj
+        self.__auth = None
+
 
     def start(self):
         """
@@ -44,17 +48,28 @@ class Olx:
         :return:
         """
         try:
+
+            if args.keyExists('--olx-login'):
+                self.__auth = Auth()
+
+                if not self.__auth.is_logged:
+                    return ""
+
+
             browser.ChromeDriver.navigate(self.__url, 1)
             self.__ctx.XPATH.set_source(browser.ChromeDriver.driver().page_source)
-            self.__accept_regulations()
-            self.__initialize_slider()
-            self.__reveal_phone_number()
-            return self.__extract_data()
+            self.accept_regulations()
+            if self.is_offer_active:
+                self.__initialize_slider()
+                self.__reveal_phone_number()
+                return self.__extract_data()
+
         except Exception as ex:
             print(ex)
         return ""
 
-    def __accept_regulations(self):
+
+    def accept_regulations(self):
         """
         Accept regulations, cookies,
         and preloaded modals
@@ -63,6 +78,15 @@ class Olx:
         time.sleep(1)
         accept_btn = browser.Element.findElementByXpath(Selectors.ACCEPT_REGULATIONS)
         browser.Element.click(accept_btn)
+
+    @property
+    def is_offer_active(self):
+        self.__ctx.XPATH.set_source(browser.ChromeDriver.driver().page_source)
+        status = self.__ctx.XPATH.extract(Selectors.OFFER_STATUS)
+        if status:
+            if status == 'Ogłoszenie nieaktualne':
+                return False
+        return True
 
     def __initialize_slider(self) -> list:
         """
@@ -88,7 +112,7 @@ class Olx:
 
         # self.__ctx.XPATH.set_source(browser.ChromeDriver.driver().page_source)
         # self.__images = self.__ctx.XPATH.extract(Selectors.GALLERY_IMAGES)
-        # return self.__images
+        return self.__images
 
     def __reveal_phone_number(self):
         browser.Javascript.execute_js(Selectors.PHONE_BUTTON, interval=1)

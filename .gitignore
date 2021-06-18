@@ -3,7 +3,11 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,intellij
 
 
+
 .*
+Logs/*.LOG
+user_data_dir
+user_data_dir/*
 Storage
 Storage/*
 Storage/Otodom/*/

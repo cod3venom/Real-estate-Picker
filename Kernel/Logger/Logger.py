@@ -13,6 +13,8 @@ import os
 import locale
 from colorama import Fore
 
+from Kernel.FileSystem.FileSystem import FileSystem
+
 
 class Constants:
     EMPTY = ""
@@ -86,9 +88,11 @@ class Logger:
     log_format: str
 
 
-    def __init__(self, texts_file: str, log_format: str, autoInit: bool = False):
+    def __init__(self, texts_file: str, log_format: str, logs_dir: str, autoInit: bool = False):
         self.texts_file = texts_file
         self.log_format = log_format
+        self.logs_dir = logs_dir
+
         self.texts = Texts(self.texts_file)
         self.__globalMessage: dict = {}
         if autoInit:
@@ -118,7 +122,7 @@ class Logger:
         if self.level == self.levels.hackerType:
             self.color = self.colors.HackerType
 
-    def Print(self, msg_num: int, level: Levels, message: str = ""):
+    def Print(self, msg_num: int, level: Levels, message: str = "", log_to_file: bool = False):
         text = ""
         self.level = level
         self.initColor()
@@ -137,3 +141,13 @@ class Logger:
                                       self.color + self.caller, "Real Estate", self.colors.Default + message)
         print(text)
         self.__globalMessage = {"Log": text}
+
+        if log_to_file:
+            self.log_to_file(text)
+
+
+    def log_to_file(self, content: str):
+        now = datetime.datetime.now()
+        creation_date = now.strftime("%Y-%m-%d %H-%M-%S")
+        file = str(f"{self.logs_dir}LOG_{creation_date}.log")
+        FileSystem().writeToFile(file_path=file, content=content)

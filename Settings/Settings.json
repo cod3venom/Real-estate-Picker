@@ -10,6 +10,7 @@
   "BINARY_PATH_LINUX": "/Settings/bin/chromedriver",
   "BINARY_PATH_WINDOWS": "/Settings/bin/chromedriver.exe",
   "JS_PATH": "/Settings/Javascript/",
+  "LOGS_PATH": "/Logs/",
 
   "DEFAULT_ENCODING": "utf-8",
   "DEFAULT_TEMPLATE": "/Settings/Templates/default.temp",
@@ -22,6 +23,8 @@
   "DOMY_STORAGE": "/Storage/Domy/",
   "DOMIPORTA_STORAGE": "/Storage/DomiPorta/",
   "OTODOM_STORAGE": "/Storage/Otodom/",
+
+  "OLX_AUTH_PAGE": "https://www.olx.pl/konto/?ref%5B0%5D%5Baction%5D=myaccount&ref%5B0%5D%5Bmethod%5D=index",
 
   "VENDOR_ABBREVIATIONS": {
     "GRATKA":"GRT",
@@ -71,7 +74,7 @@
     "PHONE_BUTTON": "document.querySelectorAll(\"button\").forEach(function(btn, index) {if (btn.innerText === \"Zadzwoń\"){btn.click(); return;}})",
     "PHONE_NUMBER": "normalize-space(translate(//button[@data-cy='ad-contact-phone'], ':', ''))",
     "GALLERY_MAIN": "div[class='swiper-zoom-container'] > img",
-    "GALLERY_MAIN_CLICK": "document.querySelector('div[class=\"swiper-zoom-container\"] > img').click();",
+    "GALLERY_MAIN_CLICK": "let gallery=document.querySelector('div[class=\"swiper-zoom-container\"] > img');gallery instanceof Element&&gallery.click();",
     "GALLERY_IMAGES": "//div[@data-testid = \"swiper-thumbnail\"]/img/@src",
     "GALLERY_NEXT": "//button[@aria-label='Next slide']",
     "GALLERY_CLOSE": "document.querySelector(\"div[data-testid='close-modal']\").click();",
@@ -80,7 +83,13 @@
     "MEASUREMENT": "normalize-space(translate(//p[contains(text(), 'Powierzchnia')]/text(), 'Powierzhcnia: ' , ''))",
     "ROOMS_AMOUNT": "normalize-space(//p[contains(text(), 'Liczba pokoi')]/text())",
     "CONTACT_DIGNITY": "normalize-space(//a[@name='user_ads']//h2/text())",
-    "DESCRIPTION": "//div[@data-cy='ad_description']/div/text()"
+    "DESCRIPTION": "//div[@data-cy='ad_description']/div/text()",
+    "OFFER_STATUS": "normalize-space(//div[@data-testid='ad-status-msg'])",
+
+    "OLX_USER_EMAIL_INPUT": "input[id = 'userEmail']",
+    "OLX_USER_PASSWORD_INPUT": "input[id = 'userPass']",
+    "OLX_CAPTCHA_BUTTON": ".g-recaptcha",
+    "OLX_LOGIN_BUTTON": "button[id = 'se_userLogin']"
   },
   "GRATKA_SELECTORS" : {
     "ACCEPT_REGULATIONS": "//span[text() = 'Przejdź do serwisu']",

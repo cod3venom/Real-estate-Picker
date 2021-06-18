@@ -43,7 +43,7 @@ class FileSystem:
 
     def writeToFile(self, file_path: str, content: str) -> bool:
         if file_path is not None and content is not None:
-            with open(file_path, 'w', encoding='utf8') as writer:
+            with open(r""+file_path, 'w', encoding='utf8') as writer:
                 writer.write(content)
                 return True
         return False

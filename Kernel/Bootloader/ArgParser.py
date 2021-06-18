@@ -21,6 +21,7 @@ from Vendors.Domy.Domy import Domy
 from Vendors.Gratka.Gratka import Gratka
 from Vendors.Gumtree.Gumtree import Gumtree
 from Vendors.Morizon.Morizon import Morizon
+from Vendors.Olx.Auth import Auth as OlxAuth
 from Vendors.Olx.Olx import Olx
 from Vendors.Otodom.Otodom import Otodom
 
@@ -34,11 +35,23 @@ class ArgParser:
         self.file_type = ""
         self.link = ""
         self.single = False
+        self.login_vendor = ""
 
-        self.parser()
-
+        try:
+            self.parser()
+        except Exception as ex:
+            ctx.Logger.Print(0, ctx.LogLevel.Info, str(ex), log_to_file=True)
+            ctx.Logger.Print(10, ctx.LogLevel.Info)
+            sys.exit(0)
 
     def parser(self):
+
+        if args.keyExists("login"):
+            self.login_vendor = args.getValueOf("login").lower()
+
+            if self.login_vendor == "olx":
+                OlxAuth(user_control=True)
+
         if args.keyExists("type"):
             self.file_type = args.getValueOf("type")
 
@@ -61,6 +74,10 @@ class ArgParser:
 
             if self.file_type == SheetTypes.ODS:
                 self.run_from_ods()
+
+
+
+
 
 
 
@@ -113,5 +130,4 @@ class ArgParser:
 
 
     def on_exit(self):
-        browser.ChromeDriver.driver().close()
-        browser.ChromeDriver.driver().quit()
+        browser.ChromeDriver.kill()

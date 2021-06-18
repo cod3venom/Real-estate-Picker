@@ -8,15 +8,20 @@
 """
 import sys
 import platform
+import traceback
+
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException, \
     ElementNotInteractableException, ElementClickInterceptedException, WebDriverException
 from selenium.webdriver.common.keys import Keys
+
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.common.action_chains import ActionChains
 import time
 
+from selenium.webdriver.support.wait import WebDriverWait
 from urllib3.exceptions import MaxRetryError
 
 from Kernel.Browser.Drivers.ChromiumConfig import ChromiumConfig
@@ -31,18 +36,13 @@ class Browser:
     def __init__(self, ctx: Context):
         self.ctx = ctx
         self.__chromeConfig = ChromiumConfig()
-        headless = False
-        for arg in sys.argv:
-            if arg == "--debug":
-                headless = True
-            else:
-                headless = False
 
         binary_path: str = self.ctx.Settings.BINARY_PATH_LINUX
         if platform.system() == "Windows":
             binary_path = self.ctx.Settings.BINARY_PATH_WINDOWS
 
-        self.__chromeDriver = ChromeDriver(parent=self, browser=webdriver.Chrome(executable_path=binary_path, chrome_options=self.__chromeConfig.get_options(headless=headless)))
+        self.__chromeDriver = ChromeDriver(parent=self, browser=webdriver.Chrome(executable_path=binary_path,
+                                                                                 chrome_options=self.__chromeConfig.get_options()))
         self.__element = Elements(self)
         self.__javascript = Javascript(self)
 
@@ -88,12 +88,37 @@ class ChromeDriver:
             if wait_for > 0:
                 time.sleep(wait_for)
 
-            self.__parent.ctx.Logger.Print(0, self.__parent.ctx.LogLevel.Info, self.__parent.ctx.Texts.getText(1).format(url))
-        except MaxRetryError:
-            pass
+            self.__parent.ctx.Logger.Print(0, self.__parent.ctx.LogLevel.Info,
+                                           self.__parent.ctx.Texts.getText(1).format(url))
+        except MaxRetryError as ex:
+            self.__parent.ctx.Logger.Print(0, self.__parent.ctx.LogLevel.Info, str(traceback.__all__), log_to_file=True)
+            self.kill()
+        except:
+            self.__parent.ctx.Logger.Print(0, self.__parent.ctx.LogLevel.Info, str(traceback.format_exc()), log_to_file=True)
 
     def driver(self) -> webdriver.Chrome:
         return self.__chromeDriver
+
+    def wait_for(self, interval: int = 3) -> WebDriverWait:
+        return WebDriverWait(self.__chromeDriver, interval)
+
+    def wait_until_title_changes(self, interval: int = 3):
+        wait = self.wait_for(interval=interval)
+        wait.until_not(self.ec.title_is(self.__chromeDriver.title))
+
+    @property
+    def ec(self) -> EC:
+        return EC
+
+    def kill(self):
+        try:
+            self.__chromeDriver.close()
+            time.sleep(2)
+            self.__chromeDriver.quit()
+            exit(0)
+        except Exception:
+            self.__parent.ctx.Logger.Print(0, self.__parent.ctx.LogLevel.Info, str(traceback.format_exc()),
+                                           log_to_file=True)
 
 
 class Elements:
@@ -124,7 +149,8 @@ class Elements:
                 time.sleep(interval)
             if type(target) == WebElement:
                 target.click()
-                self.__parent.ctx.Logger.Print(0, self.__parent.ctx.LogLevel.Success, self.__parent.ctx.Texts.getText(2).format(str(target)))
+                self.__parent.ctx.Logger.Print(0, self.__parent.ctx.LogLevel.Success,
+                                               self.__parent.ctx.Texts.getText(2).format(str(target)))
         except ElementNotInteractableException:
             return target
         except ElementClickInterceptedException:
@@ -139,7 +165,8 @@ class Elements:
         try:
             element = self.__parent.ChromeDriver.driver().find_element_by_css_selector(target)
             if element:
-                self.__parent.ctx.Logger.Print(0, self.__parent.ctx.LogLevel.Success, self.__parent.ctx.Texts.getText(3).format(str(element)))
+                self.__parent.ctx.Logger.Print(0, self.__parent.ctx.LogLevel.Success,
+                                               self.__parent.ctx.Texts.getText(3).format(str(element)))
                 return element
         except NoSuchElementException:
             self.__parent.ctx.Logger.Print(0, self.__parent.ctx.LogLevel.Error, self.__parent.ctx.Texts.getText(4))
@@ -149,7 +176,8 @@ class Elements:
         try:
             element = self.__parent.ChromeDriver.driver().find_elements_by_css_selector(target)
             if element:
-                self.__parent.ctx.Logger.Print(0, self.__parent.ctx.LogLevel.Success, self.__parent.ctx.Texts.getText(3).format(str(element)))
+                self.__parent.ctx.Logger.Print(0, self.__parent.ctx.LogLevel.Success,
+                                               self.__parent.ctx.Texts.getText(3).format(str(element)))
         except NoSuchElementException:
             self.__parent.ctx.Logger.Print(0, self.__parent.ctx.LogLevel.Error, self.__parent.ctx.Texts.getText(4))
             return []
@@ -198,7 +226,6 @@ class Javascript:
     def scroll_to_bottom(self, interval: int = 0):
         self.execute_bundleJS('ScrollBottom')
 
-
     def scroll_to_top(self, interval: int = 0):
         self.execute_bundleJS('ScrollTop')
 
@@ -210,9 +237,11 @@ class Javascript:
         if self.__parent.ChromeDriver.driver() is not None:
             code = self.__parent.ctx.JsBundle.js_get(codeName)
             flag = self.execute_js(code=code, interval=interval)
-            self.__parent.ctx.Logger.Print(0, self.__parent.ctx.LogLevel.Success, self.__parent.ctx.Texts.getText(13).format(code))
+            self.__parent.ctx.Logger.Print(0, self.__parent.ctx.LogLevel.Success,
+                                           self.__parent.ctx.Texts.getText(13).format(code))
             if len(flag) > 0:
-                self.__parent.ctx.Logger.Print(0, self.__parent.ctx.LogLevel.Success, self.__parent.ctx.Texts.getText(5).format(str(codeName)))
+                self.__parent.ctx.Logger.Print(0, self.__parent.ctx.LogLevel.Success,
+                                               self.__parent.ctx.Texts.getText(5).format(str(codeName)))
             return flag
 
     def execute_js(self, code: str, *args, interval: int = 0):
@@ -220,7 +249,8 @@ class Javascript:
         try:
             if self.__parent.ChromeDriver.driver() is not None:
                 ret_code = self.__parent.ChromeDriver.driver().execute_script(code, args)
-                self.__parent.ctx.Logger.Print(0, self.__parent.ctx.LogLevel.Success, self.__parent.ctx.Texts.getText(13).format(code))
+                self.__parent.ctx.Logger.Print(0, self.__parent.ctx.LogLevel.Success,
+                                               self.__parent.ctx.Texts.getText(13).format(code))
                 if interval > 0:
                     time.sleep(interval)
                 return ret_code
