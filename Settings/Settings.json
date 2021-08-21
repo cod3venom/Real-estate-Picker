@@ -125,7 +125,7 @@
     "ACCEPT_REGULATIONS": "//button[@id='onetrust-accept-btn-handler']",
     "TITLE": "normalize-space(//title/text())",
     "SCROLL_TO_GALLERY": "div[id=\"sliderGallery\"] img",
-    "GALLERY_MAIN": "picture[class *= \"slick-current slick-active\"]",
+    "GALLERY_MAIN": "div[id='sliderGallery']",
     "GALLERY_SELECTED_IMAGE": "function getImg() {    const sources = [];    const images = [].slice.call(document.querySelectorAll(`div [data-picture-number][aria-hidden] picture > img`));    if (Array.isArray(images)){        images.forEach(function (img) {            const src = img.getAttribute(\"src\");            if (!sources.includes(src)){                sources.push(src);            }        });    }    return sources;}return getImg();",
     "GALLERY_NEXT_BUTTON": "div[class *= \"gallery-carousel__button--next\"]",
     "TOTAL_IMAGES": "let total=document.querySelector(\".gallery-count > span\");if(total instanceof Element){total=total.innerText.toString();if(total.includes(\"z\")){let numbers=total.split(\"z\");if(numbers.length>1){return numbers[1]}}}return 0;",
@@ -133,7 +133,7 @@
     "LOCATION" : "normalize-space(//span[@itemprop = 'address'])",
     "MEASUREMENT": "normalize-space(//span[text() = 'Powierzchnia całkowita']/../span[2])",
     "ROOMS_AMOUNT": "normalize-space(//span[text() = 'Liczba pokoi ']/../span[2])",
-    "PHONE_NUMBER": "normalize-space(//a[@data-tel]/@data-tel)",
+    "PHONE_NUMBER": "normalize-space(//div[@data-tel]/@data-tel)",
     "DESCRIPTION": "normalize-space(//div[@class = 'description__panel']/text())"
   },
   "OTODOM_SELECTORS" :{

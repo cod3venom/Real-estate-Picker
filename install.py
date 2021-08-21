@@ -57,6 +57,7 @@ for vendor in storage:
     if not os.path.exists(vendor):
         os.mkdir(vendor)
 
+os.mkdir('Logs')
 
 env_base_path = input("Enter path for DATABASE folder > ")
 
